@@ -303,6 +303,7 @@ function StudyCard({
       <div className="study-meta">
         <span data-testid="session-progress">{progress}</span>
         <span>Chapter {card.chapter}</span>
+        {card.formRole ? <span>{formatFormRole(card.formRole)}</span> : null}
         <span>{cardStatus}</span>
       </div>
 
@@ -458,10 +459,11 @@ function DeckBrowser({
                 <p dir="rtl" lang="ar">
                   {card.target}
                 </p>
-                <strong>{card.answer}</strong>
+                <strong>{card.formRole ? `${card.answer} · ${formatFormRole(card.formRole)}` : card.answer}</strong>
               </div>
               <div className="browser-card-meta">
                 <span>{getCardStatus(state, now)}</span>
+                {card.formRole ? <span>{formatFormRole(card.formRole)}</span> : null}
                 <span>{state ? formatDueDistance(state.dueAt, now) : "new"}</span>
               </div>
             </article>
@@ -541,12 +543,24 @@ function filterCards(
       normalizeArabicForKey(card.target),
       normalizeArabicForKey(card.arabic),
       card.answer.toLowerCase(),
+      card.formRole ?? "",
       card.kind,
       getCardStatus(state, now).toLowerCase(),
     ].join(" ");
 
     return searchable.includes(normalizedSearch);
   });
+}
+
+function formatFormRole(role: NonNullable<VocabularyCard["formRole"]>) {
+  const labels: Record<NonNullable<VocabularyCard["formRole"]>, string> = {
+    past: "Past",
+    present: "Present",
+    command: "Command",
+    masdar: "Masdar",
+  };
+
+  return labels[role];
 }
 
 function loadReviewState(): ReviewState {

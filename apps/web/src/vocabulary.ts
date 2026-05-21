@@ -17,18 +17,20 @@ export interface VocabularyCard {
     masdar?: string;
   };
   requiredPreposition?: string;
+  formRole?: "past" | "present" | "command" | "masdar";
 }
 
 export const vocabularyCards: VocabularyCard[] = [
   {
-    "id": "ch1-verb-ينظر-to-look",
+    "id": "ch1-verb-نظر-to-look-past",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَنْظُرُ",
-    "target": "يَنْظُرُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "نَظَرَ",
+    "target": "نَظَرَ",
     "answer": "To look",
-    "detail": "Past: نَظَرَ · Masdar: نَظَرٌ · Preposition: إِلَى",
+    "detail": "Card: Past · Preposition: إِلَى · Past: نَظَرَ · Present: يَنْظُرُ · Command: اُنْظُرْ · Masdar: نَظَرٌ",
     "forms": {
       "past": "نَظَرَ",
       "present": "يَنْظُرُ",
@@ -38,14 +40,69 @@ export const vocabularyCards: VocabularyCard[] = [
     "requiredPreposition": "إِلَى"
   },
   {
-    "id": "ch1-verb-يستمع-to-listen",
+    "id": "ch1-verb-ينظر-to-look-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَسْتَمِعُ",
-    "target": "يَسْتَمِعُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَنْظُرُ",
+    "target": "يَنْظُرُ",
+    "answer": "To look",
+    "detail": "Card: Present · Preposition: إِلَى · Past: نَظَرَ · Present: يَنْظُرُ · Command: اُنْظُرْ · Masdar: نَظَرٌ",
+    "forms": {
+      "past": "نَظَرَ",
+      "present": "يَنْظُرُ",
+      "command": "اُنْظُرْ",
+      "masdar": "نَظَرٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch1-verb-انظر-to-look-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اُنْظُرْ",
+    "target": "اُنْظُرْ",
+    "answer": "To look",
+    "detail": "Card: Command · Preposition: إِلَى · Past: نَظَرَ · Present: يَنْظُرُ · Command: اُنْظُرْ · Masdar: نَظَرٌ",
+    "forms": {
+      "past": "نَظَرَ",
+      "present": "يَنْظُرُ",
+      "command": "اُنْظُرْ",
+      "masdar": "نَظَرٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch1-verb-نظر-to-look-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "نَظَرٌ",
+    "target": "نَظَرٌ",
+    "answer": "To look",
+    "detail": "Card: Masdar · Preposition: إِلَى · Past: نَظَرَ · Present: يَنْظُرُ · Command: اُنْظُرْ · Masdar: نَظَرٌ",
+    "forms": {
+      "past": "نَظَرَ",
+      "present": "يَنْظُرُ",
+      "command": "اُنْظُرْ",
+      "masdar": "نَظَرٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch1-verb-استمع-to-listen-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِسْتَمَعَ",
+    "target": "اِسْتَمَعَ",
     "answer": "To listen",
-    "detail": "Past: اِسْتَمَعَ · Masdar: اِسْتِمَاع · Preposition: إِلَى",
+    "detail": "Card: Past · Preposition: إِلَى · Past: اِسْتَمَعَ · Present: يَسْتَمِعُ · Command: اِسْتَمِعْ · Masdar: اِسْتِمَاع",
     "forms": {
       "past": "اِسْتَمَعَ",
       "present": "يَسْتَمِعُ",
@@ -55,14 +112,69 @@ export const vocabularyCards: VocabularyCard[] = [
     "requiredPreposition": "إِلَى"
   },
   {
-    "id": "ch1-verb-يعيد-to-repeat",
+    "id": "ch1-verb-يستمع-to-listen-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُعِيدُ",
-    "target": "يُعِيدُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَسْتَمِعُ",
+    "target": "يَسْتَمِعُ",
+    "answer": "To listen",
+    "detail": "Card: Present · Preposition: إِلَى · Past: اِسْتَمَعَ · Present: يَسْتَمِعُ · Command: اِسْتَمِعْ · Masdar: اِسْتِمَاع",
+    "forms": {
+      "past": "اِسْتَمَعَ",
+      "present": "يَسْتَمِعُ",
+      "command": "اِسْتَمِعْ",
+      "masdar": "اِسْتِمَاع"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch1-verb-استمع-to-listen-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِسْتَمِعْ",
+    "target": "اِسْتَمِعْ",
+    "answer": "To listen",
+    "detail": "Card: Command · Preposition: إِلَى · Past: اِسْتَمَعَ · Present: يَسْتَمِعُ · Command: اِسْتَمِعْ · Masdar: اِسْتِمَاع",
+    "forms": {
+      "past": "اِسْتَمَعَ",
+      "present": "يَسْتَمِعُ",
+      "command": "اِسْتَمِعْ",
+      "masdar": "اِسْتِمَاع"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch1-verb-استماع-to-listen-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِسْتِمَاع",
+    "target": "اِسْتِمَاع",
+    "answer": "To listen",
+    "detail": "Card: Masdar · Preposition: إِلَى · Past: اِسْتَمَعَ · Present: يَسْتَمِعُ · Command: اِسْتَمِعْ · Masdar: اِسْتِمَاع",
+    "forms": {
+      "past": "اِسْتَمَعَ",
+      "present": "يَسْتَمِعُ",
+      "command": "اِسْتَمِعْ",
+      "masdar": "اِسْتِمَاع"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch1-verb-اعاد-to-repeat-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَعَادَ",
+    "target": "أَعَادَ",
     "answer": "To repeat",
-    "detail": "Past: أَعَادَ · Masdar: إِعَادَةٌ",
+    "detail": "Card: Past · Past: أَعَادَ · Present: يُعِيدُ · Command: أَعِدْ · Masdar: إِعَادَةٌ",
     "forms": {
       "past": "أَعَادَ",
       "present": "يُعِيدُ",
@@ -71,14 +183,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch1-verb-يشير-to-point-indicate",
+    "id": "ch1-verb-يعيد-to-repeat-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُشِيرُ",
-    "target": "يُشِيرُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُعِيدُ",
+    "target": "يُعِيدُ",
+    "answer": "To repeat",
+    "detail": "Card: Present · Past: أَعَادَ · Present: يُعِيدُ · Command: أَعِدْ · Masdar: إِعَادَةٌ",
+    "forms": {
+      "past": "أَعَادَ",
+      "present": "يُعِيدُ",
+      "command": "أَعِدْ",
+      "masdar": "إِعَادَةٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-اعد-to-repeat-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَعِدْ",
+    "target": "أَعِدْ",
+    "answer": "To repeat",
+    "detail": "Card: Command · Past: أَعَادَ · Present: يُعِيدُ · Command: أَعِدْ · Masdar: إِعَادَةٌ",
+    "forms": {
+      "past": "أَعَادَ",
+      "present": "يُعِيدُ",
+      "command": "أَعِدْ",
+      "masdar": "إِعَادَةٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-اعادة-to-repeat-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِعَادَةٌ",
+    "target": "إِعَادَةٌ",
+    "answer": "To repeat",
+    "detail": "Card: Masdar · Past: أَعَادَ · Present: يُعِيدُ · Command: أَعِدْ · Masdar: إِعَادَةٌ",
+    "forms": {
+      "past": "أَعَادَ",
+      "present": "يُعِيدُ",
+      "command": "أَعِدْ",
+      "masdar": "إِعَادَةٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-اشار-to-point-indicate-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَشَارَ",
+    "target": "أَشَارَ",
     "answer": "To point, indicate",
-    "detail": "Past: أَشَارَ · Masdar: إِشَارَةٌ · Preposition: إِلَى",
+    "detail": "Card: Past · Preposition: إِلَى · Past: أَشَارَ · Present: يُشِيرُ · Command: أَشِرْ · Masdar: إِشَارَةٌ",
     "forms": {
       "past": "أَشَارَ",
       "present": "يُشِيرُ",
@@ -88,14 +252,69 @@ export const vocabularyCards: VocabularyCard[] = [
     "requiredPreposition": "إِلَى"
   },
   {
-    "id": "ch1-verb-يضع-to-put",
+    "id": "ch1-verb-يشير-to-point-indicate-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَضَعُ",
-    "target": "يَضَعُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُشِيرُ",
+    "target": "يُشِيرُ",
+    "answer": "To point, indicate",
+    "detail": "Card: Present · Preposition: إِلَى · Past: أَشَارَ · Present: يُشِيرُ · Command: أَشِرْ · Masdar: إِشَارَةٌ",
+    "forms": {
+      "past": "أَشَارَ",
+      "present": "يُشِيرُ",
+      "command": "أَشِرْ",
+      "masdar": "إِشَارَةٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch1-verb-اشر-to-point-indicate-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَشِرْ",
+    "target": "أَشِرْ",
+    "answer": "To point, indicate",
+    "detail": "Card: Command · Preposition: إِلَى · Past: أَشَارَ · Present: يُشِيرُ · Command: أَشِرْ · Masdar: إِشَارَةٌ",
+    "forms": {
+      "past": "أَشَارَ",
+      "present": "يُشِيرُ",
+      "command": "أَشِرْ",
+      "masdar": "إِشَارَةٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch1-verb-اشارة-to-point-indicate-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِشَارَةٌ",
+    "target": "إِشَارَةٌ",
+    "answer": "To point, indicate",
+    "detail": "Card: Masdar · Preposition: إِلَى · Past: أَشَارَ · Present: يُشِيرُ · Command: أَشِرْ · Masdar: إِشَارَةٌ",
+    "forms": {
+      "past": "أَشَارَ",
+      "present": "يُشِيرُ",
+      "command": "أَشِرْ",
+      "masdar": "إِشَارَةٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch1-verb-وضع-to-put-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "وَضَعَ",
+    "target": "وَضَعَ",
     "answer": "To put",
-    "detail": "Past: وَضَعَ · Masdar: وَضْعٌ",
+    "detail": "Card: Past · Past: وَضَعَ · Present: يَضَعُ · Command: ضَعْ · Masdar: وَضْعٌ",
     "forms": {
       "past": "وَضَعَ",
       "present": "يَضَعُ",
@@ -104,14 +323,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch1-verb-يسمع-to-hear",
+    "id": "ch1-verb-يضع-to-put-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَسْمَعُ",
-    "target": "يَسْمَعُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَضَعُ",
+    "target": "يَضَعُ",
+    "answer": "To put",
+    "detail": "Card: Present · Past: وَضَعَ · Present: يَضَعُ · Command: ضَعْ · Masdar: وَضْعٌ",
+    "forms": {
+      "past": "وَضَعَ",
+      "present": "يَضَعُ",
+      "command": "ضَعْ",
+      "masdar": "وَضْعٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-ضع-to-put-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "ضَعْ",
+    "target": "ضَعْ",
+    "answer": "To put",
+    "detail": "Card: Command · Past: وَضَعَ · Present: يَضَعُ · Command: ضَعْ · Masdar: وَضْعٌ",
+    "forms": {
+      "past": "وَضَعَ",
+      "present": "يَضَعُ",
+      "command": "ضَعْ",
+      "masdar": "وَضْعٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-وضع-to-put-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "وَضْعٌ",
+    "target": "وَضْعٌ",
+    "answer": "To put",
+    "detail": "Card: Masdar · Past: وَضَعَ · Present: يَضَعُ · Command: ضَعْ · Masdar: وَضْعٌ",
+    "forms": {
+      "past": "وَضَعَ",
+      "present": "يَضَعُ",
+      "command": "ضَعْ",
+      "masdar": "وَضْعٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-سمع-to-hear-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "سَمِعَ",
+    "target": "سَمِعَ",
     "answer": "To hear",
-    "detail": "Past: سَمِعَ · Masdar: سَمْعٌ / سَمَاعٌ",
+    "detail": "Card: Past · Past: سَمِعَ · Present: يَسْمَعُ · Command: اِسمَعْ · Masdar: سَمْعٌ / سَمَاعٌ",
     "forms": {
       "past": "سَمِعَ",
       "present": "يَسْمَعُ",
@@ -120,14 +391,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch1-verb-يقول-to-say",
+    "id": "ch1-verb-يسمع-to-hear-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَقُولُ",
-    "target": "يَقُولُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَسْمَعُ",
+    "target": "يَسْمَعُ",
+    "answer": "To hear",
+    "detail": "Card: Present · Past: سَمِعَ · Present: يَسْمَعُ · Command: اِسمَعْ · Masdar: سَمْعٌ / سَمَاعٌ",
+    "forms": {
+      "past": "سَمِعَ",
+      "present": "يَسْمَعُ",
+      "command": "اِسمَعْ",
+      "masdar": "سَمْعٌ / سَمَاعٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-اسمع-to-hear-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِسمَعْ",
+    "target": "اِسمَعْ",
+    "answer": "To hear",
+    "detail": "Card: Command · Past: سَمِعَ · Present: يَسْمَعُ · Command: اِسمَعْ · Masdar: سَمْعٌ / سَمَاعٌ",
+    "forms": {
+      "past": "سَمِعَ",
+      "present": "يَسْمَعُ",
+      "command": "اِسمَعْ",
+      "masdar": "سَمْعٌ / سَمَاعٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-سمع-سماع-to-hear-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "سَمْعٌ / سَمَاعٌ",
+    "target": "سَمْعٌ / سَمَاعٌ",
+    "answer": "To hear",
+    "detail": "Card: Masdar · Past: سَمِعَ · Present: يَسْمَعُ · Command: اِسمَعْ · Masdar: سَمْعٌ / سَمَاعٌ",
+    "forms": {
+      "past": "سَمِعَ",
+      "present": "يَسْمَعُ",
+      "command": "اِسمَعْ",
+      "masdar": "سَمْعٌ / سَمَاعٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-قال-to-say-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "قَالَ",
+    "target": "قَالَ",
     "answer": "To say",
-    "detail": "Past: قَالَ · Masdar: قَولٌ",
+    "detail": "Card: Past · Past: قَالَ · Present: يَقُولُ · Command: قُلْ · Masdar: قَولٌ",
     "forms": {
       "past": "قَالَ",
       "present": "يَقُولُ",
@@ -136,14 +459,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch1-verb-يرتب-to-put-in-order-arrange-organise",
+    "id": "ch1-verb-يقول-to-say-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُرَتِبُ",
-    "target": "يُرَتِبُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَقُولُ",
+    "target": "يَقُولُ",
+    "answer": "To say",
+    "detail": "Card: Present · Past: قَالَ · Present: يَقُولُ · Command: قُلْ · Masdar: قَولٌ",
+    "forms": {
+      "past": "قَالَ",
+      "present": "يَقُولُ",
+      "command": "قُلْ",
+      "masdar": "قَولٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-قل-to-say-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "قُلْ",
+    "target": "قُلْ",
+    "answer": "To say",
+    "detail": "Card: Command · Past: قَالَ · Present: يَقُولُ · Command: قُلْ · Masdar: قَولٌ",
+    "forms": {
+      "past": "قَالَ",
+      "present": "يَقُولُ",
+      "command": "قُلْ",
+      "masdar": "قَولٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-قول-to-say-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "قَولٌ",
+    "target": "قَولٌ",
+    "answer": "To say",
+    "detail": "Card: Masdar · Past: قَالَ · Present: يَقُولُ · Command: قُلْ · Masdar: قَولٌ",
+    "forms": {
+      "past": "قَالَ",
+      "present": "يَقُولُ",
+      "command": "قُلْ",
+      "masdar": "قَولٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-رتب-to-put-in-order-arrange-organise-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "رَتَّبَ",
+    "target": "رَتَّبَ",
     "answer": "To put in order, arrange, organise",
-    "detail": "Past: رَتَّبَ · Masdar: تَرْتِيبٌ",
+    "detail": "Card: Past · Past: رَتَّبَ · Present: يُرَتِبُ · Command: رَتِبْ · Masdar: تَرْتِيبٌ",
     "forms": {
       "past": "رَتَّبَ",
       "present": "يُرَتِبُ",
@@ -152,14 +527,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch1-verb-يتبادل-to-exchange",
+    "id": "ch1-verb-يرتب-to-put-in-order-arrange-organise-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَتَبَادَلُ",
-    "target": "يَتَبَادَلُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُرَتِبُ",
+    "target": "يُرَتِبُ",
+    "answer": "To put in order, arrange, organise",
+    "detail": "Card: Present · Past: رَتَّبَ · Present: يُرَتِبُ · Command: رَتِبْ · Masdar: تَرْتِيبٌ",
+    "forms": {
+      "past": "رَتَّبَ",
+      "present": "يُرَتِبُ",
+      "command": "رَتِبْ",
+      "masdar": "تَرْتِيبٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-رتب-to-put-in-order-arrange-organise-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "رَتِبْ",
+    "target": "رَتِبْ",
+    "answer": "To put in order, arrange, organise",
+    "detail": "Card: Command · Past: رَتَّبَ · Present: يُرَتِبُ · Command: رَتِبْ · Masdar: تَرْتِيبٌ",
+    "forms": {
+      "past": "رَتَّبَ",
+      "present": "يُرَتِبُ",
+      "command": "رَتِبْ",
+      "masdar": "تَرْتِيبٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-ترتيب-to-put-in-order-arrange-organise-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَرْتِيبٌ",
+    "target": "تَرْتِيبٌ",
+    "answer": "To put in order, arrange, organise",
+    "detail": "Card: Masdar · Past: رَتَّبَ · Present: يُرَتِبُ · Command: رَتِبْ · Masdar: تَرْتِيبٌ",
+    "forms": {
+      "past": "رَتَّبَ",
+      "present": "يُرَتِبُ",
+      "command": "رَتِبْ",
+      "masdar": "تَرْتِيبٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-تبادل-to-exchange-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "تَبَادَلَ",
+    "target": "تَبَادَلَ",
     "answer": "To exchange",
-    "detail": "Past: تَبَادَلَ · Masdar: تَبَادُلٌ",
+    "detail": "Card: Past · Past: تَبَادَلَ · Present: يَتَبَادَلُ · Command: تَبَادَلْ · Masdar: تَبَادُلٌ",
     "forms": {
       "past": "تَبَادَلَ",
       "present": "يَتَبَادَلُ",
@@ -168,14 +595,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch1-verb-يسال-to-ask",
+    "id": "ch1-verb-يتبادل-to-exchange-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَسْأَلُ",
-    "target": "يَسْأَلُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَتَبَادَلُ",
+    "target": "يَتَبَادَلُ",
+    "answer": "To exchange",
+    "detail": "Card: Present · Past: تَبَادَلَ · Present: يَتَبَادَلُ · Command: تَبَادَلْ · Masdar: تَبَادُلٌ",
+    "forms": {
+      "past": "تَبَادَلَ",
+      "present": "يَتَبَادَلُ",
+      "command": "تَبَادَلْ",
+      "masdar": "تَبَادُلٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-تبادل-to-exchange-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "تَبَادَلْ",
+    "target": "تَبَادَلْ",
+    "answer": "To exchange",
+    "detail": "Card: Command · Past: تَبَادَلَ · Present: يَتَبَادَلُ · Command: تَبَادَلْ · Masdar: تَبَادُلٌ",
+    "forms": {
+      "past": "تَبَادَلَ",
+      "present": "يَتَبَادَلُ",
+      "command": "تَبَادَلْ",
+      "masdar": "تَبَادُلٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-تبادل-to-exchange-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَبَادُلٌ",
+    "target": "تَبَادُلٌ",
+    "answer": "To exchange",
+    "detail": "Card: Masdar · Past: تَبَادَلَ · Present: يَتَبَادَلُ · Command: تَبَادَلْ · Masdar: تَبَادُلٌ",
+    "forms": {
+      "past": "تَبَادَلَ",
+      "present": "يَتَبَادَلُ",
+      "command": "تَبَادَلْ",
+      "masdar": "تَبَادُلٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-سال-to-ask-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "سَأَلَ",
+    "target": "سَأَلَ",
     "answer": "To ask",
-    "detail": "Past: سَأَلَ · Masdar: سُؤَالٌ",
+    "detail": "Card: Past · Past: سَأَلَ · Present: يَسْأَلُ · Command: اِسْأَلْ · Masdar: سُؤَالٌ",
     "forms": {
       "past": "سَأَلَ",
       "present": "يَسْأَلُ",
@@ -184,14 +663,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch1-verb-يجيب-to-answer",
+    "id": "ch1-verb-يسال-to-ask-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُجِيبُ",
-    "target": "يُجِيبُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَسْأَلُ",
+    "target": "يَسْأَلُ",
+    "answer": "To ask",
+    "detail": "Card: Present · Past: سَأَلَ · Present: يَسْأَلُ · Command: اِسْأَلْ · Masdar: سُؤَالٌ",
+    "forms": {
+      "past": "سَأَلَ",
+      "present": "يَسْأَلُ",
+      "command": "اِسْأَلْ",
+      "masdar": "سُؤَالٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-اسال-to-ask-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِسْأَلْ",
+    "target": "اِسْأَلْ",
+    "answer": "To ask",
+    "detail": "Card: Command · Past: سَأَلَ · Present: يَسْأَلُ · Command: اِسْأَلْ · Masdar: سُؤَالٌ",
+    "forms": {
+      "past": "سَأَلَ",
+      "present": "يَسْأَلُ",
+      "command": "اِسْأَلْ",
+      "masdar": "سُؤَالٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-سؤال-to-ask-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "سُؤَالٌ",
+    "target": "سُؤَالٌ",
+    "answer": "To ask",
+    "detail": "Card: Masdar · Past: سَأَلَ · Present: يَسْأَلُ · Command: اِسْأَلْ · Masdar: سُؤَالٌ",
+    "forms": {
+      "past": "سَأَلَ",
+      "present": "يَسْأَلُ",
+      "command": "اِسْأَلْ",
+      "masdar": "سُؤَالٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-اجاب-to-answer-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَجَابَ",
+    "target": "أَجَابَ",
     "answer": "To answer",
-    "detail": "Past: أَجَابَ · Masdar: إِجَابَةٌ",
+    "detail": "Card: Past · Past: أَجَابَ · Present: يُجِيبُ · Command: أَجِبْ · Masdar: إِجَابَةٌ",
     "forms": {
       "past": "أَجَابَ",
       "present": "يُجِيبُ",
@@ -200,14 +731,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch1-verb-يقرا-to-read",
+    "id": "ch1-verb-يجيب-to-answer-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَقْرَأُ",
-    "target": "يَقْرَأُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُجِيبُ",
+    "target": "يُجِيبُ",
+    "answer": "To answer",
+    "detail": "Card: Present · Past: أَجَابَ · Present: يُجِيبُ · Command: أَجِبْ · Masdar: إِجَابَةٌ",
+    "forms": {
+      "past": "أَجَابَ",
+      "present": "يُجِيبُ",
+      "command": "أَجِبْ",
+      "masdar": "إِجَابَةٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-اجب-to-answer-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَجِبْ",
+    "target": "أَجِبْ",
+    "answer": "To answer",
+    "detail": "Card: Command · Past: أَجَابَ · Present: يُجِيبُ · Command: أَجِبْ · Masdar: إِجَابَةٌ",
+    "forms": {
+      "past": "أَجَابَ",
+      "present": "يُجِيبُ",
+      "command": "أَجِبْ",
+      "masdar": "إِجَابَةٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-اجابة-to-answer-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِجَابَةٌ",
+    "target": "إِجَابَةٌ",
+    "answer": "To answer",
+    "detail": "Card: Masdar · Past: أَجَابَ · Present: يُجِيبُ · Command: أَجِبْ · Masdar: إِجَابَةٌ",
+    "forms": {
+      "past": "أَجَابَ",
+      "present": "يُجِيبُ",
+      "command": "أَجِبْ",
+      "masdar": "إِجَابَةٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-قرا-to-read-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "قَرَأَ",
+    "target": "قَرَأَ",
     "answer": "To read",
-    "detail": "Past: قَرَأَ · Masdar: قِرَاءَةٌ",
+    "detail": "Card: Past · Past: قَرَأَ · Present: يَقْرَأُ · Command: اِقْرَأْ · Masdar: قِرَاءَةٌ",
     "forms": {
       "past": "قَرَأَ",
       "present": "يَقْرَأُ",
@@ -216,14 +799,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch1-verb-يمر-to-pass-by",
+    "id": "ch1-verb-يقرا-to-read-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَمُرٌ",
-    "target": "يَمُرٌ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَقْرَأُ",
+    "target": "يَقْرَأُ",
+    "answer": "To read",
+    "detail": "Card: Present · Past: قَرَأَ · Present: يَقْرَأُ · Command: اِقْرَأْ · Masdar: قِرَاءَةٌ",
+    "forms": {
+      "past": "قَرَأَ",
+      "present": "يَقْرَأُ",
+      "command": "اِقْرَأْ",
+      "masdar": "قِرَاءَةٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-اقرا-to-read-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِقْرَأْ",
+    "target": "اِقْرَأْ",
+    "answer": "To read",
+    "detail": "Card: Command · Past: قَرَأَ · Present: يَقْرَأُ · Command: اِقْرَأْ · Masdar: قِرَاءَةٌ",
+    "forms": {
+      "past": "قَرَأَ",
+      "present": "يَقْرَأُ",
+      "command": "اِقْرَأْ",
+      "masdar": "قِرَاءَةٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-قراءة-to-read-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "قِرَاءَةٌ",
+    "target": "قِرَاءَةٌ",
+    "answer": "To read",
+    "detail": "Card: Masdar · Past: قَرَأَ · Present: يَقْرَأُ · Command: اِقْرَأْ · Masdar: قِرَاءَةٌ",
+    "forms": {
+      "past": "قَرَأَ",
+      "present": "يَقْرَأُ",
+      "command": "اِقْرَأْ",
+      "masdar": "قِرَاءَةٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-مر-to-pass-by-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "مَرَّ",
+    "target": "مَرَّ",
     "answer": "To pass by",
-    "detail": "Past: مَرَّ · Masdar: مُرُورٌ · Preposition: بـ",
+    "detail": "Card: Past · Preposition: بـ · Past: مَرَّ · Present: يَمُرٌ · Command: مُرَّ · Masdar: مُرُورٌ",
     "forms": {
       "past": "مَرَّ",
       "present": "يَمُرٌ",
@@ -233,14 +868,120 @@ export const vocabularyCards: VocabularyCard[] = [
     "requiredPreposition": "بـ"
   },
   {
-    "id": "ch1-verb-ينسخ-to-copy",
+    "id": "ch1-verb-يمر-to-pass-by-present",
     "chapter": 1,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَمُرٌ",
+    "target": "يَمُرٌ",
+    "answer": "To pass by",
+    "detail": "Card: Present · Preposition: بـ · Past: مَرَّ · Present: يَمُرٌ · Command: مُرَّ · Masdar: مُرُورٌ",
+    "forms": {
+      "past": "مَرَّ",
+      "present": "يَمُرٌ",
+      "command": "مُرَّ",
+      "masdar": "مُرُورٌ"
+    },
+    "requiredPreposition": "بـ"
+  },
+  {
+    "id": "ch1-verb-مر-to-pass-by-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "مُرَّ",
+    "target": "مُرَّ",
+    "answer": "To pass by",
+    "detail": "Card: Command · Preposition: بـ · Past: مَرَّ · Present: يَمُرٌ · Command: مُرَّ · Masdar: مُرُورٌ",
+    "forms": {
+      "past": "مَرَّ",
+      "present": "يَمُرٌ",
+      "command": "مُرَّ",
+      "masdar": "مُرُورٌ"
+    },
+    "requiredPreposition": "بـ"
+  },
+  {
+    "id": "ch1-verb-مرور-to-pass-by-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "مُرُورٌ",
+    "target": "مُرُورٌ",
+    "answer": "To pass by",
+    "detail": "Card: Masdar · Preposition: بـ · Past: مَرَّ · Present: يَمُرٌ · Command: مُرَّ · Masdar: مُرُورٌ",
+    "forms": {
+      "past": "مَرَّ",
+      "present": "يَمُرٌ",
+      "command": "مُرَّ",
+      "masdar": "مُرُورٌ"
+    },
+    "requiredPreposition": "بـ"
+  },
+  {
+    "id": "ch1-verb-نسخ-to-copy-past",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "نَسَخَ",
+    "target": "نَسَخَ",
+    "answer": "To copy",
+    "detail": "Card: Past · Past: نَسَخَ · Present: يَنْسَخُ · Command: اِنْسَخْ · Masdar: نَسْخٌ",
+    "forms": {
+      "past": "نَسَخَ",
+      "present": "يَنْسَخُ",
+      "command": "اِنْسَخْ",
+      "masdar": "نَسْخٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-ينسخ-to-copy-present",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يَنْسَخُ",
     "target": "يَنْسَخُ",
     "answer": "To copy",
-    "detail": "Past: نَسَخَ · Masdar: نَسْخٌ",
+    "detail": "Card: Present · Past: نَسَخَ · Present: يَنْسَخُ · Command: اِنْسَخْ · Masdar: نَسْخٌ",
+    "forms": {
+      "past": "نَسَخَ",
+      "present": "يَنْسَخُ",
+      "command": "اِنْسَخْ",
+      "masdar": "نَسْخٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-انسخ-to-copy-command",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِنْسَخْ",
+    "target": "اِنْسَخْ",
+    "answer": "To copy",
+    "detail": "Card: Command · Past: نَسَخَ · Present: يَنْسَخُ · Command: اِنْسَخْ · Masdar: نَسْخٌ",
+    "forms": {
+      "past": "نَسَخَ",
+      "present": "يَنْسَخُ",
+      "command": "اِنْسَخْ",
+      "masdar": "نَسْخٌ"
+    }
+  },
+  {
+    "id": "ch1-verb-نسخ-to-copy-masdar",
+    "chapter": 1,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "نَسْخٌ",
+    "target": "نَسْخٌ",
+    "answer": "To copy",
+    "detail": "Card: Masdar · Past: نَسَخَ · Present: يَنْسَخُ · Command: اِنْسَخْ · Masdar: نَسْخٌ",
     "forms": {
       "past": "نَسَخَ",
       "present": "يَنْسَخُ",
@@ -537,14 +1278,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "كَلِمَاتٌ"
   },
   {
-    "id": "ch2-verb-يتوضا-to-perform-ablution-wudoo",
+    "id": "ch2-verb-توضا-to-perform-ablution-wudoo-past",
     "chapter": 2,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَتَوَضَّأُ",
-    "target": "يَتَوَضَّأُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "تَوَضَّأَ",
+    "target": "تَوَضَّأَ",
     "answer": "To perform (ablution) wudoo",
-    "detail": "Past: تَوَضَّأَ · Masdar: تَوَضؤٌ",
+    "detail": "Card: Past · Past: تَوَضَّأَ · Present: يَتَوَضَّأُ · Command: تَوَضَّأْ · Masdar: تَوَضؤٌ",
     "forms": {
       "past": "تَوَضَّأَ",
       "present": "يَتَوَضَّأُ",
@@ -553,14 +1295,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch2-verb-يصل-to-pray",
+    "id": "ch2-verb-يتوضا-to-perform-ablution-wudoo-present",
     "chapter": 2,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُصَل",
-    "target": "يُصَل",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَتَوَضَّأُ",
+    "target": "يَتَوَضَّأُ",
+    "answer": "To perform (ablution) wudoo",
+    "detail": "Card: Present · Past: تَوَضَّأَ · Present: يَتَوَضَّأُ · Command: تَوَضَّأْ · Masdar: تَوَضؤٌ",
+    "forms": {
+      "past": "تَوَضَّأَ",
+      "present": "يَتَوَضَّأُ",
+      "command": "تَوَضَّأْ",
+      "masdar": "تَوَضؤٌ"
+    }
+  },
+  {
+    "id": "ch2-verb-توضا-to-perform-ablution-wudoo-command",
+    "chapter": 2,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "تَوَضَّأْ",
+    "target": "تَوَضَّأْ",
+    "answer": "To perform (ablution) wudoo",
+    "detail": "Card: Command · Past: تَوَضَّأَ · Present: يَتَوَضَّأُ · Command: تَوَضَّأْ · Masdar: تَوَضؤٌ",
+    "forms": {
+      "past": "تَوَضَّأَ",
+      "present": "يَتَوَضَّأُ",
+      "command": "تَوَضَّأْ",
+      "masdar": "تَوَضؤٌ"
+    }
+  },
+  {
+    "id": "ch2-verb-توضؤ-to-perform-ablution-wudoo-masdar",
+    "chapter": 2,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَوَضؤٌ",
+    "target": "تَوَضؤٌ",
+    "answer": "To perform (ablution) wudoo",
+    "detail": "Card: Masdar · Past: تَوَضَّأَ · Present: يَتَوَضَّأُ · Command: تَوَضَّأْ · Masdar: تَوَضؤٌ",
+    "forms": {
+      "past": "تَوَضَّأَ",
+      "present": "يَتَوَضَّأُ",
+      "command": "تَوَضَّأْ",
+      "masdar": "تَوَضؤٌ"
+    }
+  },
+  {
+    "id": "ch2-verb-يصلي-to-pray-past",
+    "chapter": 2,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "ِيصَلَّى",
+    "target": "ِيصَلَّى",
     "answer": "To pray",
-    "detail": "Past: ِيصَلَّى · Masdar: صََّلٌَ / ة",
+    "detail": "Card: Past · Past: ِيصَلَّى · Present: يُصَل · Command: صَلِ · Masdar: صََّلٌَ / ة",
     "forms": {
       "past": "ِيصَلَّى",
       "present": "يُصَل",
@@ -569,14 +1363,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch2-verb-يفعل-to-do",
+    "id": "ch2-verb-يصل-to-pray-present",
     "chapter": 2,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُصَل",
+    "target": "يُصَل",
+    "answer": "To pray",
+    "detail": "Card: Present · Past: ِيصَلَّى · Present: يُصَل · Command: صَلِ · Masdar: صََّلٌَ / ة",
+    "forms": {
+      "past": "ِيصَلَّى",
+      "present": "يُصَل",
+      "command": "صَلِ",
+      "masdar": "صََّلٌَ / ة"
+    }
+  },
+  {
+    "id": "ch2-verb-صل-to-pray-command",
+    "chapter": 2,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "صَلِ",
+    "target": "صَلِ",
+    "answer": "To pray",
+    "detail": "Card: Command · Past: ِيصَلَّى · Present: يُصَل · Command: صَلِ · Masdar: صََّلٌَ / ة",
+    "forms": {
+      "past": "ِيصَلَّى",
+      "present": "يُصَل",
+      "command": "صَلِ",
+      "masdar": "صََّلٌَ / ة"
+    }
+  },
+  {
+    "id": "ch2-verb-صل-ة-to-pray-masdar",
+    "chapter": 2,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "صََّلٌَ / ة",
+    "target": "صََّلٌَ / ة",
+    "answer": "To pray",
+    "detail": "Card: Masdar · Past: ِيصَلَّى · Present: يُصَل · Command: صَلِ · Masdar: صََّلٌَ / ة",
+    "forms": {
+      "past": "ِيصَلَّى",
+      "present": "يُصَل",
+      "command": "صَلِ",
+      "masdar": "صََّلٌَ / ة"
+    }
+  },
+  {
+    "id": "ch2-verb-فعل-to-do-past",
+    "chapter": 2,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "فَعَلَ",
+    "target": "فَعَلَ",
+    "answer": "To do",
+    "detail": "Card: Past · Past: فَعَلَ · Present: يَفْعَلُ · Command: اِفْعَلْ · Masdar: فِعْلٌ",
+    "forms": {
+      "past": "فَعَلَ",
+      "present": "يَفْعَلُ",
+      "command": "اِفْعَلْ",
+      "masdar": "فِعْلٌ"
+    }
+  },
+  {
+    "id": "ch2-verb-يفعل-to-do-present",
+    "chapter": 2,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يَفْعَلُ",
     "target": "يَفْعَلُ",
     "answer": "To do",
-    "detail": "Past: فَعَلَ · Masdar: فِعْلٌ",
+    "detail": "Card: Present · Past: فَعَلَ · Present: يَفْعَلُ · Command: اِفْعَلْ · Masdar: فِعْلٌ",
+    "forms": {
+      "past": "فَعَلَ",
+      "present": "يَفْعَلُ",
+      "command": "اِفْعَلْ",
+      "masdar": "فِعْلٌ"
+    }
+  },
+  {
+    "id": "ch2-verb-افعل-to-do-command",
+    "chapter": 2,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِفْعَلْ",
+    "target": "اِفْعَلْ",
+    "answer": "To do",
+    "detail": "Card: Command · Past: فَعَلَ · Present: يَفْعَلُ · Command: اِفْعَلْ · Masdar: فِعْلٌ",
+    "forms": {
+      "past": "فَعَلَ",
+      "present": "يَفْعَلُ",
+      "command": "اِفْعَلْ",
+      "masdar": "فِعْلٌ"
+    }
+  },
+  {
+    "id": "ch2-verb-فعل-to-do-masdar",
+    "chapter": 2,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "فِعْلٌ",
+    "target": "فِعْلٌ",
+    "answer": "To do",
+    "detail": "Card: Masdar · Past: فَعَلَ · Present: يَفْعَلُ · Command: اِفْعَلْ · Masdar: فِعْلٌ",
     "forms": {
       "past": "فَعَلَ",
       "present": "يَفْعَلُ",
@@ -825,14 +1722,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "وَالِدُونَ"
   },
   {
-    "id": "ch3-verb-يسكن-to-live",
+    "id": "ch3-verb-سكن-to-live-past",
     "chapter": 3,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَسْكُنُ",
-    "target": "يَسْكُنُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "سَكَنَ",
+    "target": "سَكَنَ",
     "answer": "To live",
-    "detail": "Past: سَكَنَ · Masdar: سَكَنٌ",
+    "detail": "Card: Past · Past: سَكَنَ · Present: يَسْكُنُ · Command: اُسْكُنْ · Masdar: سَكَنٌ",
     "forms": {
       "past": "سَكَنَ",
       "present": "يَسْكُنُ",
@@ -841,14 +1739,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch3-verb-يريد-to-want-to-intend",
+    "id": "ch3-verb-يسكن-to-live-present",
     "chapter": 3,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَسْكُنُ",
+    "target": "يَسْكُنُ",
+    "answer": "To live",
+    "detail": "Card: Present · Past: سَكَنَ · Present: يَسْكُنُ · Command: اُسْكُنْ · Masdar: سَكَنٌ",
+    "forms": {
+      "past": "سَكَنَ",
+      "present": "يَسْكُنُ",
+      "command": "اُسْكُنْ",
+      "masdar": "سَكَنٌ"
+    }
+  },
+  {
+    "id": "ch3-verb-اسكن-to-live-command",
+    "chapter": 3,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اُسْكُنْ",
+    "target": "اُسْكُنْ",
+    "answer": "To live",
+    "detail": "Card: Command · Past: سَكَنَ · Present: يَسْكُنُ · Command: اُسْكُنْ · Masdar: سَكَنٌ",
+    "forms": {
+      "past": "سَكَنَ",
+      "present": "يَسْكُنُ",
+      "command": "اُسْكُنْ",
+      "masdar": "سَكَنٌ"
+    }
+  },
+  {
+    "id": "ch3-verb-سكن-to-live-masdar",
+    "chapter": 3,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "سَكَنٌ",
+    "target": "سَكَنٌ",
+    "answer": "To live",
+    "detail": "Card: Masdar · Past: سَكَنَ · Present: يَسْكُنُ · Command: اُسْكُنْ · Masdar: سَكَنٌ",
+    "forms": {
+      "past": "سَكَنَ",
+      "present": "يَسْكُنُ",
+      "command": "اُسْكُنْ",
+      "masdar": "سَكَنٌ"
+    }
+  },
+  {
+    "id": "ch3-verb-اراد-to-want-to-intend-past",
+    "chapter": 3,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَرَادَ",
+    "target": "أَرَادَ",
+    "answer": "To want; to intend",
+    "detail": "Card: Past · Past: أَرَادَ · Present: يُرِيدُ · Command: أَرِدْ · Masdar: إِرَادَةٌ",
+    "forms": {
+      "past": "أَرَادَ",
+      "present": "يُرِيدُ",
+      "command": "أَرِدْ",
+      "masdar": "إِرَادَةٌ"
+    }
+  },
+  {
+    "id": "ch3-verb-يريد-to-want-to-intend-present",
+    "chapter": 3,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يُرِيدُ",
     "target": "يُرِيدُ",
     "answer": "To want; to intend",
-    "detail": "Past: أَرَادَ · Masdar: إِرَادَةٌ",
+    "detail": "Card: Present · Past: أَرَادَ · Present: يُرِيدُ · Command: أَرِدْ · Masdar: إِرَادَةٌ",
+    "forms": {
+      "past": "أَرَادَ",
+      "present": "يُرِيدُ",
+      "command": "أَرِدْ",
+      "masdar": "إِرَادَةٌ"
+    }
+  },
+  {
+    "id": "ch3-verb-ارد-to-want-to-intend-command",
+    "chapter": 3,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَرِدْ",
+    "target": "أَرِدْ",
+    "answer": "To want; to intend",
+    "detail": "Card: Command · Past: أَرَادَ · Present: يُرِيدُ · Command: أَرِدْ · Masdar: إِرَادَةٌ",
+    "forms": {
+      "past": "أَرَادَ",
+      "present": "يُرِيدُ",
+      "command": "أَرِدْ",
+      "masdar": "إِرَادَةٌ"
+    }
+  },
+  {
+    "id": "ch3-verb-ارادة-to-want-to-intend-masdar",
+    "chapter": 3,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِرَادَةٌ",
+    "target": "إِرَادَةٌ",
+    "answer": "To want; to intend",
+    "detail": "Card: Masdar · Past: أَرَادَ · Present: يُرِيدُ · Command: أَرِدْ · Masdar: إِرَادَةٌ",
     "forms": {
       "past": "أَرَادَ",
       "present": "يُرِيدُ",
@@ -1049,14 +2050,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "مَطَابِخُ"
   },
   {
-    "id": "ch4-verb-ينام-to-sleep",
+    "id": "ch4-verb-نام-to-sleep-past",
     "chapter": 4,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَنَامُ",
-    "target": "يَنَامُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "نَامَ",
+    "target": "نَامَ",
     "answer": "To sleep",
-    "detail": "Past: نَامَ · Masdar: نَوْمٌ",
+    "detail": "Card: Past · Past: نَامَ · Present: يَنَامُ · Command: نَمْ · Masdar: نَوْمٌ",
     "forms": {
       "past": "نَامَ",
       "present": "يَنَامُ",
@@ -1065,14 +2067,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch4-verb-يستيقظ-to-wake-up",
+    "id": "ch4-verb-ينام-to-sleep-present",
     "chapter": 4,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَسْتَيْقِظُ",
-    "target": "يَسْتَيْقِظُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَنَامُ",
+    "target": "يَنَامُ",
+    "answer": "To sleep",
+    "detail": "Card: Present · Past: نَامَ · Present: يَنَامُ · Command: نَمْ · Masdar: نَوْمٌ",
+    "forms": {
+      "past": "نَامَ",
+      "present": "يَنَامُ",
+      "command": "نَمْ",
+      "masdar": "نَوْمٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-نم-to-sleep-command",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "نَمْ",
+    "target": "نَمْ",
+    "answer": "To sleep",
+    "detail": "Card: Command · Past: نَامَ · Present: يَنَامُ · Command: نَمْ · Masdar: نَوْمٌ",
+    "forms": {
+      "past": "نَامَ",
+      "present": "يَنَامُ",
+      "command": "نَمْ",
+      "masdar": "نَوْمٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-نوم-to-sleep-masdar",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "نَوْمٌ",
+    "target": "نَوْمٌ",
+    "answer": "To sleep",
+    "detail": "Card: Masdar · Past: نَامَ · Present: يَنَامُ · Command: نَمْ · Masdar: نَوْمٌ",
+    "forms": {
+      "past": "نَامَ",
+      "present": "يَنَامُ",
+      "command": "نَمْ",
+      "masdar": "نَوْمٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-استيقظ-to-wake-up-past",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِسْتَيْقَظَ",
+    "target": "اِسْتَيْقَظَ",
     "answer": "To wake up",
-    "detail": "Past: اِسْتَيْقَظَ · Masdar: اِسْتِيقَاظٌ",
+    "detail": "Card: Past · Past: اِسْتَيْقَظَ · Present: يَسْتَيْقِظُ · Command: اِسْتَيْقِظْ · Masdar: اِسْتِيقَاظٌ",
     "forms": {
       "past": "اِسْتَيْقَظَ",
       "present": "يَسْتَيْقِظُ",
@@ -1081,14 +2135,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch4-verb-يذهب-to-go",
+    "id": "ch4-verb-يستيقظ-to-wake-up-present",
     "chapter": 4,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَذْهَبُ",
-    "target": "يَذْهَبُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَسْتَيْقِظُ",
+    "target": "يَسْتَيْقِظُ",
+    "answer": "To wake up",
+    "detail": "Card: Present · Past: اِسْتَيْقَظَ · Present: يَسْتَيْقِظُ · Command: اِسْتَيْقِظْ · Masdar: اِسْتِيقَاظٌ",
+    "forms": {
+      "past": "اِسْتَيْقَظَ",
+      "present": "يَسْتَيْقِظُ",
+      "command": "اِسْتَيْقِظْ",
+      "masdar": "اِسْتِيقَاظٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-استيقظ-to-wake-up-command",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِسْتَيْقِظْ",
+    "target": "اِسْتَيْقِظْ",
+    "answer": "To wake up",
+    "detail": "Card: Command · Past: اِسْتَيْقَظَ · Present: يَسْتَيْقِظُ · Command: اِسْتَيْقِظْ · Masdar: اِسْتِيقَاظٌ",
+    "forms": {
+      "past": "اِسْتَيْقَظَ",
+      "present": "يَسْتَيْقِظُ",
+      "command": "اِسْتَيْقِظْ",
+      "masdar": "اِسْتِيقَاظٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-استيقاظ-to-wake-up-masdar",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِسْتِيقَاظٌ",
+    "target": "اِسْتِيقَاظٌ",
+    "answer": "To wake up",
+    "detail": "Card: Masdar · Past: اِسْتَيْقَظَ · Present: يَسْتَيْقِظُ · Command: اِسْتَيْقِظْ · Masdar: اِسْتِيقَاظٌ",
+    "forms": {
+      "past": "اِسْتَيْقَظَ",
+      "present": "يَسْتَيْقِظُ",
+      "command": "اِسْتَيْقِظْ",
+      "masdar": "اِسْتِيقَاظٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-ذهب-to-go-past",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "ذَهَبَ",
+    "target": "ذَهَبَ",
     "answer": "To go",
-    "detail": "Past: ذَهَبَ · Masdar: ذَهَابٌ · Preposition: إِلَى",
+    "detail": "Card: Past · Preposition: إِلَى · Past: ذَهَبَ · Present: يَذْهَبُ · Command: اِذْهَبْ · Masdar: ذَهَابٌ",
     "forms": {
       "past": "ذَهَبَ",
       "present": "يَذْهَبُ",
@@ -1098,14 +2204,69 @@ export const vocabularyCards: VocabularyCard[] = [
     "requiredPreposition": "إِلَى"
   },
   {
-    "id": "ch4-verb-يكنس-vacuum",
+    "id": "ch4-verb-يذهب-to-go-present",
     "chapter": 4,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَكْنُسُ",
-    "target": "يَكْنُسُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَذْهَبُ",
+    "target": "يَذْهَبُ",
+    "answer": "To go",
+    "detail": "Card: Present · Preposition: إِلَى · Past: ذَهَبَ · Present: يَذْهَبُ · Command: اِذْهَبْ · Masdar: ذَهَابٌ",
+    "forms": {
+      "past": "ذَهَبَ",
+      "present": "يَذْهَبُ",
+      "command": "اِذْهَبْ",
+      "masdar": "ذَهَابٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch4-verb-اذهب-to-go-command",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِذْهَبْ",
+    "target": "اِذْهَبْ",
+    "answer": "To go",
+    "detail": "Card: Command · Preposition: إِلَى · Past: ذَهَبَ · Present: يَذْهَبُ · Command: اِذْهَبْ · Masdar: ذَهَابٌ",
+    "forms": {
+      "past": "ذَهَبَ",
+      "present": "يَذْهَبُ",
+      "command": "اِذْهَبْ",
+      "masdar": "ذَهَابٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch4-verb-ذهاب-to-go-masdar",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "ذَهَابٌ",
+    "target": "ذَهَابٌ",
+    "answer": "To go",
+    "detail": "Card: Masdar · Preposition: إِلَى · Past: ذَهَبَ · Present: يَذْهَبُ · Command: اِذْهَبْ · Masdar: ذَهَابٌ",
+    "forms": {
+      "past": "ذَهَبَ",
+      "present": "يَذْهَبُ",
+      "command": "اِذْهَبْ",
+      "masdar": "ذَهَابٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch4-verb-كنس-vacuum-past",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "كَنَسَ",
+    "target": "كَنَسَ",
     "answer": "vacuum",
-    "detail": "Past: كَنَسَ · Masdar: كَنْسٌ",
+    "detail": "Card: Past · Past: كَنَسَ · Present: يَكْنُسُ · Command: اُكْنُسْ · Masdar: كَنْسٌ",
     "forms": {
       "past": "كَنَسَ",
       "present": "يَكْنُسُ",
@@ -1114,14 +2275,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch4-verb-يغسل-to-wash",
+    "id": "ch4-verb-يكنس-vacuum-present",
     "chapter": 4,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَغْسِلُ",
-    "target": "يَغْسِلُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَكْنُسُ",
+    "target": "يَكْنُسُ",
+    "answer": "vacuum",
+    "detail": "Card: Present · Past: كَنَسَ · Present: يَكْنُسُ · Command: اُكْنُسْ · Masdar: كَنْسٌ",
+    "forms": {
+      "past": "كَنَسَ",
+      "present": "يَكْنُسُ",
+      "command": "اُكْنُسْ",
+      "masdar": "كَنْسٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-اكنس-vacuum-command",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اُكْنُسْ",
+    "target": "اُكْنُسْ",
+    "answer": "vacuum",
+    "detail": "Card: Command · Past: كَنَسَ · Present: يَكْنُسُ · Command: اُكْنُسْ · Masdar: كَنْسٌ",
+    "forms": {
+      "past": "كَنَسَ",
+      "present": "يَكْنُسُ",
+      "command": "اُكْنُسْ",
+      "masdar": "كَنْسٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-كنس-vacuum-masdar",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "كَنْسٌ",
+    "target": "كَنْسٌ",
+    "answer": "vacuum",
+    "detail": "Card: Masdar · Past: كَنَسَ · Present: يَكْنُسُ · Command: اُكْنُسْ · Masdar: كَنْسٌ",
+    "forms": {
+      "past": "كَنَسَ",
+      "present": "يَكْنُسُ",
+      "command": "اُكْنُسْ",
+      "masdar": "كَنْسٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-غسل-to-wash-past",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "غَسَلَ",
+    "target": "غَسَلَ",
     "answer": "To wash",
-    "detail": "Past: غَسَلَ · Masdar: غَسْلٌ",
+    "detail": "Card: Past · Past: غَسَلَ · Present: يَغْسِلُ · Command: اِغْسِلْ · Masdar: غَسْلٌ",
     "forms": {
       "past": "غَسَلَ",
       "present": "يَغْسِلُ",
@@ -1130,14 +2343,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch4-verb-يكوي-to-iron",
+    "id": "ch4-verb-يغسل-to-wash-present",
     "chapter": 4,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَكْوِي",
-    "target": "يَكْوِي",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَغْسِلُ",
+    "target": "يَغْسِلُ",
+    "answer": "To wash",
+    "detail": "Card: Present · Past: غَسَلَ · Present: يَغْسِلُ · Command: اِغْسِلْ · Masdar: غَسْلٌ",
+    "forms": {
+      "past": "غَسَلَ",
+      "present": "يَغْسِلُ",
+      "command": "اِغْسِلْ",
+      "masdar": "غَسْلٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-اغسل-to-wash-command",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِغْسِلْ",
+    "target": "اِغْسِلْ",
+    "answer": "To wash",
+    "detail": "Card: Command · Past: غَسَلَ · Present: يَغْسِلُ · Command: اِغْسِلْ · Masdar: غَسْلٌ",
+    "forms": {
+      "past": "غَسَلَ",
+      "present": "يَغْسِلُ",
+      "command": "اِغْسِلْ",
+      "masdar": "غَسْلٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-غسل-to-wash-masdar",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "غَسْلٌ",
+    "target": "غَسْلٌ",
+    "answer": "To wash",
+    "detail": "Card: Masdar · Past: غَسَلَ · Present: يَغْسِلُ · Command: اِغْسِلْ · Masdar: غَسْلٌ",
+    "forms": {
+      "past": "غَسَلَ",
+      "present": "يَغْسِلُ",
+      "command": "اِغْسِلْ",
+      "masdar": "غَسْلٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-كوي-to-iron-past",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "كَوَى",
+    "target": "كَوَى",
     "answer": "To iron",
-    "detail": "Past: كَوَى · Masdar: كَيٌ",
+    "detail": "Card: Past · Past: كَوَى · Present: يَكْوِي · Command: اِكْوِ · Masdar: كَيٌ",
     "forms": {
       "past": "كَوَى",
       "present": "يَكْوِي",
@@ -1146,14 +2411,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch4-verb-يشاهد-to-watch",
+    "id": "ch4-verb-يكوي-to-iron-present",
     "chapter": 4,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَكْوِي",
+    "target": "يَكْوِي",
+    "answer": "To iron",
+    "detail": "Card: Present · Past: كَوَى · Present: يَكْوِي · Command: اِكْوِ · Masdar: كَيٌ",
+    "forms": {
+      "past": "كَوَى",
+      "present": "يَكْوِي",
+      "command": "اِكْوِ",
+      "masdar": "كَيٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-اكو-to-iron-command",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِكْوِ",
+    "target": "اِكْوِ",
+    "answer": "To iron",
+    "detail": "Card: Command · Past: كَوَى · Present: يَكْوِي · Command: اِكْوِ · Masdar: كَيٌ",
+    "forms": {
+      "past": "كَوَى",
+      "present": "يَكْوِي",
+      "command": "اِكْوِ",
+      "masdar": "كَيٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-كي-to-iron-masdar",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "كَيٌ",
+    "target": "كَيٌ",
+    "answer": "To iron",
+    "detail": "Card: Masdar · Past: كَوَى · Present: يَكْوِي · Command: اِكْوِ · Masdar: كَيٌ",
+    "forms": {
+      "past": "كَوَى",
+      "present": "يَكْوِي",
+      "command": "اِكْوِ",
+      "masdar": "كَيٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-شاهد-to-watch-past",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "شَاهَدَ",
+    "target": "شَاهَدَ",
+    "answer": "To watch",
+    "detail": "Card: Past · Past: شَاهَدَ · Present: يُشاهِدُ · Command: شَاهِدْ · Masdar: مُشَاهَدَةٌ",
+    "forms": {
+      "past": "شَاهَدَ",
+      "present": "يُشاهِدُ",
+      "command": "شَاهِدْ",
+      "masdar": "مُشَاهَدَةٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-يشاهد-to-watch-present",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يُشاهِدُ",
     "target": "يُشاهِدُ",
     "answer": "To watch",
-    "detail": "Past: شَاهَدَ · Masdar: مُشَاهَدَةٌ",
+    "detail": "Card: Present · Past: شَاهَدَ · Present: يُشاهِدُ · Command: شَاهِدْ · Masdar: مُشَاهَدَةٌ",
+    "forms": {
+      "past": "شَاهَدَ",
+      "present": "يُشاهِدُ",
+      "command": "شَاهِدْ",
+      "masdar": "مُشَاهَدَةٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-شاهد-to-watch-command",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "شَاهِدْ",
+    "target": "شَاهِدْ",
+    "answer": "To watch",
+    "detail": "Card: Command · Past: شَاهَدَ · Present: يُشاهِدُ · Command: شَاهِدْ · Masdar: مُشَاهَدَةٌ",
+    "forms": {
+      "past": "شَاهَدَ",
+      "present": "يُشاهِدُ",
+      "command": "شَاهِدْ",
+      "masdar": "مُشَاهَدَةٌ"
+    }
+  },
+  {
+    "id": "ch4-verb-مشاهدة-to-watch-masdar",
+    "chapter": 4,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "مُشَاهَدَةٌ",
+    "target": "مُشَاهَدَةٌ",
+    "answer": "To watch",
+    "detail": "Card: Masdar · Past: شَاهَدَ · Present: يُشاهِدُ · Command: شَاهِدْ · Masdar: مُشَاهَدَةٌ",
     "forms": {
       "past": "شَاهَدَ",
       "present": "يُشاهِدُ",
@@ -1258,14 +2626,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "تِلْفَازَاتٌ"
   },
   {
-    "id": "ch5-verb-ياكل-to-eat",
+    "id": "ch5-verb-اكل-to-eat-past",
     "chapter": 5,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَأْكُلُ",
-    "target": "يَأْكُلُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَكَلَ",
+    "target": "أَكَلَ",
     "answer": "To eat",
-    "detail": "Past: أَكَلَ · Masdar: أَكْلٌ",
+    "detail": "Card: Past · Past: أَكَلَ · Present: يَأْكُلُ · Command: كُلْ · Masdar: أَكْلٌ",
     "forms": {
       "past": "أَكَلَ",
       "present": "يَأْكُلُ",
@@ -1274,14 +2643,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch5-verb-يطلب-to-want-to-order-to-request",
+    "id": "ch5-verb-ياكل-to-eat-present",
     "chapter": 5,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَطْلُبُ",
-    "target": "يَطْلُبُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَأْكُلُ",
+    "target": "يَأْكُلُ",
+    "answer": "To eat",
+    "detail": "Card: Present · Past: أَكَلَ · Present: يَأْكُلُ · Command: كُلْ · Masdar: أَكْلٌ",
+    "forms": {
+      "past": "أَكَلَ",
+      "present": "يَأْكُلُ",
+      "command": "كُلْ",
+      "masdar": "أَكْلٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-كل-to-eat-command",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "كُلْ",
+    "target": "كُلْ",
+    "answer": "To eat",
+    "detail": "Card: Command · Past: أَكَلَ · Present: يَأْكُلُ · Command: كُلْ · Masdar: أَكْلٌ",
+    "forms": {
+      "past": "أَكَلَ",
+      "present": "يَأْكُلُ",
+      "command": "كُلْ",
+      "masdar": "أَكْلٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-اكل-to-eat-masdar",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "أَكْلٌ",
+    "target": "أَكْلٌ",
+    "answer": "To eat",
+    "detail": "Card: Masdar · Past: أَكَلَ · Present: يَأْكُلُ · Command: كُلْ · Masdar: أَكْلٌ",
+    "forms": {
+      "past": "أَكَلَ",
+      "present": "يَأْكُلُ",
+      "command": "كُلْ",
+      "masdar": "أَكْلٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-طلب-to-want-to-order-to-request-past",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "طَلَبَ",
+    "target": "طَلَبَ",
     "answer": "To want; to order; to request",
-    "detail": "Past: طَلَبَ · Masdar: طَلَبٌ",
+    "detail": "Card: Past · Past: طَلَبَ · Present: يَطْلُبُ · Command: أُطْلُبْ · Masdar: طَلَبٌ",
     "forms": {
       "past": "طَلَبَ",
       "present": "يَطْلُبُ",
@@ -1290,14 +2711,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch5-verb-يفضل-to-prefer",
+    "id": "ch5-verb-يطلب-to-want-to-order-to-request-present",
     "chapter": 5,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُفَضِلُ",
-    "target": "يُفَضِلُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَطْلُبُ",
+    "target": "يَطْلُبُ",
+    "answer": "To want; to order; to request",
+    "detail": "Card: Present · Past: طَلَبَ · Present: يَطْلُبُ · Command: أُطْلُبْ · Masdar: طَلَبٌ",
+    "forms": {
+      "past": "طَلَبَ",
+      "present": "يَطْلُبُ",
+      "command": "أُطْلُبْ",
+      "masdar": "طَلَبٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-اطلب-to-want-to-order-to-request-command",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أُطْلُبْ",
+    "target": "أُطْلُبْ",
+    "answer": "To want; to order; to request",
+    "detail": "Card: Command · Past: طَلَبَ · Present: يَطْلُبُ · Command: أُطْلُبْ · Masdar: طَلَبٌ",
+    "forms": {
+      "past": "طَلَبَ",
+      "present": "يَطْلُبُ",
+      "command": "أُطْلُبْ",
+      "masdar": "طَلَبٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-طلب-to-want-to-order-to-request-masdar",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "طَلَبٌ",
+    "target": "طَلَبٌ",
+    "answer": "To want; to order; to request",
+    "detail": "Card: Masdar · Past: طَلَبَ · Present: يَطْلُبُ · Command: أُطْلُبْ · Masdar: طَلَبٌ",
+    "forms": {
+      "past": "طَلَبَ",
+      "present": "يَطْلُبُ",
+      "command": "أُطْلُبْ",
+      "masdar": "طَلَبٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-فضل-to-prefer-past",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "فَضَّلَ",
+    "target": "فَضَّلَ",
     "answer": "To prefer",
-    "detail": "Past: فَضَّلَ · Masdar: تَفْضِيلٌ",
+    "detail": "Card: Past · Past: فَضَّلَ · Present: يُفَضِلُ · Command: فَضِلْ · Masdar: تَفْضِيلٌ",
     "forms": {
       "past": "فَضَّلَ",
       "present": "يُفَضِلُ",
@@ -1306,14 +2779,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch5-verb-يشرب-to-drink",
+    "id": "ch5-verb-يفضل-to-prefer-present",
     "chapter": 5,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَشْرَبُ",
-    "target": "يَشْرَبُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُفَضِلُ",
+    "target": "يُفَضِلُ",
+    "answer": "To prefer",
+    "detail": "Card: Present · Past: فَضَّلَ · Present: يُفَضِلُ · Command: فَضِلْ · Masdar: تَفْضِيلٌ",
+    "forms": {
+      "past": "فَضَّلَ",
+      "present": "يُفَضِلُ",
+      "command": "فَضِلْ",
+      "masdar": "تَفْضِيلٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-فضل-to-prefer-command",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "فَضِلْ",
+    "target": "فَضِلْ",
+    "answer": "To prefer",
+    "detail": "Card: Command · Past: فَضَّلَ · Present: يُفَضِلُ · Command: فَضِلْ · Masdar: تَفْضِيلٌ",
+    "forms": {
+      "past": "فَضَّلَ",
+      "present": "يُفَضِلُ",
+      "command": "فَضِلْ",
+      "masdar": "تَفْضِيلٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-تفضيل-to-prefer-masdar",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَفْضِيلٌ",
+    "target": "تَفْضِيلٌ",
+    "answer": "To prefer",
+    "detail": "Card: Masdar · Past: فَضَّلَ · Present: يُفَضِلُ · Command: فَضِلْ · Masdar: تَفْضِيلٌ",
+    "forms": {
+      "past": "فَضَّلَ",
+      "present": "يُفَضِلُ",
+      "command": "فَضِلْ",
+      "masdar": "تَفْضِيلٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-شرب-to-drink-past",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "شَرِبَ",
+    "target": "شَرِبَ",
     "answer": "To drink",
-    "detail": "Past: شَرِبَ · Masdar: شُرْبٌ",
+    "detail": "Card: Past · Past: شَرِبَ · Present: يَشْرَبُ · Command: اِشْرَبْ · Masdar: شُرْبٌ",
     "forms": {
       "past": "شَرِبَ",
       "present": "يَشْرَبُ",
@@ -1322,14 +2847,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch5-verb-يحول-to-change-convert-to-transfer",
+    "id": "ch5-verb-يشرب-to-drink-present",
     "chapter": 5,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَشْرَبُ",
+    "target": "يَشْرَبُ",
+    "answer": "To drink",
+    "detail": "Card: Present · Past: شَرِبَ · Present: يَشْرَبُ · Command: اِشْرَبْ · Masdar: شُرْبٌ",
+    "forms": {
+      "past": "شَرِبَ",
+      "present": "يَشْرَبُ",
+      "command": "اِشْرَبْ",
+      "masdar": "شُرْبٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-اشرب-to-drink-command",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِشْرَبْ",
+    "target": "اِشْرَبْ",
+    "answer": "To drink",
+    "detail": "Card: Command · Past: شَرِبَ · Present: يَشْرَبُ · Command: اِشْرَبْ · Masdar: شُرْبٌ",
+    "forms": {
+      "past": "شَرِبَ",
+      "present": "يَشْرَبُ",
+      "command": "اِشْرَبْ",
+      "masdar": "شُرْبٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-شرب-to-drink-masdar",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "شُرْبٌ",
+    "target": "شُرْبٌ",
+    "answer": "To drink",
+    "detail": "Card: Masdar · Past: شَرِبَ · Present: يَشْرَبُ · Command: اِشْرَبْ · Masdar: شُرْبٌ",
+    "forms": {
+      "past": "شَرِبَ",
+      "present": "يَشْرَبُ",
+      "command": "اِشْرَبْ",
+      "masdar": "شُرْبٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-حول-to-change-convert-to-transfer-past",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "حَوَّلَ",
+    "target": "حَوَّلَ",
+    "answer": "To change, convert; to transfer",
+    "detail": "Card: Past · Past: حَوَّلَ · Present: يُحَوِلُ · Command: حَوِلْ · Masdar: تَحْوِيلٌ",
+    "forms": {
+      "past": "حَوَّلَ",
+      "present": "يُحَوِلُ",
+      "command": "حَوِلْ",
+      "masdar": "تَحْوِيلٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-يحول-to-change-convert-to-transfer-present",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يُحَوِلُ",
     "target": "يُحَوِلُ",
     "answer": "To change, convert; to transfer",
-    "detail": "Past: حَوَّلَ · Masdar: تَحْوِيلٌ",
+    "detail": "Card: Present · Past: حَوَّلَ · Present: يُحَوِلُ · Command: حَوِلْ · Masdar: تَحْوِيلٌ",
+    "forms": {
+      "past": "حَوَّلَ",
+      "present": "يُحَوِلُ",
+      "command": "حَوِلْ",
+      "masdar": "تَحْوِيلٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-حول-to-change-convert-to-transfer-command",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "حَوِلْ",
+    "target": "حَوِلْ",
+    "answer": "To change, convert; to transfer",
+    "detail": "Card: Command · Past: حَوَّلَ · Present: يُحَوِلُ · Command: حَوِلْ · Masdar: تَحْوِيلٌ",
+    "forms": {
+      "past": "حَوَّلَ",
+      "present": "يُحَوِلُ",
+      "command": "حَوِلْ",
+      "masdar": "تَحْوِيلٌ"
+    }
+  },
+  {
+    "id": "ch5-verb-تحويل-to-change-convert-to-transfer-masdar",
+    "chapter": 5,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَحْوِيلٌ",
+    "target": "تَحْوِيلٌ",
+    "answer": "To change, convert; to transfer",
+    "detail": "Card: Masdar · Past: حَوَّلَ · Present: يُحَوِلُ · Command: حَوِلْ · Masdar: تَحْوِيلٌ",
     "forms": {
       "past": "حَوَّلَ",
       "present": "يُحَوِلُ",
@@ -1578,14 +3206,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "سِمَانٌ"
   },
   {
-    "id": "ch6-verb-يستطيع-can-to-be-able-to",
+    "id": "ch6-verb-استطاع-can-to-be-able-to-past",
     "chapter": 6,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَسْتَطِيعُ",
-    "target": "يَسْتَطِيعُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِسْتَطَاعَ",
+    "target": "اِسْتَطَاعَ",
     "answer": "Can; to be able to",
-    "detail": "Past: اِسْتَطَاعَ · Masdar: اِسْتِطَاعَةٌ",
+    "detail": "Card: Past · Past: اِسْتَطَاعَ · Present: يَسْتَطِيعُ · Command: اِسْتَطِعْ · Masdar: اِسْتِطَاعَةٌ",
     "forms": {
       "past": "اِسْتَطَاعَ",
       "present": "يَسْتَطِيعُ",
@@ -1594,14 +3223,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch6-verb-يعمل-to-work",
+    "id": "ch6-verb-يستطيع-can-to-be-able-to-present",
     "chapter": 6,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَعْمَلُ",
-    "target": "يَعْمَلُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَسْتَطِيعُ",
+    "target": "يَسْتَطِيعُ",
+    "answer": "Can; to be able to",
+    "detail": "Card: Present · Past: اِسْتَطَاعَ · Present: يَسْتَطِيعُ · Command: اِسْتَطِعْ · Masdar: اِسْتِطَاعَةٌ",
+    "forms": {
+      "past": "اِسْتَطَاعَ",
+      "present": "يَسْتَطِيعُ",
+      "command": "اِسْتَطِعْ",
+      "masdar": "اِسْتِطَاعَةٌ"
+    }
+  },
+  {
+    "id": "ch6-verb-استطع-can-to-be-able-to-command",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِسْتَطِعْ",
+    "target": "اِسْتَطِعْ",
+    "answer": "Can; to be able to",
+    "detail": "Card: Command · Past: اِسْتَطَاعَ · Present: يَسْتَطِيعُ · Command: اِسْتَطِعْ · Masdar: اِسْتِطَاعَةٌ",
+    "forms": {
+      "past": "اِسْتَطَاعَ",
+      "present": "يَسْتَطِيعُ",
+      "command": "اِسْتَطِعْ",
+      "masdar": "اِسْتِطَاعَةٌ"
+    }
+  },
+  {
+    "id": "ch6-verb-استطاعة-can-to-be-able-to-masdar",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِسْتِطَاعَةٌ",
+    "target": "اِسْتِطَاعَةٌ",
+    "answer": "Can; to be able to",
+    "detail": "Card: Masdar · Past: اِسْتَطَاعَ · Present: يَسْتَطِيعُ · Command: اِسْتَطِعْ · Masdar: اِسْتِطَاعَةٌ",
+    "forms": {
+      "past": "اِسْتَطَاعَ",
+      "present": "يَسْتَطِيعُ",
+      "command": "اِسْتَطِعْ",
+      "masdar": "اِسْتِطَاعَةٌ"
+    }
+  },
+  {
+    "id": "ch6-verb-عمل-to-work-past",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "عَمِلَ",
+    "target": "عَمِلَ",
     "answer": "To work",
-    "detail": "Past: عَمِلَ · Masdar: عَمَلٌ",
+    "detail": "Card: Past · Past: عَمِلَ · Present: يَعْمَلُ · Command: اِعمَلْ · Masdar: عَمَلٌ",
     "forms": {
       "past": "عَمِلَ",
       "present": "يَعْمَلُ",
@@ -1610,14 +3291,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch6-verb-يسافر-to-travel",
+    "id": "ch6-verb-يعمل-to-work-present",
     "chapter": 6,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُسَافِرُ",
-    "target": "يُسَافِرُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَعْمَلُ",
+    "target": "يَعْمَلُ",
+    "answer": "To work",
+    "detail": "Card: Present · Past: عَمِلَ · Present: يَعْمَلُ · Command: اِعمَلْ · Masdar: عَمَلٌ",
+    "forms": {
+      "past": "عَمِلَ",
+      "present": "يَعْمَلُ",
+      "command": "اِعمَلْ",
+      "masdar": "عَمَلٌ"
+    }
+  },
+  {
+    "id": "ch6-verb-اعمل-to-work-command",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِعمَلْ",
+    "target": "اِعمَلْ",
+    "answer": "To work",
+    "detail": "Card: Command · Past: عَمِلَ · Present: يَعْمَلُ · Command: اِعمَلْ · Masdar: عَمَلٌ",
+    "forms": {
+      "past": "عَمِلَ",
+      "present": "يَعْمَلُ",
+      "command": "اِعمَلْ",
+      "masdar": "عَمَلٌ"
+    }
+  },
+  {
+    "id": "ch6-verb-عمل-to-work-masdar",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "عَمَلٌ",
+    "target": "عَمَلٌ",
+    "answer": "To work",
+    "detail": "Card: Masdar · Past: عَمِلَ · Present: يَعْمَلُ · Command: اِعمَلْ · Masdar: عَمَلٌ",
+    "forms": {
+      "past": "عَمِلَ",
+      "present": "يَعْمَلُ",
+      "command": "اِعمَلْ",
+      "masdar": "عَمَلٌ"
+    }
+  },
+  {
+    "id": "ch6-verb-سافر-to-travel-past",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "سَافَرَ",
+    "target": "سَافَرَ",
     "answer": "To travel",
-    "detail": "Past: سَافَرَ · Masdar: مُسَافَرَةٌ / سِفَارٌ / سَفَرٌ · Preposition: إِلَى",
+    "detail": "Card: Past · Preposition: إِلَى · Past: سَافَرَ · Present: يُسَافِرُ · Command: سَافِرْ · Masdar: مُسَافَرَةٌ / سِفَارٌ / سَفَرٌ",
     "forms": {
       "past": "سَافَرَ",
       "present": "يُسَافِرُ",
@@ -1627,14 +3360,120 @@ export const vocabularyCards: VocabularyCard[] = [
     "requiredPreposition": "إِلَى"
   },
   {
-    "id": "ch6-verb-ينتظر-to-wait",
+    "id": "ch6-verb-يسافر-to-travel-present",
     "chapter": 6,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُسَافِرُ",
+    "target": "يُسَافِرُ",
+    "answer": "To travel",
+    "detail": "Card: Present · Preposition: إِلَى · Past: سَافَرَ · Present: يُسَافِرُ · Command: سَافِرْ · Masdar: مُسَافَرَةٌ / سِفَارٌ / سَفَرٌ",
+    "forms": {
+      "past": "سَافَرَ",
+      "present": "يُسَافِرُ",
+      "command": "سَافِرْ",
+      "masdar": "مُسَافَرَةٌ / سِفَارٌ / سَفَرٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch6-verb-سافر-to-travel-command",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "سَافِرْ",
+    "target": "سَافِرْ",
+    "answer": "To travel",
+    "detail": "Card: Command · Preposition: إِلَى · Past: سَافَرَ · Present: يُسَافِرُ · Command: سَافِرْ · Masdar: مُسَافَرَةٌ / سِفَارٌ / سَفَرٌ",
+    "forms": {
+      "past": "سَافَرَ",
+      "present": "يُسَافِرُ",
+      "command": "سَافِرْ",
+      "masdar": "مُسَافَرَةٌ / سِفَارٌ / سَفَرٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch6-verb-مسافرة-سفار-سفر-to-travel-masdar",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "مُسَافَرَةٌ / سِفَارٌ / سَفَرٌ",
+    "target": "مُسَافَرَةٌ / سِفَارٌ / سَفَرٌ",
+    "answer": "To travel",
+    "detail": "Card: Masdar · Preposition: إِلَى · Past: سَافَرَ · Present: يُسَافِرُ · Command: سَافِرْ · Masdar: مُسَافَرَةٌ / سِفَارٌ / سَفَرٌ",
+    "forms": {
+      "past": "سَافَرَ",
+      "present": "يُسَافِرُ",
+      "command": "سَافِرْ",
+      "masdar": "مُسَافَرَةٌ / سِفَارٌ / سَفَرٌ"
+    },
+    "requiredPreposition": "إِلَى"
+  },
+  {
+    "id": "ch6-verb-انتظر-to-wait-past",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِنْتَظَرَ",
+    "target": "اِنْتَظَرَ",
+    "answer": "To wait",
+    "detail": "Card: Past · Past: اِنْتَظَرَ · Present: يَنْتَظِرُ · Command: اِنْتَظِرْ · Masdar: اِنْتِظَارٌ",
+    "forms": {
+      "past": "اِنْتَظَرَ",
+      "present": "يَنْتَظِرُ",
+      "command": "اِنْتَظِرْ",
+      "masdar": "اِنْتِظَارٌ"
+    }
+  },
+  {
+    "id": "ch6-verb-ينتظر-to-wait-present",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يَنْتَظِرُ",
     "target": "يَنْتَظِرُ",
     "answer": "To wait",
-    "detail": "Past: اِنْتَظَرَ · Masdar: اِنْتِظَارٌ",
+    "detail": "Card: Present · Past: اِنْتَظَرَ · Present: يَنْتَظِرُ · Command: اِنْتَظِرْ · Masdar: اِنْتِظَارٌ",
+    "forms": {
+      "past": "اِنْتَظَرَ",
+      "present": "يَنْتَظِرُ",
+      "command": "اِنْتَظِرْ",
+      "masdar": "اِنْتِظَارٌ"
+    }
+  },
+  {
+    "id": "ch6-verb-انتظر-to-wait-command",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِنْتَظِرْ",
+    "target": "اِنْتَظِرْ",
+    "answer": "To wait",
+    "detail": "Card: Command · Past: اِنْتَظَرَ · Present: يَنْتَظِرُ · Command: اِنْتَظِرْ · Masdar: اِنْتِظَارٌ",
+    "forms": {
+      "past": "اِنْتَظَرَ",
+      "present": "يَنْتَظِرُ",
+      "command": "اِنْتَظِرْ",
+      "masdar": "اِنْتِظَارٌ"
+    }
+  },
+  {
+    "id": "ch6-verb-انتظار-to-wait-masdar",
+    "chapter": 6,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِنْتِظَارٌ",
+    "target": "اِنْتِظَارٌ",
+    "answer": "To wait",
+    "detail": "Card: Masdar · Past: اِنْتَظَرَ · Present: يَنْتَظِرُ · Command: اِنْتَظِرْ · Masdar: اِنْتِظَارٌ",
     "forms": {
       "past": "اِنْتَظَرَ",
       "present": "يَنْتَظِرُ",
@@ -1689,14 +3528,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "singular": "كَسَّْلَنُ"
   },
   {
-    "id": "ch7-verb-يبدا-to-start",
+    "id": "ch7-verb-بدا-to-start-past",
     "chapter": 7,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَبْدَأُ",
-    "target": "يَبْدَأُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "بَدَأَ",
+    "target": "بَدَأَ",
     "answer": "To start",
-    "detail": "Past: بَدَأَ · Masdar: بِدَايَةٌ",
+    "detail": "Card: Past · Past: بَدَأَ · Present: يَبْدَأُ · Command: اِبْدَأْ · Masdar: بِدَايَةٌ",
     "forms": {
       "past": "بَدَأَ",
       "present": "يَبْدَأُ",
@@ -1705,14 +3545,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch7-verb-ينتهي-to-finish",
+    "id": "ch7-verb-يبدا-to-start-present",
     "chapter": 7,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَنْتَهِي",
-    "target": "يَنْتَهِي",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَبْدَأُ",
+    "target": "يَبْدَأُ",
+    "answer": "To start",
+    "detail": "Card: Present · Past: بَدَأَ · Present: يَبْدَأُ · Command: اِبْدَأْ · Masdar: بِدَايَةٌ",
+    "forms": {
+      "past": "بَدَأَ",
+      "present": "يَبْدَأُ",
+      "command": "اِبْدَأْ",
+      "masdar": "بِدَايَةٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-ابدا-to-start-command",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِبْدَأْ",
+    "target": "اِبْدَأْ",
+    "answer": "To start",
+    "detail": "Card: Command · Past: بَدَأَ · Present: يَبْدَأُ · Command: اِبْدَأْ · Masdar: بِدَايَةٌ",
+    "forms": {
+      "past": "بَدَأَ",
+      "present": "يَبْدَأُ",
+      "command": "اِبْدَأْ",
+      "masdar": "بِدَايَةٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-بداية-to-start-masdar",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "بِدَايَةٌ",
+    "target": "بِدَايَةٌ",
+    "answer": "To start",
+    "detail": "Card: Masdar · Past: بَدَأَ · Present: يَبْدَأُ · Command: اِبْدَأْ · Masdar: بِدَايَةٌ",
+    "forms": {
+      "past": "بَدَأَ",
+      "present": "يَبْدَأُ",
+      "command": "اِبْدَأْ",
+      "masdar": "بِدَايَةٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-انتهي-to-finish-past",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِنْتَهَىٌ",
+    "target": "اِنْتَهَىٌ",
     "answer": "To finish",
-    "detail": "Past: اِنْتَهَىٌ · Masdar: اِنْتِهَاءٌ",
+    "detail": "Card: Past · Past: اِنْتَهَىٌ · Present: يَنْتَهِي · Command: اِنْتَهِ · Masdar: اِنْتِهَاءٌ",
     "forms": {
       "past": "اِنْتَهَىٌ",
       "present": "يَنْتَهِي",
@@ -1721,14 +3613,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch7-verb-يدرس-to-study",
+    "id": "ch7-verb-ينتهي-to-finish-present",
     "chapter": 7,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَدْرُسُ",
-    "target": "يَدْرُسُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَنْتَهِي",
+    "target": "يَنْتَهِي",
+    "answer": "To finish",
+    "detail": "Card: Present · Past: اِنْتَهَىٌ · Present: يَنْتَهِي · Command: اِنْتَهِ · Masdar: اِنْتِهَاءٌ",
+    "forms": {
+      "past": "اِنْتَهَىٌ",
+      "present": "يَنْتَهِي",
+      "command": "اِنْتَهِ",
+      "masdar": "اِنْتِهَاءٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-انته-to-finish-command",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِنْتَهِ",
+    "target": "اِنْتَهِ",
+    "answer": "To finish",
+    "detail": "Card: Command · Past: اِنْتَهَىٌ · Present: يَنْتَهِي · Command: اِنْتَهِ · Masdar: اِنْتِهَاءٌ",
+    "forms": {
+      "past": "اِنْتَهَىٌ",
+      "present": "يَنْتَهِي",
+      "command": "اِنْتَهِ",
+      "masdar": "اِنْتِهَاءٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-انتهاء-to-finish-masdar",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِنْتِهَاءٌ",
+    "target": "اِنْتِهَاءٌ",
+    "answer": "To finish",
+    "detail": "Card: Masdar · Past: اِنْتَهَىٌ · Present: يَنْتَهِي · Command: اِنْتَهِ · Masdar: اِنْتِهَاءٌ",
+    "forms": {
+      "past": "اِنْتَهَىٌ",
+      "present": "يَنْتَهِي",
+      "command": "اِنْتَهِ",
+      "masdar": "اِنْتِهَاءٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-درس-to-study-past",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "دَرَسَ",
+    "target": "دَرَسَ",
     "answer": "To study",
-    "detail": "Past: دَرَسَ · Masdar: دِرَاسَةٌ",
+    "detail": "Card: Past · Past: دَرَسَ · Present: يَدْرُسُ · Command: اُدْرُسْ · Masdar: دِرَاسَةٌ",
     "forms": {
       "past": "دَرَسَ",
       "present": "يَدْرُسُ",
@@ -1737,14 +3681,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch7-verb-يدرس-to-teach",
+    "id": "ch7-verb-يدرس-to-study-present",
     "chapter": 7,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُدَرِسُ",
-    "target": "يُدَرِسُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَدْرُسُ",
+    "target": "يَدْرُسُ",
+    "answer": "To study",
+    "detail": "Card: Present · Past: دَرَسَ · Present: يَدْرُسُ · Command: اُدْرُسْ · Masdar: دِرَاسَةٌ",
+    "forms": {
+      "past": "دَرَسَ",
+      "present": "يَدْرُسُ",
+      "command": "اُدْرُسْ",
+      "masdar": "دِرَاسَةٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-ادرس-to-study-command",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اُدْرُسْ",
+    "target": "اُدْرُسْ",
+    "answer": "To study",
+    "detail": "Card: Command · Past: دَرَسَ · Present: يَدْرُسُ · Command: اُدْرُسْ · Masdar: دِرَاسَةٌ",
+    "forms": {
+      "past": "دَرَسَ",
+      "present": "يَدْرُسُ",
+      "command": "اُدْرُسْ",
+      "masdar": "دِرَاسَةٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-دراسة-to-study-masdar",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "دِرَاسَةٌ",
+    "target": "دِرَاسَةٌ",
+    "answer": "To study",
+    "detail": "Card: Masdar · Past: دَرَسَ · Present: يَدْرُسُ · Command: اُدْرُسْ · Masdar: دِرَاسَةٌ",
+    "forms": {
+      "past": "دَرَسَ",
+      "present": "يَدْرُسُ",
+      "command": "اُدْرُسْ",
+      "masdar": "دِرَاسَةٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-درس-to-teach-past",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "دَرَّسَ",
+    "target": "دَرَّسَ",
     "answer": "To teach",
-    "detail": "Past: دَرَّسَ · Masdar: تَدْرِيسٌ",
+    "detail": "Card: Past · Past: دَرَّسَ · Present: يُدَرِسُ · Command: دَرِسْ · Masdar: تَدْرِيسٌ",
     "forms": {
       "past": "دَرَّسَ",
       "present": "يُدَرِسُ",
@@ -1753,14 +3749,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch7-verb-يكون-to-be",
+    "id": "ch7-verb-يدرس-to-teach-present",
     "chapter": 7,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَكُونُ",
-    "target": "يَكُونُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُدَرِسُ",
+    "target": "يُدَرِسُ",
+    "answer": "To teach",
+    "detail": "Card: Present · Past: دَرَّسَ · Present: يُدَرِسُ · Command: دَرِسْ · Masdar: تَدْرِيسٌ",
+    "forms": {
+      "past": "دَرَّسَ",
+      "present": "يُدَرِسُ",
+      "command": "دَرِسْ",
+      "masdar": "تَدْرِيسٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-درس-to-teach-command",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "دَرِسْ",
+    "target": "دَرِسْ",
+    "answer": "To teach",
+    "detail": "Card: Command · Past: دَرَّسَ · Present: يُدَرِسُ · Command: دَرِسْ · Masdar: تَدْرِيسٌ",
+    "forms": {
+      "past": "دَرَّسَ",
+      "present": "يُدَرِسُ",
+      "command": "دَرِسْ",
+      "masdar": "تَدْرِيسٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-تدريس-to-teach-masdar",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَدْرِيسٌ",
+    "target": "تَدْرِيسٌ",
+    "answer": "To teach",
+    "detail": "Card: Masdar · Past: دَرَّسَ · Present: يُدَرِسُ · Command: دَرِسْ · Masdar: تَدْرِيسٌ",
+    "forms": {
+      "past": "دَرَّسَ",
+      "present": "يُدَرِسُ",
+      "command": "دَرِسْ",
+      "masdar": "تَدْرِيسٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-كان-to-be-past",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "كَانَ",
+    "target": "كَانَ",
     "answer": "To be",
-    "detail": "Past: كَانَ · Masdar: كَوْنٌ",
+    "detail": "Card: Past · Past: كَانَ · Present: يَكُونُ · Command: كُنْ · Masdar: كَوْنٌ",
     "forms": {
       "past": "كَانَ",
       "present": "يَكُونُ",
@@ -1769,14 +3817,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch7-verb-يكمل-to-complete",
+    "id": "ch7-verb-يكون-to-be-present",
     "chapter": 7,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُكْمِلُ",
-    "target": "يُكْمِلُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَكُونُ",
+    "target": "يَكُونُ",
+    "answer": "To be",
+    "detail": "Card: Present · Past: كَانَ · Present: يَكُونُ · Command: كُنْ · Masdar: كَوْنٌ",
+    "forms": {
+      "past": "كَانَ",
+      "present": "يَكُونُ",
+      "command": "كُنْ",
+      "masdar": "كَوْنٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-كن-to-be-command",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "كُنْ",
+    "target": "كُنْ",
+    "answer": "To be",
+    "detail": "Card: Command · Past: كَانَ · Present: يَكُونُ · Command: كُنْ · Masdar: كَوْنٌ",
+    "forms": {
+      "past": "كَانَ",
+      "present": "يَكُونُ",
+      "command": "كُنْ",
+      "masdar": "كَوْنٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-كون-to-be-masdar",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "كَوْنٌ",
+    "target": "كَوْنٌ",
+    "answer": "To be",
+    "detail": "Card: Masdar · Past: كَانَ · Present: يَكُونُ · Command: كُنْ · Masdar: كَوْنٌ",
+    "forms": {
+      "past": "كَانَ",
+      "present": "يَكُونُ",
+      "command": "كُنْ",
+      "masdar": "كَوْنٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-اكمل-to-complete-past",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَكْمَلَ",
+    "target": "أَكْمَلَ",
     "answer": "To complete",
-    "detail": "Past: أَكْمَلَ · Masdar: إِكْمَالٌ",
+    "detail": "Card: Past · Past: أَكْمَلَ · Present: يُكْمِلُ · Command: أَكْمِلْ · Masdar: إِكْمَالٌ",
     "forms": {
       "past": "أَكْمَلَ",
       "present": "يُكْمِلُ",
@@ -1785,14 +3885,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch7-verb-يصحح-to-correct",
+    "id": "ch7-verb-يكمل-to-complete-present",
     "chapter": 7,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُكْمِلُ",
+    "target": "يُكْمِلُ",
+    "answer": "To complete",
+    "detail": "Card: Present · Past: أَكْمَلَ · Present: يُكْمِلُ · Command: أَكْمِلْ · Masdar: إِكْمَالٌ",
+    "forms": {
+      "past": "أَكْمَلَ",
+      "present": "يُكْمِلُ",
+      "command": "أَكْمِلْ",
+      "masdar": "إِكْمَالٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-اكمل-to-complete-command",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَكْمِلْ",
+    "target": "أَكْمِلْ",
+    "answer": "To complete",
+    "detail": "Card: Command · Past: أَكْمَلَ · Present: يُكْمِلُ · Command: أَكْمِلْ · Masdar: إِكْمَالٌ",
+    "forms": {
+      "past": "أَكْمَلَ",
+      "present": "يُكْمِلُ",
+      "command": "أَكْمِلْ",
+      "masdar": "إِكْمَالٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-اكمال-to-complete-masdar",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِكْمَالٌ",
+    "target": "إِكْمَالٌ",
+    "answer": "To complete",
+    "detail": "Card: Masdar · Past: أَكْمَلَ · Present: يُكْمِلُ · Command: أَكْمِلْ · Masdar: إِكْمَالٌ",
+    "forms": {
+      "past": "أَكْمَلَ",
+      "present": "يُكْمِلُ",
+      "command": "أَكْمِلْ",
+      "masdar": "إِكْمَالٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-صحح-to-correct-past",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "صَحَّحَ",
+    "target": "صَحَّحَ",
+    "answer": "To correct",
+    "detail": "Card: Past · Past: صَحَّحَ · Present: يُصَحِحُ · Command: صَحِحْ · Masdar: تَصْحِيحٌ",
+    "forms": {
+      "past": "صَحَّحَ",
+      "present": "يُصَحِحُ",
+      "command": "صَحِحْ",
+      "masdar": "تَصْحِيحٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-يصحح-to-correct-present",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يُصَحِحُ",
     "target": "يُصَحِحُ",
     "answer": "To correct",
-    "detail": "Past: صَحَّحَ · Masdar: تَصْحِيحٌ",
+    "detail": "Card: Present · Past: صَحَّحَ · Present: يُصَحِحُ · Command: صَحِحْ · Masdar: تَصْحِيحٌ",
+    "forms": {
+      "past": "صَحَّحَ",
+      "present": "يُصَحِحُ",
+      "command": "صَحِحْ",
+      "masdar": "تَصْحِيحٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-صحح-to-correct-command",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "صَحِحْ",
+    "target": "صَحِحْ",
+    "answer": "To correct",
+    "detail": "Card: Command · Past: صَحَّحَ · Present: يُصَحِحُ · Command: صَحِحْ · Masdar: تَصْحِيحٌ",
+    "forms": {
+      "past": "صَحَّحَ",
+      "present": "يُصَحِحُ",
+      "command": "صَحِحْ",
+      "masdar": "تَصْحِيحٌ"
+    }
+  },
+  {
+    "id": "ch7-verb-تصحيح-to-correct-masdar",
+    "chapter": 7,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَصْحِيحٌ",
+    "target": "تَصْحِيحٌ",
+    "answer": "To correct",
+    "detail": "Card: Masdar · Past: صَحَّحَ · Present: يُصَحِحُ · Command: صَحِحْ · Masdar: تَصْحِيحٌ",
     "forms": {
       "past": "صَحَّحَ",
       "present": "يُصَحِحُ",
@@ -1993,14 +4196,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "شَهْرٌ / صُفُوفٌ"
   },
   {
-    "id": "ch8-verb-يحب-to-love-to-like",
+    "id": "ch8-verb-احب-to-love-to-like-past",
     "chapter": 8,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُحِبٌ",
-    "target": "يُحِبٌ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَحَبَّ",
+    "target": "أَحَبَّ",
     "answer": "To love; to like",
-    "detail": "Past: أَحَبَّ · Masdar: حُبٌ",
+    "detail": "Card: Past · Past: أَحَبَّ · Present: يُحِبٌ · Command: أَحِبَّ · Masdar: حُبٌ",
     "forms": {
       "past": "أَحَبَّ",
       "present": "يُحِبٌ",
@@ -2009,14 +4213,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch8-verb-يرسم-to-draw",
+    "id": "ch8-verb-يحب-to-love-to-like-present",
     "chapter": 8,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَرْسُمُ",
-    "target": "يَرْسُمُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُحِبٌ",
+    "target": "يُحِبٌ",
+    "answer": "To love; to like",
+    "detail": "Card: Present · Past: أَحَبَّ · Present: يُحِبٌ · Command: أَحِبَّ · Masdar: حُبٌ",
+    "forms": {
+      "past": "أَحَبَّ",
+      "present": "يُحِبٌ",
+      "command": "أَحِبَّ",
+      "masdar": "حُبٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-احب-to-love-to-like-command",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَحِبَّ",
+    "target": "أَحِبَّ",
+    "answer": "To love; to like",
+    "detail": "Card: Command · Past: أَحَبَّ · Present: يُحِبٌ · Command: أَحِبَّ · Masdar: حُبٌ",
+    "forms": {
+      "past": "أَحَبَّ",
+      "present": "يُحِبٌ",
+      "command": "أَحِبَّ",
+      "masdar": "حُبٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-حب-to-love-to-like-masdar",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "حُبٌ",
+    "target": "حُبٌ",
+    "answer": "To love; to like",
+    "detail": "Card: Masdar · Past: أَحَبَّ · Present: يُحِبٌ · Command: أَحِبَّ · Masdar: حُبٌ",
+    "forms": {
+      "past": "أَحَبَّ",
+      "present": "يُحِبٌ",
+      "command": "أَحِبَّ",
+      "masdar": "حُبٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-رسم-to-draw-past",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "رَسَمَ",
+    "target": "رَسَمَ",
     "answer": "To draw",
-    "detail": "Past: رَسَمَ · Masdar: رَسْمٌ",
+    "detail": "Card: Past · Past: رَسَمَ · Present: يَرْسُمُ · Command: اُرْسُمْ · Masdar: رَسْمٌ",
     "forms": {
       "past": "رَسَمَ",
       "present": "يَرْسُمُ",
@@ -2025,14 +4281,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch8-verb-يختار-to-choose",
+    "id": "ch8-verb-يرسم-to-draw-present",
     "chapter": 8,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَخْتَارُ",
-    "target": "يَخْتَارُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَرْسُمُ",
+    "target": "يَرْسُمُ",
+    "answer": "To draw",
+    "detail": "Card: Present · Past: رَسَمَ · Present: يَرْسُمُ · Command: اُرْسُمْ · Masdar: رَسْمٌ",
+    "forms": {
+      "past": "رَسَمَ",
+      "present": "يَرْسُمُ",
+      "command": "اُرْسُمْ",
+      "masdar": "رَسْمٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-ارسم-to-draw-command",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اُرْسُمْ",
+    "target": "اُرْسُمْ",
+    "answer": "To draw",
+    "detail": "Card: Command · Past: رَسَمَ · Present: يَرْسُمُ · Command: اُرْسُمْ · Masdar: رَسْمٌ",
+    "forms": {
+      "past": "رَسَمَ",
+      "present": "يَرْسُمُ",
+      "command": "اُرْسُمْ",
+      "masdar": "رَسْمٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-رسم-to-draw-masdar",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "رَسْمٌ",
+    "target": "رَسْمٌ",
+    "answer": "To draw",
+    "detail": "Card: Masdar · Past: رَسَمَ · Present: يَرْسُمُ · Command: اُرْسُمْ · Masdar: رَسْمٌ",
+    "forms": {
+      "past": "رَسَمَ",
+      "present": "يَرْسُمُ",
+      "command": "اُرْسُمْ",
+      "masdar": "رَسْمٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-اختار-to-choose-past",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِخْتَارَ",
+    "target": "اِخْتَارَ",
     "answer": "To choose",
-    "detail": "Past: اِخْتَارَ · Masdar: اِخْتِيَارٌ",
+    "detail": "Card: Past · Past: اِخْتَارَ · Present: يَخْتَارُ · Command: اِخْتَرْ · Masdar: اِخْتِيَارٌ",
     "forms": {
       "past": "اِخْتَارَ",
       "present": "يَخْتَارُ",
@@ -2041,14 +4349,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch8-verb-يصبح-to-become",
+    "id": "ch8-verb-يختار-to-choose-present",
     "chapter": 8,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُصْبِحُ",
-    "target": "يُصْبِحُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَخْتَارُ",
+    "target": "يَخْتَارُ",
+    "answer": "To choose",
+    "detail": "Card: Present · Past: اِخْتَارَ · Present: يَخْتَارُ · Command: اِخْتَرْ · Masdar: اِخْتِيَارٌ",
+    "forms": {
+      "past": "اِخْتَارَ",
+      "present": "يَخْتَارُ",
+      "command": "اِخْتَرْ",
+      "masdar": "اِخْتِيَارٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-اختر-to-choose-command",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِخْتَرْ",
+    "target": "اِخْتَرْ",
+    "answer": "To choose",
+    "detail": "Card: Command · Past: اِخْتَارَ · Present: يَخْتَارُ · Command: اِخْتَرْ · Masdar: اِخْتِيَارٌ",
+    "forms": {
+      "past": "اِخْتَارَ",
+      "present": "يَخْتَارُ",
+      "command": "اِخْتَرْ",
+      "masdar": "اِخْتِيَارٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-اختيار-to-choose-masdar",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِخْتِيَارٌ",
+    "target": "اِخْتِيَارٌ",
+    "answer": "To choose",
+    "detail": "Card: Masdar · Past: اِخْتَارَ · Present: يَخْتَارُ · Command: اِخْتَرْ · Masdar: اِخْتِيَارٌ",
+    "forms": {
+      "past": "اِخْتَارَ",
+      "present": "يَخْتَارُ",
+      "command": "اِخْتَرْ",
+      "masdar": "اِخْتِيَارٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-اصبح-to-become-past",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَصْبَحَ",
+    "target": "أَصْبَحَ",
     "answer": "To become",
-    "detail": "Past: أَصْبَحَ · Masdar: إِصْبَاحٌ",
+    "detail": "Card: Past · Past: أَصْبَحَ · Present: يُصْبِحُ · Command: أَصْبِحْ · Masdar: إِصْبَاحٌ",
     "forms": {
       "past": "أَصْبَحَ",
       "present": "يُصْبِحُ",
@@ -2057,14 +4417,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch8-verb-يمل-to-fill",
+    "id": "ch8-verb-يصبح-to-become-present",
     "chapter": 8,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَمْلَُ",
-    "target": "يَمْلَُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُصْبِحُ",
+    "target": "يُصْبِحُ",
+    "answer": "To become",
+    "detail": "Card: Present · Past: أَصْبَحَ · Present: يُصْبِحُ · Command: أَصْبِحْ · Masdar: إِصْبَاحٌ",
+    "forms": {
+      "past": "أَصْبَحَ",
+      "present": "يُصْبِحُ",
+      "command": "أَصْبِحْ",
+      "masdar": "إِصْبَاحٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-اصبح-to-become-command",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَصْبِحْ",
+    "target": "أَصْبِحْ",
+    "answer": "To become",
+    "detail": "Card: Command · Past: أَصْبَحَ · Present: يُصْبِحُ · Command: أَصْبِحْ · Masdar: إِصْبَاحٌ",
+    "forms": {
+      "past": "أَصْبَحَ",
+      "present": "يُصْبِحُ",
+      "command": "أَصْبِحْ",
+      "masdar": "إِصْبَاحٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-اصباح-to-become-masdar",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِصْبَاحٌ",
+    "target": "إِصْبَاحٌ",
+    "answer": "To become",
+    "detail": "Card: Masdar · Past: أَصْبَحَ · Present: يُصْبِحُ · Command: أَصْبِحْ · Masdar: إِصْبَاحٌ",
+    "forms": {
+      "past": "أَصْبَحَ",
+      "present": "يُصْبِحُ",
+      "command": "أَصْبِحْ",
+      "masdar": "إِصْبَاحٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-مل-to-fill-past",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "مَلََ",
+    "target": "مَلََ",
     "answer": "To fill",
-    "detail": "Past: مَلََ · Masdar: مَلْءٌ",
+    "detail": "Card: Past · Past: مَلََ · Present: يَمْلَُ · Command: اِمْلْ · Masdar: مَلْءٌ",
     "forms": {
       "past": "مَلََ",
       "present": "يَمْلَُ",
@@ -2073,14 +4485,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch8-verb-يستريح-to-rest-relax-to-take-a-break",
+    "id": "ch8-verb-يمل-to-fill-present",
     "chapter": 8,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَمْلَُ",
+    "target": "يَمْلَُ",
+    "answer": "To fill",
+    "detail": "Card: Present · Past: مَلََ · Present: يَمْلَُ · Command: اِمْلْ · Masdar: مَلْءٌ",
+    "forms": {
+      "past": "مَلََ",
+      "present": "يَمْلَُ",
+      "command": "اِمْلْ",
+      "masdar": "مَلْءٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-امل-to-fill-command",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِمْلْ",
+    "target": "اِمْلْ",
+    "answer": "To fill",
+    "detail": "Card: Command · Past: مَلََ · Present: يَمْلَُ · Command: اِمْلْ · Masdar: مَلْءٌ",
+    "forms": {
+      "past": "مَلََ",
+      "present": "يَمْلَُ",
+      "command": "اِمْلْ",
+      "masdar": "مَلْءٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-ملء-to-fill-masdar",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "مَلْءٌ",
+    "target": "مَلْءٌ",
+    "answer": "To fill",
+    "detail": "Card: Masdar · Past: مَلََ · Present: يَمْلَُ · Command: اِمْلْ · Masdar: مَلْءٌ",
+    "forms": {
+      "past": "مَلََ",
+      "present": "يَمْلَُ",
+      "command": "اِمْلْ",
+      "masdar": "مَلْءٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-استراح-to-rest-relax-to-take-a-break-past",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِسْتَرَاحَ",
+    "target": "اِسْتَرَاحَ",
+    "answer": "To rest, relax; to take a break",
+    "detail": "Card: Past · Past: اِسْتَرَاحَ · Present: يَسْتَرِيحُ · Command: اِسْتَرِحْ · Masdar: اِسْتِرَاحَةٌ",
+    "forms": {
+      "past": "اِسْتَرَاحَ",
+      "present": "يَسْتَرِيحُ",
+      "command": "اِسْتَرِحْ",
+      "masdar": "اِسْتِرَاحَةٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-يستريح-to-rest-relax-to-take-a-break-present",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يَسْتَرِيحُ",
     "target": "يَسْتَرِيحُ",
     "answer": "To rest, relax; to take a break",
-    "detail": "Past: اِسْتَرَاحَ · Masdar: اِسْتِرَاحَةٌ",
+    "detail": "Card: Present · Past: اِسْتَرَاحَ · Present: يَسْتَرِيحُ · Command: اِسْتَرِحْ · Masdar: اِسْتِرَاحَةٌ",
+    "forms": {
+      "past": "اِسْتَرَاحَ",
+      "present": "يَسْتَرِيحُ",
+      "command": "اِسْتَرِحْ",
+      "masdar": "اِسْتِرَاحَةٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-استرح-to-rest-relax-to-take-a-break-command",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِسْتَرِحْ",
+    "target": "اِسْتَرِحْ",
+    "answer": "To rest, relax; to take a break",
+    "detail": "Card: Command · Past: اِسْتَرَاحَ · Present: يَسْتَرِيحُ · Command: اِسْتَرِحْ · Masdar: اِسْتِرَاحَةٌ",
+    "forms": {
+      "past": "اِسْتَرَاحَ",
+      "present": "يَسْتَرِيحُ",
+      "command": "اِسْتَرِحْ",
+      "masdar": "اِسْتِرَاحَةٌ"
+    }
+  },
+  {
+    "id": "ch8-verb-استراحة-to-rest-relax-to-take-a-break-masdar",
+    "chapter": 8,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِسْتِرَاحَةٌ",
+    "target": "اِسْتِرَاحَةٌ",
+    "answer": "To rest, relax; to take a break",
+    "detail": "Card: Masdar · Past: اِسْتَرَاحَ · Present: يَسْتَرِيحُ · Command: اِسْتَرِحْ · Masdar: اِسْتِرَاحَةٌ",
     "forms": {
       "past": "اِسْتَرَاحَ",
       "present": "يَسْتَرِيحُ",
@@ -2232,14 +4747,66 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "مَرَاحِلُ"
   },
   {
-    "id": "ch9-verb-يتسوق-to-shop",
+    "id": "ch9-verb-تسوق-to-shop-past",
     "chapter": 9,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "تَسَوَّقَ",
+    "target": "تَسَوَّقَ",
+    "answer": "To shop",
+    "detail": "Card: Past · Past: تَسَوَّقَ · Present: يَتَسَوَّقُ · Command: تَسَوَّقْ · Masdar: تَسَوقٌ",
+    "forms": {
+      "past": "تَسَوَّقَ",
+      "present": "يَتَسَوَّقُ",
+      "command": "تَسَوَّقْ",
+      "masdar": "تَسَوقٌ"
+    }
+  },
+  {
+    "id": "ch9-verb-يتسوق-to-shop-present",
+    "chapter": 9,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يَتَسَوَّقُ",
     "target": "يَتَسَوَّقُ",
     "answer": "To shop",
-    "detail": "Past: تَسَوَّقَ · Masdar: تَسَوقٌ",
+    "detail": "Card: Present · Past: تَسَوَّقَ · Present: يَتَسَوَّقُ · Command: تَسَوَّقْ · Masdar: تَسَوقٌ",
+    "forms": {
+      "past": "تَسَوَّقَ",
+      "present": "يَتَسَوَّقُ",
+      "command": "تَسَوَّقْ",
+      "masdar": "تَسَوقٌ"
+    }
+  },
+  {
+    "id": "ch9-verb-تسوق-to-shop-command",
+    "chapter": 9,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "تَسَوَّقْ",
+    "target": "تَسَوَّقْ",
+    "answer": "To shop",
+    "detail": "Card: Command · Past: تَسَوَّقَ · Present: يَتَسَوَّقُ · Command: تَسَوَّقْ · Masdar: تَسَوقٌ",
+    "forms": {
+      "past": "تَسَوَّقَ",
+      "present": "يَتَسَوَّقُ",
+      "command": "تَسَوَّقْ",
+      "masdar": "تَسَوقٌ"
+    }
+  },
+  {
+    "id": "ch9-verb-تسوق-to-shop-masdar",
+    "chapter": 9,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَسَوقٌ",
+    "target": "تَسَوقٌ",
+    "answer": "To shop",
+    "detail": "Card: Masdar · Past: تَسَوَّقَ · Present: يَتَسَوَّقُ · Command: تَسَوَّقْ · Masdar: تَسَوقٌ",
     "forms": {
       "past": "تَسَوَّقَ",
       "present": "يَتَسَوَّقُ",
@@ -2320,14 +4887,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "أَقَّْلَمٌ"
   },
   {
-    "id": "ch10-verb-يمطر-to-rain",
+    "id": "ch10-verb-امطر-to-rain-past",
     "chapter": 10,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُمْطِرُ",
-    "target": "يُمْطِرُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَمْطَرَ",
+    "target": "أَمْطَرَ",
     "answer": "To rain",
-    "detail": "Past: أَمْطَرَ · Masdar: إِمْطَارٌ",
+    "detail": "Card: Past · Past: أَمْطَرَ · Present: يُمْطِرُ · Command: أَمْطِرْ · Masdar: إِمْطَارٌ",
     "forms": {
       "past": "أَمْطَرَ",
       "present": "يُمْطِرُ",
@@ -2336,14 +4904,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch10-verb-يترك-to-leave",
+    "id": "ch10-verb-يمطر-to-rain-present",
     "chapter": 10,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَتْرُكُ",
-    "target": "يَتْرُكُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُمْطِرُ",
+    "target": "يُمْطِرُ",
+    "answer": "To rain",
+    "detail": "Card: Present · Past: أَمْطَرَ · Present: يُمْطِرُ · Command: أَمْطِرْ · Masdar: إِمْطَارٌ",
+    "forms": {
+      "past": "أَمْطَرَ",
+      "present": "يُمْطِرُ",
+      "command": "أَمْطِرْ",
+      "masdar": "إِمْطَارٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-امطر-to-rain-command",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَمْطِرْ",
+    "target": "أَمْطِرْ",
+    "answer": "To rain",
+    "detail": "Card: Command · Past: أَمْطَرَ · Present: يُمْطِرُ · Command: أَمْطِرْ · Masdar: إِمْطَارٌ",
+    "forms": {
+      "past": "أَمْطَرَ",
+      "present": "يُمْطِرُ",
+      "command": "أَمْطِرْ",
+      "masdar": "إِمْطَارٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-امطار-to-rain-masdar",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِمْطَارٌ",
+    "target": "إِمْطَارٌ",
+    "answer": "To rain",
+    "detail": "Card: Masdar · Past: أَمْطَرَ · Present: يُمْطِرُ · Command: أَمْطِرْ · Masdar: إِمْطَارٌ",
+    "forms": {
+      "past": "أَمْطَرَ",
+      "present": "يُمْطِرُ",
+      "command": "أَمْطِرْ",
+      "masdar": "إِمْطَارٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-ترك-to-leave-past",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "تَرَكَ",
+    "target": "تَرَكَ",
     "answer": "To leave",
-    "detail": "Past: تَرَكَ · Masdar: تَرْكٌ",
+    "detail": "Card: Past · Past: تَرَكَ · Present: يَتْرُكُ · Command: اُتْرُكْ · Masdar: تَرْكٌ",
     "forms": {
       "past": "تَرَكَ",
       "present": "يَتْرُكُ",
@@ -2352,14 +4972,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch10-verb-يبارك-to-bless",
+    "id": "ch10-verb-يترك-to-leave-present",
     "chapter": 10,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُبَارِكُ",
-    "target": "يُبَارِكُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَتْرُكُ",
+    "target": "يَتْرُكُ",
+    "answer": "To leave",
+    "detail": "Card: Present · Past: تَرَكَ · Present: يَتْرُكُ · Command: اُتْرُكْ · Masdar: تَرْكٌ",
+    "forms": {
+      "past": "تَرَكَ",
+      "present": "يَتْرُكُ",
+      "command": "اُتْرُكْ",
+      "masdar": "تَرْكٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-اترك-to-leave-command",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اُتْرُكْ",
+    "target": "اُتْرُكْ",
+    "answer": "To leave",
+    "detail": "Card: Command · Past: تَرَكَ · Present: يَتْرُكُ · Command: اُتْرُكْ · Masdar: تَرْكٌ",
+    "forms": {
+      "past": "تَرَكَ",
+      "present": "يَتْرُكُ",
+      "command": "اُتْرُكْ",
+      "masdar": "تَرْكٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-ترك-to-leave-masdar",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَرْكٌ",
+    "target": "تَرْكٌ",
+    "answer": "To leave",
+    "detail": "Card: Masdar · Past: تَرَكَ · Present: يَتْرُكُ · Command: اُتْرُكْ · Masdar: تَرْكٌ",
+    "forms": {
+      "past": "تَرَكَ",
+      "present": "يَتْرُكُ",
+      "command": "اُتْرُكْ",
+      "masdar": "تَرْكٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-بارك-to-bless-past",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "بَارَكَ",
+    "target": "بَارَكَ",
     "answer": "To bless",
-    "detail": "Past: بَارَكَ · Masdar: مُبَارَكَةٌ",
+    "detail": "Card: Past · Past: بَارَكَ · Present: يُبَارِكُ · Command: بَارِكْ · Masdar: مُبَارَكَةٌ",
     "forms": {
       "past": "بَارَكَ",
       "present": "يُبَارِكُ",
@@ -2368,14 +5040,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch10-verb-يبقي-to-stay-remain",
+    "id": "ch10-verb-يبارك-to-bless-present",
     "chapter": 10,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَبْقَى",
-    "target": "يَبْقَى",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُبَارِكُ",
+    "target": "يُبَارِكُ",
+    "answer": "To bless",
+    "detail": "Card: Present · Past: بَارَكَ · Present: يُبَارِكُ · Command: بَارِكْ · Masdar: مُبَارَكَةٌ",
+    "forms": {
+      "past": "بَارَكَ",
+      "present": "يُبَارِكُ",
+      "command": "بَارِكْ",
+      "masdar": "مُبَارَكَةٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-بارك-to-bless-command",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "بَارِكْ",
+    "target": "بَارِكْ",
+    "answer": "To bless",
+    "detail": "Card: Command · Past: بَارَكَ · Present: يُبَارِكُ · Command: بَارِكْ · Masdar: مُبَارَكَةٌ",
+    "forms": {
+      "past": "بَارَكَ",
+      "present": "يُبَارِكُ",
+      "command": "بَارِكْ",
+      "masdar": "مُبَارَكَةٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-مباركة-to-bless-masdar",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "مُبَارَكَةٌ",
+    "target": "مُبَارَكَةٌ",
+    "answer": "To bless",
+    "detail": "Card: Masdar · Past: بَارَكَ · Present: يُبَارِكُ · Command: بَارِكْ · Masdar: مُبَارَكَةٌ",
+    "forms": {
+      "past": "بَارَكَ",
+      "present": "يُبَارِكُ",
+      "command": "بَارِكْ",
+      "masdar": "مُبَارَكَةٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-بقي-to-stay-remain-past",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "بَقِيَ",
+    "target": "بَقِيَ",
     "answer": "To stay; remain",
-    "detail": "Past: بَقِيَ · Masdar: بَقَاءٌ",
+    "detail": "Card: Past · Past: بَقِيَ · Present: يَبْقَى · Command: اِبْقَ · Masdar: بَقَاءٌ",
     "forms": {
       "past": "بَقِيَ",
       "present": "يَبْقَى",
@@ -2384,14 +5108,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch10-verb-تكلم-to-speak",
+    "id": "ch10-verb-يبقي-to-stay-remain-present",
     "chapter": 10,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "تَكَلَّمَ",
-    "target": "تَكَلَّمَ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَبْقَى",
+    "target": "يَبْقَى",
+    "answer": "To stay; remain",
+    "detail": "Card: Present · Past: بَقِيَ · Present: يَبْقَى · Command: اِبْقَ · Masdar: بَقَاءٌ",
+    "forms": {
+      "past": "بَقِيَ",
+      "present": "يَبْقَى",
+      "command": "اِبْقَ",
+      "masdar": "بَقَاءٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-ابق-to-stay-remain-command",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِبْقَ",
+    "target": "اِبْقَ",
+    "answer": "To stay; remain",
+    "detail": "Card: Command · Past: بَقِيَ · Present: يَبْقَى · Command: اِبْقَ · Masdar: بَقَاءٌ",
+    "forms": {
+      "past": "بَقِيَ",
+      "present": "يَبْقَى",
+      "command": "اِبْقَ",
+      "masdar": "بَقَاءٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-بقاء-to-stay-remain-masdar",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "بَقَاءٌ",
+    "target": "بَقَاءٌ",
+    "answer": "To stay; remain",
+    "detail": "Card: Masdar · Past: بَقِيَ · Present: يَبْقَى · Command: اِبْقَ · Masdar: بَقَاءٌ",
+    "forms": {
+      "past": "بَقِيَ",
+      "present": "يَبْقَى",
+      "command": "اِبْقَ",
+      "masdar": "بَقَاءٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-مع-to-speak-past",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "مَعَ",
+    "target": "مَعَ",
     "answer": "To speak",
-    "detail": "Past: مَعَ · Masdar: تَكَلمٌ / تَكَلَّمْ",
+    "detail": "Card: Past · Past: مَعَ · Present: تَكَلَّمَ · Command: يَتَكَلَّمُ · Masdar: تَكَلمٌ / تَكَلَّمْ",
     "forms": {
       "past": "مَعَ",
       "present": "تَكَلَّمَ",
@@ -2400,14 +5176,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch10-verb-يقض-to-spend-time",
+    "id": "ch10-verb-تكلم-to-speak-present",
     "chapter": 10,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَقْضِ",
-    "target": "يَقْضِ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "تَكَلَّمَ",
+    "target": "تَكَلَّمَ",
+    "answer": "To speak",
+    "detail": "Card: Present · Past: مَعَ · Present: تَكَلَّمَ · Command: يَتَكَلَّمُ · Masdar: تَكَلمٌ / تَكَلَّمْ",
+    "forms": {
+      "past": "مَعَ",
+      "present": "تَكَلَّمَ",
+      "command": "يَتَكَلَّمُ",
+      "masdar": "تَكَلمٌ / تَكَلَّمْ"
+    }
+  },
+  {
+    "id": "ch10-verb-يتكلم-to-speak-command",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "يَتَكَلَّمُ",
+    "target": "يَتَكَلَّمُ",
+    "answer": "To speak",
+    "detail": "Card: Command · Past: مَعَ · Present: تَكَلَّمَ · Command: يَتَكَلَّمُ · Masdar: تَكَلمٌ / تَكَلَّمْ",
+    "forms": {
+      "past": "مَعَ",
+      "present": "تَكَلَّمَ",
+      "command": "يَتَكَلَّمُ",
+      "masdar": "تَكَلمٌ / تَكَلَّمْ"
+    }
+  },
+  {
+    "id": "ch10-verb-تكلم-تكلم-to-speak-masdar",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَكَلمٌ / تَكَلَّمْ",
+    "target": "تَكَلمٌ / تَكَلَّمْ",
+    "answer": "To speak",
+    "detail": "Card: Masdar · Past: مَعَ · Present: تَكَلَّمَ · Command: يَتَكَلَّمُ · Masdar: تَكَلمٌ / تَكَلَّمْ",
+    "forms": {
+      "past": "مَعَ",
+      "present": "تَكَلَّمَ",
+      "command": "يَتَكَلَّمُ",
+      "masdar": "تَكَلمٌ / تَكَلَّمْ"
+    }
+  },
+  {
+    "id": "ch10-verb-يقضي-to-spend-time-past",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "يقَضَى",
+    "target": "يقَضَى",
     "answer": "To spend (time)",
-    "detail": "Past: يقَضَى · Masdar: قَضَاءٌ",
+    "detail": "Card: Past · Past: يقَضَى · Present: يَقْضِ · Command: اِقْضِ · Masdar: قَضَاءٌ",
     "forms": {
       "past": "يقَضَى",
       "present": "يَقْضِ",
@@ -2416,14 +5244,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch10-verb-يحضر-to-bring",
+    "id": "ch10-verb-يقض-to-spend-time-present",
     "chapter": 10,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُحْضِرُ",
-    "target": "يُحْضِرُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَقْضِ",
+    "target": "يَقْضِ",
+    "answer": "To spend (time)",
+    "detail": "Card: Present · Past: يقَضَى · Present: يَقْضِ · Command: اِقْضِ · Masdar: قَضَاءٌ",
+    "forms": {
+      "past": "يقَضَى",
+      "present": "يَقْضِ",
+      "command": "اِقْضِ",
+      "masdar": "قَضَاءٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-اقض-to-spend-time-command",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِقْضِ",
+    "target": "اِقْضِ",
+    "answer": "To spend (time)",
+    "detail": "Card: Command · Past: يقَضَى · Present: يَقْضِ · Command: اِقْضِ · Masdar: قَضَاءٌ",
+    "forms": {
+      "past": "يقَضَى",
+      "present": "يَقْضِ",
+      "command": "اِقْضِ",
+      "masdar": "قَضَاءٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-قضاء-to-spend-time-masdar",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "قَضَاءٌ",
+    "target": "قَضَاءٌ",
+    "answer": "To spend (time)",
+    "detail": "Card: Masdar · Past: يقَضَى · Present: يَقْضِ · Command: اِقْضِ · Masdar: قَضَاءٌ",
+    "forms": {
+      "past": "يقَضَى",
+      "present": "يَقْضِ",
+      "command": "اِقْضِ",
+      "masdar": "قَضَاءٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-احضر-to-bring-past",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَحْضَرَ",
+    "target": "أَحْضَرَ",
     "answer": "To bring",
-    "detail": "Past: أَحْضَرَ · Masdar: إِحْضَارٌ",
+    "detail": "Card: Past · Past: أَحْضَرَ · Present: يُحْضِرُ · Command: أَحْضِرْ · Masdar: إِحْضَارٌ",
     "forms": {
       "past": "أَحْضَرَ",
       "present": "يُحْضِرُ",
@@ -2432,14 +5312,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch10-verb-يحضر-to-attend",
+    "id": "ch10-verb-يحضر-to-bring-present",
     "chapter": 10,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُحْضِرُ",
+    "target": "يُحْضِرُ",
+    "answer": "To bring",
+    "detail": "Card: Present · Past: أَحْضَرَ · Present: يُحْضِرُ · Command: أَحْضِرْ · Masdar: إِحْضَارٌ",
+    "forms": {
+      "past": "أَحْضَرَ",
+      "present": "يُحْضِرُ",
+      "command": "أَحْضِرْ",
+      "masdar": "إِحْضَارٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-احضر-to-bring-command",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَحْضِرْ",
+    "target": "أَحْضِرْ",
+    "answer": "To bring",
+    "detail": "Card: Command · Past: أَحْضَرَ · Present: يُحْضِرُ · Command: أَحْضِرْ · Masdar: إِحْضَارٌ",
+    "forms": {
+      "past": "أَحْضَرَ",
+      "present": "يُحْضِرُ",
+      "command": "أَحْضِرْ",
+      "masdar": "إِحْضَارٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-احضار-to-bring-masdar",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِحْضَارٌ",
+    "target": "إِحْضَارٌ",
+    "answer": "To bring",
+    "detail": "Card: Masdar · Past: أَحْضَرَ · Present: يُحْضِرُ · Command: أَحْضِرْ · Masdar: إِحْضَارٌ",
+    "forms": {
+      "past": "أَحْضَرَ",
+      "present": "يُحْضِرُ",
+      "command": "أَحْضِرْ",
+      "masdar": "إِحْضَارٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-حضر-to-attend-past",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "حَضَرَ",
+    "target": "حَضَرَ",
+    "answer": "To attend",
+    "detail": "Card: Past · Past: حَضَرَ · Present: يَحْضُرُ · Command: اُحْضُرْ · Masdar: حُضُورٌ",
+    "forms": {
+      "past": "حَضَرَ",
+      "present": "يَحْضُرُ",
+      "command": "اُحْضُرْ",
+      "masdar": "حُضُورٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-يحضر-to-attend-present",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يَحْضُرُ",
     "target": "يَحْضُرُ",
     "answer": "To attend",
-    "detail": "Past: حَضَرَ · Masdar: حُضُورٌ",
+    "detail": "Card: Present · Past: حَضَرَ · Present: يَحْضُرُ · Command: اُحْضُرْ · Masdar: حُضُورٌ",
+    "forms": {
+      "past": "حَضَرَ",
+      "present": "يَحْضُرُ",
+      "command": "اُحْضُرْ",
+      "masdar": "حُضُورٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-احضر-to-attend-command",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اُحْضُرْ",
+    "target": "اُحْضُرْ",
+    "answer": "To attend",
+    "detail": "Card: Command · Past: حَضَرَ · Present: يَحْضُرُ · Command: اُحْضُرْ · Masdar: حُضُورٌ",
+    "forms": {
+      "past": "حَضَرَ",
+      "present": "يَحْضُرُ",
+      "command": "اُحْضُرْ",
+      "masdar": "حُضُورٌ"
+    }
+  },
+  {
+    "id": "ch10-verb-حضور-to-attend-masdar",
+    "chapter": 10,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "حُضُورٌ",
+    "target": "حُضُورٌ",
+    "answer": "To attend",
+    "detail": "Card: Masdar · Past: حَضَرَ · Present: يَحْضُرُ · Command: اُحْضُرْ · Masdar: حُضُورٌ",
     "forms": {
       "past": "حَضَرَ",
       "present": "يَحْضُرُ",
@@ -2544,14 +5527,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "أَزْوَاجٌ"
   },
   {
-    "id": "ch11-verb-ينتقل-to-move",
+    "id": "ch11-verb-انتقل-to-move-past",
     "chapter": 11,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَنْتَقِلُ",
-    "target": "يَنْتَقِلُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِنْتَقَلَ",
+    "target": "اِنْتَقَلَ",
     "answer": "To move",
-    "detail": "Past: اِنْتَقَلَ · Masdar: اِنْتِقَالٌ",
+    "detail": "Card: Past · Past: اِنْتَقَلَ · Present: يَنْتَقِلُ · Command: اِنْتَقِلْ · Masdar: اِنْتِقَالٌ",
     "forms": {
       "past": "اِنْتَقَلَ",
       "present": "يَنْتَقِلُ",
@@ -2560,14 +5544,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch11-verb-يستغرق-to-take-time",
+    "id": "ch11-verb-ينتقل-to-move-present",
     "chapter": 11,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَسْتَغْرِقُ",
-    "target": "يَسْتَغْرِقُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَنْتَقِلُ",
+    "target": "يَنْتَقِلُ",
+    "answer": "To move",
+    "detail": "Card: Present · Past: اِنْتَقَلَ · Present: يَنْتَقِلُ · Command: اِنْتَقِلْ · Masdar: اِنْتِقَالٌ",
+    "forms": {
+      "past": "اِنْتَقَلَ",
+      "present": "يَنْتَقِلُ",
+      "command": "اِنْتَقِلْ",
+      "masdar": "اِنْتِقَالٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-انتقل-to-move-command",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِنْتَقِلْ",
+    "target": "اِنْتَقِلْ",
+    "answer": "To move",
+    "detail": "Card: Command · Past: اِنْتَقَلَ · Present: يَنْتَقِلُ · Command: اِنْتَقِلْ · Masdar: اِنْتِقَالٌ",
+    "forms": {
+      "past": "اِنْتَقَلَ",
+      "present": "يَنْتَقِلُ",
+      "command": "اِنْتَقِلْ",
+      "masdar": "اِنْتِقَالٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-انتقال-to-move-masdar",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِنْتِقَالٌ",
+    "target": "اِنْتِقَالٌ",
+    "answer": "To move",
+    "detail": "Card: Masdar · Past: اِنْتَقَلَ · Present: يَنْتَقِلُ · Command: اِنْتَقِلْ · Masdar: اِنْتِقَالٌ",
+    "forms": {
+      "past": "اِنْتَقَلَ",
+      "present": "يَنْتَقِلُ",
+      "command": "اِنْتَقِلْ",
+      "masdar": "اِنْتِقَالٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-استغرق-to-take-time-past",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِسْتَغْرَقَ",
+    "target": "اِسْتَغْرَقَ",
     "answer": "To take (time)",
-    "detail": "Past: اِسْتَغْرَقَ · Masdar: اِسْتِغْرَاقٌ",
+    "detail": "Card: Past · Past: اِسْتَغْرَقَ · Present: يَسْتَغْرِقُ · Command: اِسْتَغْرِقْ · Masdar: اِسْتِغْرَاقٌ",
     "forms": {
       "past": "اِسْتَغْرَقَ",
       "present": "يَسْتَغْرِقُ",
@@ -2576,14 +5612,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch11-verb-يتزوج-to-marry",
+    "id": "ch11-verb-يستغرق-to-take-time-present",
     "chapter": 11,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَتَزَوَّجُ",
-    "target": "يَتَزَوَّجُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَسْتَغْرِقُ",
+    "target": "يَسْتَغْرِقُ",
+    "answer": "To take (time)",
+    "detail": "Card: Present · Past: اِسْتَغْرَقَ · Present: يَسْتَغْرِقُ · Command: اِسْتَغْرِقْ · Masdar: اِسْتِغْرَاقٌ",
+    "forms": {
+      "past": "اِسْتَغْرَقَ",
+      "present": "يَسْتَغْرِقُ",
+      "command": "اِسْتَغْرِقْ",
+      "masdar": "اِسْتِغْرَاقٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-استغرق-to-take-time-command",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِسْتَغْرِقْ",
+    "target": "اِسْتَغْرِقْ",
+    "answer": "To take (time)",
+    "detail": "Card: Command · Past: اِسْتَغْرَقَ · Present: يَسْتَغْرِقُ · Command: اِسْتَغْرِقْ · Masdar: اِسْتِغْرَاقٌ",
+    "forms": {
+      "past": "اِسْتَغْرَقَ",
+      "present": "يَسْتَغْرِقُ",
+      "command": "اِسْتَغْرِقْ",
+      "masdar": "اِسْتِغْرَاقٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-استغراق-to-take-time-masdar",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِسْتِغْرَاقٌ",
+    "target": "اِسْتِغْرَاقٌ",
+    "answer": "To take (time)",
+    "detail": "Card: Masdar · Past: اِسْتَغْرَقَ · Present: يَسْتَغْرِقُ · Command: اِسْتَغْرِقْ · Masdar: اِسْتِغْرَاقٌ",
+    "forms": {
+      "past": "اِسْتَغْرَقَ",
+      "present": "يَسْتَغْرِقُ",
+      "command": "اِسْتَغْرِقْ",
+      "masdar": "اِسْتِغْرَاقٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-تزوج-to-marry-past",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "تَزَوَّجَ",
+    "target": "تَزَوَّجَ",
     "answer": "To marry",
-    "detail": "Past: تَزَوَّجَ · Masdar: تَزَوجٌ / زَوَاجٌ",
+    "detail": "Card: Past · Past: تَزَوَّجَ · Present: يَتَزَوَّجُ · Command: تَزَوَّجْ · Masdar: تَزَوجٌ / زَوَاجٌ",
     "forms": {
       "past": "تَزَوَّجَ",
       "present": "يَتَزَوَّجُ",
@@ -2592,14 +5680,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch11-verb-يزور-to-visit",
+    "id": "ch11-verb-يتزوج-to-marry-present",
     "chapter": 11,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَزُورُ",
-    "target": "يَزُورُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَتَزَوَّجُ",
+    "target": "يَتَزَوَّجُ",
+    "answer": "To marry",
+    "detail": "Card: Present · Past: تَزَوَّجَ · Present: يَتَزَوَّجُ · Command: تَزَوَّجْ · Masdar: تَزَوجٌ / زَوَاجٌ",
+    "forms": {
+      "past": "تَزَوَّجَ",
+      "present": "يَتَزَوَّجُ",
+      "command": "تَزَوَّجْ",
+      "masdar": "تَزَوجٌ / زَوَاجٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-تزوج-to-marry-command",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "تَزَوَّجْ",
+    "target": "تَزَوَّجْ",
+    "answer": "To marry",
+    "detail": "Card: Command · Past: تَزَوَّجَ · Present: يَتَزَوَّجُ · Command: تَزَوَّجْ · Masdar: تَزَوجٌ / زَوَاجٌ",
+    "forms": {
+      "past": "تَزَوَّجَ",
+      "present": "يَتَزَوَّجُ",
+      "command": "تَزَوَّجْ",
+      "masdar": "تَزَوجٌ / زَوَاجٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-تزوج-زواج-to-marry-masdar",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَزَوجٌ / زَوَاجٌ",
+    "target": "تَزَوجٌ / زَوَاجٌ",
+    "answer": "To marry",
+    "detail": "Card: Masdar · Past: تَزَوَّجَ · Present: يَتَزَوَّجُ · Command: تَزَوَّجْ · Masdar: تَزَوجٌ / زَوَاجٌ",
+    "forms": {
+      "past": "تَزَوَّجَ",
+      "present": "يَتَزَوَّجُ",
+      "command": "تَزَوَّجْ",
+      "masdar": "تَزَوجٌ / زَوَاجٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-زار-to-visit-past",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "زَارَ",
+    "target": "زَارَ",
     "answer": "To visit",
-    "detail": "Past: زَارَ · Masdar: زِيَارَةٌ",
+    "detail": "Card: Past · Past: زَارَ · Present: يَزُورُ · Command: زُرْ · Masdar: زِيَارَةٌ",
     "forms": {
       "past": "زَارَ",
       "present": "يَزُورُ",
@@ -2608,14 +5748,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch11-verb-يتلوث-to-be-polluted",
+    "id": "ch11-verb-يزور-to-visit-present",
     "chapter": 11,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَتَلَوَّثُ",
-    "target": "يَتَلَوَّثُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَزُورُ",
+    "target": "يَزُورُ",
+    "answer": "To visit",
+    "detail": "Card: Present · Past: زَارَ · Present: يَزُورُ · Command: زُرْ · Masdar: زِيَارَةٌ",
+    "forms": {
+      "past": "زَارَ",
+      "present": "يَزُورُ",
+      "command": "زُرْ",
+      "masdar": "زِيَارَةٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-زر-to-visit-command",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "زُرْ",
+    "target": "زُرْ",
+    "answer": "To visit",
+    "detail": "Card: Command · Past: زَارَ · Present: يَزُورُ · Command: زُرْ · Masdar: زِيَارَةٌ",
+    "forms": {
+      "past": "زَارَ",
+      "present": "يَزُورُ",
+      "command": "زُرْ",
+      "masdar": "زِيَارَةٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-زيارة-to-visit-masdar",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "زِيَارَةٌ",
+    "target": "زِيَارَةٌ",
+    "answer": "To visit",
+    "detail": "Card: Masdar · Past: زَارَ · Present: يَزُورُ · Command: زُرْ · Masdar: زِيَارَةٌ",
+    "forms": {
+      "past": "زَارَ",
+      "present": "يَزُورُ",
+      "command": "زُرْ",
+      "masdar": "زِيَارَةٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-تلوث-to-be-polluted-past",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "تَلَوَّثَ",
+    "target": "تَلَوَّثَ",
     "answer": "To be polluted",
-    "detail": "Past: تَلَوَّثَ · Masdar: تَلَوثٌ",
+    "detail": "Card: Past · Past: تَلَوَّثَ · Present: يَتَلَوَّثُ · Command: تَلَوَّثْ · Masdar: تَلَوثٌ",
     "forms": {
       "past": "تَلَوَّثَ",
       "present": "يَتَلَوَّثُ",
@@ -2624,14 +5816,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch11-verb-يزدحم-to-be-overcrowded",
+    "id": "ch11-verb-يتلوث-to-be-polluted-present",
     "chapter": 11,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَتَلَوَّثُ",
+    "target": "يَتَلَوَّثُ",
+    "answer": "To be polluted",
+    "detail": "Card: Present · Past: تَلَوَّثَ · Present: يَتَلَوَّثُ · Command: تَلَوَّثْ · Masdar: تَلَوثٌ",
+    "forms": {
+      "past": "تَلَوَّثَ",
+      "present": "يَتَلَوَّثُ",
+      "command": "تَلَوَّثْ",
+      "masdar": "تَلَوثٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-تلوث-to-be-polluted-command",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "تَلَوَّثْ",
+    "target": "تَلَوَّثْ",
+    "answer": "To be polluted",
+    "detail": "Card: Command · Past: تَلَوَّثَ · Present: يَتَلَوَّثُ · Command: تَلَوَّثْ · Masdar: تَلَوثٌ",
+    "forms": {
+      "past": "تَلَوَّثَ",
+      "present": "يَتَلَوَّثُ",
+      "command": "تَلَوَّثْ",
+      "masdar": "تَلَوثٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-تلوث-to-be-polluted-masdar",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَلَوثٌ",
+    "target": "تَلَوثٌ",
+    "answer": "To be polluted",
+    "detail": "Card: Masdar · Past: تَلَوَّثَ · Present: يَتَلَوَّثُ · Command: تَلَوَّثْ · Masdar: تَلَوثٌ",
+    "forms": {
+      "past": "تَلَوَّثَ",
+      "present": "يَتَلَوَّثُ",
+      "command": "تَلَوَّثْ",
+      "masdar": "تَلَوثٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-ازدحم-to-be-overcrowded-past",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِزْدَحَمَ",
+    "target": "اِزْدَحَمَ",
+    "answer": "To be overcrowded",
+    "detail": "Card: Past · Past: اِزْدَحَمَ · Present: يَزْدَحِمُ · Command: اِزْدَحِمْ · Masdar: اِزْدِحَامٌ",
+    "forms": {
+      "past": "اِزْدَحَمَ",
+      "present": "يَزْدَحِمُ",
+      "command": "اِزْدَحِمْ",
+      "masdar": "اِزْدِحَامٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-يزدحم-to-be-overcrowded-present",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يَزْدَحِمُ",
     "target": "يَزْدَحِمُ",
     "answer": "To be overcrowded",
-    "detail": "Past: اِزْدَحَمَ · Masdar: اِزْدِحَامٌ",
+    "detail": "Card: Present · Past: اِزْدَحَمَ · Present: يَزْدَحِمُ · Command: اِزْدَحِمْ · Masdar: اِزْدِحَامٌ",
+    "forms": {
+      "past": "اِزْدَحَمَ",
+      "present": "يَزْدَحِمُ",
+      "command": "اِزْدَحِمْ",
+      "masdar": "اِزْدِحَامٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-ازدحم-to-be-overcrowded-command",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِزْدَحِمْ",
+    "target": "اِزْدَحِمْ",
+    "answer": "To be overcrowded",
+    "detail": "Card: Command · Past: اِزْدَحَمَ · Present: يَزْدَحِمُ · Command: اِزْدَحِمْ · Masdar: اِزْدِحَامٌ",
+    "forms": {
+      "past": "اِزْدَحَمَ",
+      "present": "يَزْدَحِمُ",
+      "command": "اِزْدَحِمْ",
+      "masdar": "اِزْدِحَامٌ"
+    }
+  },
+  {
+    "id": "ch11-verb-ازدحام-to-be-overcrowded-masdar",
+    "chapter": 11,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِزْدِحَامٌ",
+    "target": "اِزْدِحَامٌ",
+    "answer": "To be overcrowded",
+    "detail": "Card: Masdar · Past: اِزْدَحَمَ · Present: يَزْدَحِمُ · Command: اِزْدَحِمْ · Masdar: اِزْدِحَامٌ",
     "forms": {
       "past": "اِزْدَحَمَ",
       "present": "يَزْدَحِمُ",
@@ -2855,14 +6150,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "آيَاتٌ"
   },
   {
-    "id": "ch13-verb-يقيم-to-stay",
+    "id": "ch13-verb-اقام-to-stay-past",
     "chapter": 13,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُقِيمُ",
-    "target": "يُقِيمُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَقَامَ",
+    "target": "أَقَامَ",
     "answer": "To stay",
-    "detail": "Past: أَقَامَ · Masdar: إِقَامَةٌ",
+    "detail": "Card: Past · Past: أَقَامَ · Present: يُقِيمُ · Command: أَقِمْ · Masdar: إِقَامَةٌ",
     "forms": {
       "past": "أَقَامَ",
       "present": "يُقِيمُ",
@@ -2871,14 +6167,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch13-verb-يحجز-to-book",
+    "id": "ch13-verb-يقيم-to-stay-present",
     "chapter": 13,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَحْجِزُ",
-    "target": "يَحْجِزُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُقِيمُ",
+    "target": "يُقِيمُ",
+    "answer": "To stay",
+    "detail": "Card: Present · Past: أَقَامَ · Present: يُقِيمُ · Command: أَقِمْ · Masdar: إِقَامَةٌ",
+    "forms": {
+      "past": "أَقَامَ",
+      "present": "يُقِيمُ",
+      "command": "أَقِمْ",
+      "masdar": "إِقَامَةٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-اقم-to-stay-command",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَقِمْ",
+    "target": "أَقِمْ",
+    "answer": "To stay",
+    "detail": "Card: Command · Past: أَقَامَ · Present: يُقِيمُ · Command: أَقِمْ · Masdar: إِقَامَةٌ",
+    "forms": {
+      "past": "أَقَامَ",
+      "present": "يُقِيمُ",
+      "command": "أَقِمْ",
+      "masdar": "إِقَامَةٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-اقامة-to-stay-masdar",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِقَامَةٌ",
+    "target": "إِقَامَةٌ",
+    "answer": "To stay",
+    "detail": "Card: Masdar · Past: أَقَامَ · Present: يُقِيمُ · Command: أَقِمْ · Masdar: إِقَامَةٌ",
+    "forms": {
+      "past": "أَقَامَ",
+      "present": "يُقِيمُ",
+      "command": "أَقِمْ",
+      "masdar": "إِقَامَةٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-حجز-to-book-past",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "حَجَزَ",
+    "target": "حَجَزَ",
     "answer": "To book",
-    "detail": "Past: حَجَزَ · Masdar: حَجْزٌ",
+    "detail": "Card: Past · Past: حَجَزَ · Present: يَحْجِزُ · Command: اِحْجِزْ · Masdar: حَجْزٌ",
     "forms": {
       "past": "حَجَزَ",
       "present": "يَحْجِزُ",
@@ -2887,14 +6235,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch13-verb-يغادر-to-depart",
+    "id": "ch13-verb-يحجز-to-book-present",
     "chapter": 13,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُغَادِرُ",
-    "target": "يُغَادِرُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَحْجِزُ",
+    "target": "يَحْجِزُ",
+    "answer": "To book",
+    "detail": "Card: Present · Past: حَجَزَ · Present: يَحْجِزُ · Command: اِحْجِزْ · Masdar: حَجْزٌ",
+    "forms": {
+      "past": "حَجَزَ",
+      "present": "يَحْجِزُ",
+      "command": "اِحْجِزْ",
+      "masdar": "حَجْزٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-احجز-to-book-command",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِحْجِزْ",
+    "target": "اِحْجِزْ",
+    "answer": "To book",
+    "detail": "Card: Command · Past: حَجَزَ · Present: يَحْجِزُ · Command: اِحْجِزْ · Masdar: حَجْزٌ",
+    "forms": {
+      "past": "حَجَزَ",
+      "present": "يَحْجِزُ",
+      "command": "اِحْجِزْ",
+      "masdar": "حَجْزٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-حجز-to-book-masdar",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "حَجْزٌ",
+    "target": "حَجْزٌ",
+    "answer": "To book",
+    "detail": "Card: Masdar · Past: حَجَزَ · Present: يَحْجِزُ · Command: اِحْجِزْ · Masdar: حَجْزٌ",
+    "forms": {
+      "past": "حَجَزَ",
+      "present": "يَحْجِزُ",
+      "command": "اِحْجِزْ",
+      "masdar": "حَجْزٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-غادر-to-depart-past",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "غَادَرَ",
+    "target": "غَادَرَ",
     "answer": "To depart",
-    "detail": "Past: غَادَرَ · Masdar: مُغَادَرَةٌ",
+    "detail": "Card: Past · Past: غَادَرَ · Present: يُغَادِرُ · Command: غَادِرْ · Masdar: مُغَادَرَةٌ",
     "forms": {
       "past": "غَادَرَ",
       "present": "يُغَادِرُ",
@@ -2903,14 +6303,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch13-verb-يفتح-to-open",
+    "id": "ch13-verb-يغادر-to-depart-present",
     "chapter": 13,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَفْتَحُ",
-    "target": "يَفْتَحُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُغَادِرُ",
+    "target": "يُغَادِرُ",
+    "answer": "To depart",
+    "detail": "Card: Present · Past: غَادَرَ · Present: يُغَادِرُ · Command: غَادِرْ · Masdar: مُغَادَرَةٌ",
+    "forms": {
+      "past": "غَادَرَ",
+      "present": "يُغَادِرُ",
+      "command": "غَادِرْ",
+      "masdar": "مُغَادَرَةٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-غادر-to-depart-command",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "غَادِرْ",
+    "target": "غَادِرْ",
+    "answer": "To depart",
+    "detail": "Card: Command · Past: غَادَرَ · Present: يُغَادِرُ · Command: غَادِرْ · Masdar: مُغَادَرَةٌ",
+    "forms": {
+      "past": "غَادَرَ",
+      "present": "يُغَادِرُ",
+      "command": "غَادِرْ",
+      "masdar": "مُغَادَرَةٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-مغادرة-to-depart-masdar",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "مُغَادَرَةٌ",
+    "target": "مُغَادَرَةٌ",
+    "answer": "To depart",
+    "detail": "Card: Masdar · Past: غَادَرَ · Present: يُغَادِرُ · Command: غَادِرْ · Masdar: مُغَادَرَةٌ",
+    "forms": {
+      "past": "غَادَرَ",
+      "present": "يُغَادِرُ",
+      "command": "غَادِرْ",
+      "masdar": "مُغَادَرَةٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-فتح-to-open-past",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "فَتَحَ",
+    "target": "فَتَحَ",
     "answer": "To open",
-    "detail": "Past: فَتَحَ · Masdar: فَتْحٌ",
+    "detail": "Card: Past · Past: فَتَحَ · Present: يَفْتَحُ · Command: اِفْتَحْ · Masdar: فَتْحٌ",
     "forms": {
       "past": "فَتَحَ",
       "present": "يَفْتَحُ",
@@ -2919,14 +6371,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch13-verb-يفقد-to-lose",
+    "id": "ch13-verb-يفتح-to-open-present",
     "chapter": 13,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَفْقِدُ",
-    "target": "يَفْقِدُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَفْتَحُ",
+    "target": "يَفْتَحُ",
+    "answer": "To open",
+    "detail": "Card: Present · Past: فَتَحَ · Present: يَفْتَحُ · Command: اِفْتَحْ · Masdar: فَتْحٌ",
+    "forms": {
+      "past": "فَتَحَ",
+      "present": "يَفْتَحُ",
+      "command": "اِفْتَحْ",
+      "masdar": "فَتْحٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-افتح-to-open-command",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِفْتَحْ",
+    "target": "اِفْتَحْ",
+    "answer": "To open",
+    "detail": "Card: Command · Past: فَتَحَ · Present: يَفْتَحُ · Command: اِفْتَحْ · Masdar: فَتْحٌ",
+    "forms": {
+      "past": "فَتَحَ",
+      "present": "يَفْتَحُ",
+      "command": "اِفْتَحْ",
+      "masdar": "فَتْحٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-فتح-to-open-masdar",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "فَتْحٌ",
+    "target": "فَتْحٌ",
+    "answer": "To open",
+    "detail": "Card: Masdar · Past: فَتَحَ · Present: يَفْتَحُ · Command: اِفْتَحْ · Masdar: فَتْحٌ",
+    "forms": {
+      "past": "فَتَحَ",
+      "present": "يَفْتَحُ",
+      "command": "اِفْتَحْ",
+      "masdar": "فَتْحٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-فقد-to-lose-past",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "فَقَدَ",
+    "target": "فَقَدَ",
     "answer": "To lose",
-    "detail": "Past: فَقَدَ · Masdar: فَقْدٌ",
+    "detail": "Card: Past · Past: فَقَدَ · Present: يَفْقِدُ · Command: اِفْقِدْ · Masdar: فَقْدٌ",
     "forms": {
       "past": "فَقَدَ",
       "present": "يَفْقِدُ",
@@ -2935,14 +6439,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch13-verb-يؤكد-to-confirm",
+    "id": "ch13-verb-يفقد-to-lose-present",
     "chapter": 13,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَفْقِدُ",
+    "target": "يَفْقِدُ",
+    "answer": "To lose",
+    "detail": "Card: Present · Past: فَقَدَ · Present: يَفْقِدُ · Command: اِفْقِدْ · Masdar: فَقْدٌ",
+    "forms": {
+      "past": "فَقَدَ",
+      "present": "يَفْقِدُ",
+      "command": "اِفْقِدْ",
+      "masdar": "فَقْدٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-افقد-to-lose-command",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِفْقِدْ",
+    "target": "اِفْقِدْ",
+    "answer": "To lose",
+    "detail": "Card: Command · Past: فَقَدَ · Present: يَفْقِدُ · Command: اِفْقِدْ · Masdar: فَقْدٌ",
+    "forms": {
+      "past": "فَقَدَ",
+      "present": "يَفْقِدُ",
+      "command": "اِفْقِدْ",
+      "masdar": "فَقْدٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-فقد-to-lose-masdar",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "فَقْدٌ",
+    "target": "فَقْدٌ",
+    "answer": "To lose",
+    "detail": "Card: Masdar · Past: فَقَدَ · Present: يَفْقِدُ · Command: اِفْقِدْ · Masdar: فَقْدٌ",
+    "forms": {
+      "past": "فَقَدَ",
+      "present": "يَفْقِدُ",
+      "command": "اِفْقِدْ",
+      "masdar": "فَقْدٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-اكد-to-confirm-past",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَكَّدَ",
+    "target": "أَكَّدَ",
+    "answer": "To confirm",
+    "detail": "Card: Past · Past: أَكَّدَ · Present: يُؤَكِدُ · Command: أَكِدْ · Masdar: تأْكِيدٌ",
+    "forms": {
+      "past": "أَكَّدَ",
+      "present": "يُؤَكِدُ",
+      "command": "أَكِدْ",
+      "masdar": "تأْكِيدٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-يؤكد-to-confirm-present",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يُؤَكِدُ",
     "target": "يُؤَكِدُ",
     "answer": "To confirm",
-    "detail": "Past: أَكَّدَ · Masdar: تأْكِيدٌ",
+    "detail": "Card: Present · Past: أَكَّدَ · Present: يُؤَكِدُ · Command: أَكِدْ · Masdar: تأْكِيدٌ",
+    "forms": {
+      "past": "أَكَّدَ",
+      "present": "يُؤَكِدُ",
+      "command": "أَكِدْ",
+      "masdar": "تأْكِيدٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-اكد-to-confirm-command",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَكِدْ",
+    "target": "أَكِدْ",
+    "answer": "To confirm",
+    "detail": "Card: Command · Past: أَكَّدَ · Present: يُؤَكِدُ · Command: أَكِدْ · Masdar: تأْكِيدٌ",
+    "forms": {
+      "past": "أَكَّدَ",
+      "present": "يُؤَكِدُ",
+      "command": "أَكِدْ",
+      "masdar": "تأْكِيدٌ"
+    }
+  },
+  {
+    "id": "ch13-verb-تاكيد-to-confirm-masdar",
+    "chapter": 13,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تأْكِيدٌ",
+    "target": "تأْكِيدٌ",
+    "answer": "To confirm",
+    "detail": "Card: Masdar · Past: أَكَّدَ · Present: يُؤَكِدُ · Command: أَكِدْ · Masdar: تأْكِيدٌ",
     "forms": {
       "past": "أَكَّدَ",
       "present": "يُؤَكِدُ",
@@ -3071,14 +6678,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "تَأْشِيرَاتٌ"
   },
   {
-    "id": "ch14-verb-يحلق-to-shave",
+    "id": "ch14-verb-حلق-to-shave-past",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَحْلِقُ",
-    "target": "يَحْلِقُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "حَلَقَ",
+    "target": "حَلَقَ",
     "answer": "To shave",
-    "detail": "Past: حَلَقَ · Masdar: حَلْقٌ / حَِّلَقَةٌ",
+    "detail": "Card: Past · Past: حَلَقَ · Present: يَحْلِقُ · Command: اِحْلِقْ · Masdar: حَلْقٌ / حَِّلَقَةٌ",
     "forms": {
       "past": "حَلَقَ",
       "present": "يَحْلِقُ",
@@ -3087,14 +6695,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-يعتمر-to-make-umrah",
+    "id": "ch14-verb-يحلق-to-shave-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَعْتَمِرُ",
-    "target": "يَعْتَمِرُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَحْلِقُ",
+    "target": "يَحْلِقُ",
+    "answer": "To shave",
+    "detail": "Card: Present · Past: حَلَقَ · Present: يَحْلِقُ · Command: اِحْلِقْ · Masdar: حَلْقٌ / حَِّلَقَةٌ",
+    "forms": {
+      "past": "حَلَقَ",
+      "present": "يَحْلِقُ",
+      "command": "اِحْلِقْ",
+      "masdar": "حَلْقٌ / حَِّلَقَةٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-احلق-to-shave-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِحْلِقْ",
+    "target": "اِحْلِقْ",
+    "answer": "To shave",
+    "detail": "Card: Command · Past: حَلَقَ · Present: يَحْلِقُ · Command: اِحْلِقْ · Masdar: حَلْقٌ / حَِّلَقَةٌ",
+    "forms": {
+      "past": "حَلَقَ",
+      "present": "يَحْلِقُ",
+      "command": "اِحْلِقْ",
+      "masdar": "حَلْقٌ / حَِّلَقَةٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-حلق-حلقة-to-shave-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "حَلْقٌ / حَِّلَقَةٌ",
+    "target": "حَلْقٌ / حَِّلَقَةٌ",
+    "answer": "To shave",
+    "detail": "Card: Masdar · Past: حَلَقَ · Present: يَحْلِقُ · Command: اِحْلِقْ · Masdar: حَلْقٌ / حَِّلَقَةٌ",
+    "forms": {
+      "past": "حَلَقَ",
+      "present": "يَحْلِقُ",
+      "command": "اِحْلِقْ",
+      "masdar": "حَلْقٌ / حَِّلَقَةٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-اعتمر-to-make-umrah-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِعْتَمَرَ",
+    "target": "اِعْتَمَرَ",
     "answer": "To make umrah",
-    "detail": "Past: اِعْتَمَرَ · Masdar: اِعْتِمَارٌ",
+    "detail": "Card: Past · Past: اِعْتَمَرَ · Present: يَعْتَمِرُ · Command: اِعْتَمِرْ · Masdar: اِعْتِمَارٌ",
     "forms": {
       "past": "اِعْتَمَرَ",
       "present": "يَعْتَمِرُ",
@@ -3103,14 +6763,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-يذبح-to-slaughter-sacrifice",
+    "id": "ch14-verb-يعتمر-to-make-umrah-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَذْبَحُ",
-    "target": "يَذْبَحُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَعْتَمِرُ",
+    "target": "يَعْتَمِرُ",
+    "answer": "To make umrah",
+    "detail": "Card: Present · Past: اِعْتَمَرَ · Present: يَعْتَمِرُ · Command: اِعْتَمِرْ · Masdar: اِعْتِمَارٌ",
+    "forms": {
+      "past": "اِعْتَمَرَ",
+      "present": "يَعْتَمِرُ",
+      "command": "اِعْتَمِرْ",
+      "masdar": "اِعْتِمَارٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-اعتمر-to-make-umrah-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِعْتَمِرْ",
+    "target": "اِعْتَمِرْ",
+    "answer": "To make umrah",
+    "detail": "Card: Command · Past: اِعْتَمَرَ · Present: يَعْتَمِرُ · Command: اِعْتَمِرْ · Masdar: اِعْتِمَارٌ",
+    "forms": {
+      "past": "اِعْتَمَرَ",
+      "present": "يَعْتَمِرُ",
+      "command": "اِعْتَمِرْ",
+      "masdar": "اِعْتِمَارٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-اعتمار-to-make-umrah-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِعْتِمَارٌ",
+    "target": "اِعْتِمَارٌ",
+    "answer": "To make umrah",
+    "detail": "Card: Masdar · Past: اِعْتَمَرَ · Present: يَعْتَمِرُ · Command: اِعْتَمِرْ · Masdar: اِعْتِمَارٌ",
+    "forms": {
+      "past": "اِعْتَمَرَ",
+      "present": "يَعْتَمِرُ",
+      "command": "اِعْتَمِرْ",
+      "masdar": "اِعْتِمَارٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-ذبح-to-slaughter-sacrifice-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "ذَبَحَ",
+    "target": "ذَبَحَ",
     "answer": "To slaughter/ sacrifice",
-    "detail": "Past: ذَبَحَ · Masdar: ذَبْحٌ",
+    "detail": "Card: Past · Past: ذَبَحَ · Present: يَذْبَحُ · Command: اِذْبَحْ · Masdar: ذَبْحٌ",
     "forms": {
       "past": "ذَبَحَ",
       "present": "يَذْبَحُ",
@@ -3119,14 +6831,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-م-to-throw",
+    "id": "ch14-verb-يذبح-to-slaughter-sacrifice-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "م",
-    "target": "م",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَذْبَحُ",
+    "target": "يَذْبَحُ",
+    "answer": "To slaughter/ sacrifice",
+    "detail": "Card: Present · Past: ذَبَحَ · Present: يَذْبَحُ · Command: اِذْبَحْ · Masdar: ذَبْحٌ",
+    "forms": {
+      "past": "ذَبَحَ",
+      "present": "يَذْبَحُ",
+      "command": "اِذْبَحْ",
+      "masdar": "ذَبْحٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-اذبح-to-slaughter-sacrifice-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِذْبَحْ",
+    "target": "اِذْبَحْ",
+    "answer": "To slaughter/ sacrifice",
+    "detail": "Card: Command · Past: ذَبَحَ · Present: يَذْبَحُ · Command: اِذْبَحْ · Masdar: ذَبْحٌ",
+    "forms": {
+      "past": "ذَبَحَ",
+      "present": "يَذْبَحُ",
+      "command": "اِذْبَحْ",
+      "masdar": "ذَبْحٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-ذبح-to-slaughter-sacrifice-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "ذَبْحٌ",
+    "target": "ذَبْحٌ",
+    "answer": "To slaughter/ sacrifice",
+    "detail": "Card: Masdar · Past: ذَبَحَ · Present: يَذْبَحُ · Command: اِذْبَحْ · Masdar: ذَبْحٌ",
+    "forms": {
+      "past": "ذَبَحَ",
+      "present": "يَذْبَحُ",
+      "command": "اِذْبَحْ",
+      "masdar": "ذَبْحٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-يرميرمي-to-throw-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "يَرْمِيرَمَى",
+    "target": "يَرْمِيرَمَى",
     "answer": "To throw",
-    "detail": "Past: يَرْمِيرَمَى · Masdar: رَمْيٌ",
+    "detail": "Card: Past · Past: يَرْمِيرَمَى · Present: م · Command: اِرِْ · Masdar: رَمْيٌ",
     "forms": {
       "past": "يَرْمِيرَمَى",
       "present": "م",
@@ -3135,14 +6899,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-يسعي-to-make-sa-ee",
+    "id": "ch14-verb-م-to-throw-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَسْعَى",
-    "target": "يَسْعَى",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "م",
+    "target": "م",
+    "answer": "To throw",
+    "detail": "Card: Present · Past: يَرْمِيرَمَى · Present: م · Command: اِرِْ · Masdar: رَمْيٌ",
+    "forms": {
+      "past": "يَرْمِيرَمَى",
+      "present": "م",
+      "command": "اِرِْ",
+      "masdar": "رَمْيٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-ار-to-throw-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِرِْ",
+    "target": "اِرِْ",
+    "answer": "To throw",
+    "detail": "Card: Command · Past: يَرْمِيرَمَى · Present: م · Command: اِرِْ · Masdar: رَمْيٌ",
+    "forms": {
+      "past": "يَرْمِيرَمَى",
+      "present": "م",
+      "command": "اِرِْ",
+      "masdar": "رَمْيٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-رمي-to-throw-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "رَمْيٌ",
+    "target": "رَمْيٌ",
+    "answer": "To throw",
+    "detail": "Card: Masdar · Past: يَرْمِيرَمَى · Present: م · Command: اِرِْ · Masdar: رَمْيٌ",
+    "forms": {
+      "past": "يَرْمِيرَمَى",
+      "present": "م",
+      "command": "اِرِْ",
+      "masdar": "رَمْيٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-سعي-to-make-sa-ee-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "سَعَى",
+    "target": "سَعَى",
     "answer": "To make sa'ee",
-    "detail": "Past: سَعَى · Masdar: سَعْيٌ",
+    "detail": "Card: Past · Past: سَعَى · Present: يَسْعَى · Command: اِسْعَ · Masdar: سَعْيٌ",
     "forms": {
       "past": "سَعَى",
       "present": "يَسْعَى",
@@ -3151,14 +6967,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-يشعر-to-feel",
+    "id": "ch14-verb-يسعي-to-make-sa-ee-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَشْعُرُ",
-    "target": "يَشْعُرُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَسْعَى",
+    "target": "يَسْعَى",
+    "answer": "To make sa'ee",
+    "detail": "Card: Present · Past: سَعَى · Present: يَسْعَى · Command: اِسْعَ · Masdar: سَعْيٌ",
+    "forms": {
+      "past": "سَعَى",
+      "present": "يَسْعَى",
+      "command": "اِسْعَ",
+      "masdar": "سَعْيٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-اسع-to-make-sa-ee-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِسْعَ",
+    "target": "اِسْعَ",
+    "answer": "To make sa'ee",
+    "detail": "Card: Command · Past: سَعَى · Present: يَسْعَى · Command: اِسْعَ · Masdar: سَعْيٌ",
+    "forms": {
+      "past": "سَعَى",
+      "present": "يَسْعَى",
+      "command": "اِسْعَ",
+      "masdar": "سَعْيٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-سعي-to-make-sa-ee-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "سَعْيٌ",
+    "target": "سَعْيٌ",
+    "answer": "To make sa'ee",
+    "detail": "Card: Masdar · Past: سَعَى · Present: يَسْعَى · Command: اِسْعَ · Masdar: سَعْيٌ",
+    "forms": {
+      "past": "سَعَى",
+      "present": "يَسْعَى",
+      "command": "اِسْعَ",
+      "masdar": "سَعْيٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-شعر-to-feel-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "شَعَرَ",
+    "target": "شَعَرَ",
     "answer": "To feel",
-    "detail": "Past: شَعَرَ · Masdar: شُعُورٌ",
+    "detail": "Card: Past · Past: شَعَرَ · Present: يَشْعُرُ · Command: اُشْعُرْ · Masdar: شُعُورٌ",
     "forms": {
       "past": "شَعَرَ",
       "present": "يَشْعُرُ",
@@ -3167,14 +7035,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-يخلع-to-take-off-undress",
+    "id": "ch14-verb-يشعر-to-feel-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَخْلَعُ",
-    "target": "يَخْلَعُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَشْعُرُ",
+    "target": "يَشْعُرُ",
+    "answer": "To feel",
+    "detail": "Card: Present · Past: شَعَرَ · Present: يَشْعُرُ · Command: اُشْعُرْ · Masdar: شُعُورٌ",
+    "forms": {
+      "past": "شَعَرَ",
+      "present": "يَشْعُرُ",
+      "command": "اُشْعُرْ",
+      "masdar": "شُعُورٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-اشعر-to-feel-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اُشْعُرْ",
+    "target": "اُشْعُرْ",
+    "answer": "To feel",
+    "detail": "Card: Command · Past: شَعَرَ · Present: يَشْعُرُ · Command: اُشْعُرْ · Masdar: شُعُورٌ",
+    "forms": {
+      "past": "شَعَرَ",
+      "present": "يَشْعُرُ",
+      "command": "اُشْعُرْ",
+      "masdar": "شُعُورٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-شعور-to-feel-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "شُعُورٌ",
+    "target": "شُعُورٌ",
+    "answer": "To feel",
+    "detail": "Card: Masdar · Past: شَعَرَ · Present: يَشْعُرُ · Command: اُشْعُرْ · Masdar: شُعُورٌ",
+    "forms": {
+      "past": "شَعَرَ",
+      "present": "يَشْعُرُ",
+      "command": "اُشْعُرْ",
+      "masdar": "شُعُورٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-خلع-to-take-off-undress-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "خَلَعَ",
+    "target": "خَلَعَ",
     "answer": "To take off/ undress",
-    "detail": "Past: خَلَعَ · Masdar: خَلْعٌ",
+    "detail": "Card: Past · Past: خَلَعَ · Present: يَخْلَعُ · Command: اِخْلَعْ · Masdar: خَلْعٌ",
     "forms": {
       "past": "خَلَعَ",
       "present": "يَخْلَعُ",
@@ -3183,14 +7103,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-يصوم-to-fast",
+    "id": "ch14-verb-يخلع-to-take-off-undress-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَصُومُ",
-    "target": "يَصُومُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَخْلَعُ",
+    "target": "يَخْلَعُ",
+    "answer": "To take off/ undress",
+    "detail": "Card: Present · Past: خَلَعَ · Present: يَخْلَعُ · Command: اِخْلَعْ · Masdar: خَلْعٌ",
+    "forms": {
+      "past": "خَلَعَ",
+      "present": "يَخْلَعُ",
+      "command": "اِخْلَعْ",
+      "masdar": "خَلْعٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-اخلع-to-take-off-undress-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِخْلَعْ",
+    "target": "اِخْلَعْ",
+    "answer": "To take off/ undress",
+    "detail": "Card: Command · Past: خَلَعَ · Present: يَخْلَعُ · Command: اِخْلَعْ · Masdar: خَلْعٌ",
+    "forms": {
+      "past": "خَلَعَ",
+      "present": "يَخْلَعُ",
+      "command": "اِخْلَعْ",
+      "masdar": "خَلْعٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-خلع-to-take-off-undress-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "خَلْعٌ",
+    "target": "خَلْعٌ",
+    "answer": "To take off/ undress",
+    "detail": "Card: Masdar · Past: خَلَعَ · Present: يَخْلَعُ · Command: اِخْلَعْ · Masdar: خَلْعٌ",
+    "forms": {
+      "past": "خَلَعَ",
+      "present": "يَخْلَعُ",
+      "command": "اِخْلَعْ",
+      "masdar": "خَلْعٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-صام-to-fast-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "صَامَ",
+    "target": "صَامَ",
     "answer": "To fast",
-    "detail": "Past: صَامَ · Masdar: صَوْمٌ / صِيَامٌ",
+    "detail": "Card: Past · Past: صَامَ · Present: يَصُومُ · Command: صُمْ · Masdar: صَوْمٌ / صِيَامٌ",
     "forms": {
       "past": "صَامَ",
       "present": "يَصُومُ",
@@ -3199,14 +7171,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-يطوف-to-make-tawaaf",
+    "id": "ch14-verb-يصوم-to-fast-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَطُوفُ",
-    "target": "يَطُوفُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَصُومُ",
+    "target": "يَصُومُ",
+    "answer": "To fast",
+    "detail": "Card: Present · Past: صَامَ · Present: يَصُومُ · Command: صُمْ · Masdar: صَوْمٌ / صِيَامٌ",
+    "forms": {
+      "past": "صَامَ",
+      "present": "يَصُومُ",
+      "command": "صُمْ",
+      "masdar": "صَوْمٌ / صِيَامٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-صم-to-fast-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "صُمْ",
+    "target": "صُمْ",
+    "answer": "To fast",
+    "detail": "Card: Command · Past: صَامَ · Present: يَصُومُ · Command: صُمْ · Masdar: صَوْمٌ / صِيَامٌ",
+    "forms": {
+      "past": "صَامَ",
+      "present": "يَصُومُ",
+      "command": "صُمْ",
+      "masdar": "صَوْمٌ / صِيَامٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-صوم-صيام-to-fast-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "صَوْمٌ / صِيَامٌ",
+    "target": "صَوْمٌ / صِيَامٌ",
+    "answer": "To fast",
+    "detail": "Card: Masdar · Past: صَامَ · Present: يَصُومُ · Command: صُمْ · Masdar: صَوْمٌ / صِيَامٌ",
+    "forms": {
+      "past": "صَامَ",
+      "present": "يَصُومُ",
+      "command": "صُمْ",
+      "masdar": "صَوْمٌ / صِيَامٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-طاف-to-make-tawaaf-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "طَافَ",
+    "target": "طَافَ",
     "answer": "To make tawaaf",
-    "detail": "Past: طَافَ · Masdar: طَوَافٌ",
+    "detail": "Card: Past · Past: طَافَ · Present: يَطُوفُ · Command: طُفْ · Masdar: طَوَافٌ",
     "forms": {
       "past": "طَافَ",
       "present": "يَطُوفُ",
@@ -3215,14 +7239,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-يلبس-to-wear",
+    "id": "ch14-verb-يطوف-to-make-tawaaf-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَلْبَسُ",
-    "target": "يَلْبَسُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَطُوفُ",
+    "target": "يَطُوفُ",
+    "answer": "To make tawaaf",
+    "detail": "Card: Present · Past: طَافَ · Present: يَطُوفُ · Command: طُفْ · Masdar: طَوَافٌ",
+    "forms": {
+      "past": "طَافَ",
+      "present": "يَطُوفُ",
+      "command": "طُفْ",
+      "masdar": "طَوَافٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-طف-to-make-tawaaf-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "طُفْ",
+    "target": "طُفْ",
+    "answer": "To make tawaaf",
+    "detail": "Card: Command · Past: طَافَ · Present: يَطُوفُ · Command: طُفْ · Masdar: طَوَافٌ",
+    "forms": {
+      "past": "طَافَ",
+      "present": "يَطُوفُ",
+      "command": "طُفْ",
+      "masdar": "طَوَافٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-طواف-to-make-tawaaf-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "طَوَافٌ",
+    "target": "طَوَافٌ",
+    "answer": "To make tawaaf",
+    "detail": "Card: Masdar · Past: طَافَ · Present: يَطُوفُ · Command: طُفْ · Masdar: طَوَافٌ",
+    "forms": {
+      "past": "طَافَ",
+      "present": "يَطُوفُ",
+      "command": "طُفْ",
+      "masdar": "طَوَافٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-لبس-to-wear-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "لَبِسَ",
+    "target": "لَبِسَ",
     "answer": "To wear",
-    "detail": "Past: لَبِسَ · Masdar: لِبْسٌ",
+    "detail": "Card: Past · Past: لَبِسَ · Present: يَلْبَسُ · Command: اِلْبَسْ · Masdar: لِبْسٌ",
     "forms": {
       "past": "لَبِسَ",
       "present": "يَلْبَسُ",
@@ -3231,14 +7307,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-يلب-to-make-the-talbiyaa",
+    "id": "ch14-verb-يلبس-to-wear-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُلَب",
-    "target": "يُلَب",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَلْبَسُ",
+    "target": "يَلْبَسُ",
+    "answer": "To wear",
+    "detail": "Card: Present · Past: لَبِسَ · Present: يَلْبَسُ · Command: اِلْبَسْ · Masdar: لِبْسٌ",
+    "forms": {
+      "past": "لَبِسَ",
+      "present": "يَلْبَسُ",
+      "command": "اِلْبَسْ",
+      "masdar": "لِبْسٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-البس-to-wear-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِلْبَسْ",
+    "target": "اِلْبَسْ",
+    "answer": "To wear",
+    "detail": "Card: Command · Past: لَبِسَ · Present: يَلْبَسُ · Command: اِلْبَسْ · Masdar: لِبْسٌ",
+    "forms": {
+      "past": "لَبِسَ",
+      "present": "يَلْبَسُ",
+      "command": "اِلْبَسْ",
+      "masdar": "لِبْسٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-لبس-to-wear-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "لِبْسٌ",
+    "target": "لِبْسٌ",
+    "answer": "To wear",
+    "detail": "Card: Masdar · Past: لَبِسَ · Present: يَلْبَسُ · Command: اِلْبَسْ · Masdar: لِبْسٌ",
+    "forms": {
+      "past": "لَبِسَ",
+      "present": "يَلْبَسُ",
+      "command": "اِلْبَسْ",
+      "masdar": "لِبْسٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-يلبي-to-make-the-talbiyaa-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "ِيلَبَّى",
+    "target": "ِيلَبَّى",
     "answer": "To make the Talbiyaa",
-    "detail": "Past: ِيلَبَّى · Masdar: تَلْبِيَةٌ",
+    "detail": "Card: Past · Past: ِيلَبَّى · Present: يُلَب · Command: لَبِ · Masdar: تَلْبِيَةٌ",
     "forms": {
       "past": "ِيلَبَّى",
       "present": "يُلَب",
@@ -3247,14 +7375,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch14-verb-يصل-to-arrive",
+    "id": "ch14-verb-يلب-to-make-the-talbiyaa-present",
     "chapter": 14,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُلَب",
+    "target": "يُلَب",
+    "answer": "To make the Talbiyaa",
+    "detail": "Card: Present · Past: ِيلَبَّى · Present: يُلَب · Command: لَبِ · Masdar: تَلْبِيَةٌ",
+    "forms": {
+      "past": "ِيلَبَّى",
+      "present": "يُلَب",
+      "command": "لَبِ",
+      "masdar": "تَلْبِيَةٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-لب-to-make-the-talbiyaa-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "لَبِ",
+    "target": "لَبِ",
+    "answer": "To make the Talbiyaa",
+    "detail": "Card: Command · Past: ِيلَبَّى · Present: يُلَب · Command: لَبِ · Masdar: تَلْبِيَةٌ",
+    "forms": {
+      "past": "ِيلَبَّى",
+      "present": "يُلَب",
+      "command": "لَبِ",
+      "masdar": "تَلْبِيَةٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-تلبية-to-make-the-talbiyaa-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَلْبِيَةٌ",
+    "target": "تَلْبِيَةٌ",
+    "answer": "To make the Talbiyaa",
+    "detail": "Card: Masdar · Past: ِيلَبَّى · Present: يُلَب · Command: لَبِ · Masdar: تَلْبِيَةٌ",
+    "forms": {
+      "past": "ِيلَبَّى",
+      "present": "يُلَب",
+      "command": "لَبِ",
+      "masdar": "تَلْبِيَةٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-وصل-to-arrive-past",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "وَصَلَ",
+    "target": "وَصَلَ",
+    "answer": "To arrive",
+    "detail": "Card: Past · Past: وَصَلَ · Present: يَصِلُ · Command: صِلْ · Masdar: وُصُولٌ",
+    "forms": {
+      "past": "وَصَلَ",
+      "present": "يَصِلُ",
+      "command": "صِلْ",
+      "masdar": "وُصُولٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-يصل-to-arrive-present",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يَصِلُ",
     "target": "يَصِلُ",
     "answer": "To arrive",
-    "detail": "Past: وَصَلَ · Masdar: وُصُولٌ",
+    "detail": "Card: Present · Past: وَصَلَ · Present: يَصِلُ · Command: صِلْ · Masdar: وُصُولٌ",
+    "forms": {
+      "past": "وَصَلَ",
+      "present": "يَصِلُ",
+      "command": "صِلْ",
+      "masdar": "وُصُولٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-صل-to-arrive-command",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "صِلْ",
+    "target": "صِلْ",
+    "answer": "To arrive",
+    "detail": "Card: Command · Past: وَصَلَ · Present: يَصِلُ · Command: صِلْ · Masdar: وُصُولٌ",
+    "forms": {
+      "past": "وَصَلَ",
+      "present": "يَصِلُ",
+      "command": "صِلْ",
+      "masdar": "وُصُولٌ"
+    }
+  },
+  {
+    "id": "ch14-verb-وصول-to-arrive-masdar",
+    "chapter": 14,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "وُصُولٌ",
+    "target": "وُصُولٌ",
+    "answer": "To arrive",
+    "detail": "Card: Masdar · Past: وَصَلَ · Present: يَصِلُ · Command: صِلْ · Masdar: وُصُولٌ",
     "forms": {
       "past": "وَصَلَ",
       "present": "يَصِلُ",
@@ -3311,14 +7542,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "رَكْعَاتٌ"
   },
   {
-    "id": "ch15-verb-يصيب-to-be-afflicted",
+    "id": "ch15-verb-اصاب-to-be-afflicted-past",
     "chapter": 15,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُصِيبُ",
-    "target": "يُصِيبُ",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَصَابَ",
+    "target": "أَصَابَ",
     "answer": "To be afflicted",
-    "detail": "Past: أَصَابَ · Masdar: إِصَابَةٌ",
+    "detail": "Card: Past · Past: أَصَابَ · Present: يُصِيبُ · Command: أَصِبْ · Masdar: إِصَابَةٌ",
     "forms": {
       "past": "أَصَابَ",
       "present": "يُصِيبُ",
@@ -3327,14 +7559,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch15-verb-يرتفع-to-rise",
+    "id": "ch15-verb-يصيب-to-be-afflicted-present",
     "chapter": 15,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَرْتَفِعُ",
-    "target": "يَرْتَفِعُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُصِيبُ",
+    "target": "يُصِيبُ",
+    "answer": "To be afflicted",
+    "detail": "Card: Present · Past: أَصَابَ · Present: يُصِيبُ · Command: أَصِبْ · Masdar: إِصَابَةٌ",
+    "forms": {
+      "past": "أَصَابَ",
+      "present": "يُصِيبُ",
+      "command": "أَصِبْ",
+      "masdar": "إِصَابَةٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-اصب-to-be-afflicted-command",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَصِبْ",
+    "target": "أَصِبْ",
+    "answer": "To be afflicted",
+    "detail": "Card: Command · Past: أَصَابَ · Present: يُصِيبُ · Command: أَصِبْ · Masdar: إِصَابَةٌ",
+    "forms": {
+      "past": "أَصَابَ",
+      "present": "يُصِيبُ",
+      "command": "أَصِبْ",
+      "masdar": "إِصَابَةٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-اصابة-to-be-afflicted-masdar",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِصَابَةٌ",
+    "target": "إِصَابَةٌ",
+    "answer": "To be afflicted",
+    "detail": "Card: Masdar · Past: أَصَابَ · Present: يُصِيبُ · Command: أَصِبْ · Masdar: إِصَابَةٌ",
+    "forms": {
+      "past": "أَصَابَ",
+      "present": "يُصِيبُ",
+      "command": "أَصِبْ",
+      "masdar": "إِصَابَةٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-ارتفع-to-rise-past",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِرْتَفَعَ",
+    "target": "اِرْتَفَعَ",
     "answer": "To rise",
-    "detail": "Past: اِرْتَفَعَ · Masdar: اِرْتِفَاع",
+    "detail": "Card: Past · Past: اِرْتَفَعَ · Present: يَرْتَفِعُ · Command: اِرْتَفِعْ · Masdar: اِرْتِفَاع",
     "forms": {
       "past": "اِرْتَفَعَ",
       "present": "يَرْتَفِعُ",
@@ -3343,14 +7627,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch15-verb-يتغيب-to-be-absent",
+    "id": "ch15-verb-يرتفع-to-rise-present",
     "chapter": 15,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَتَغَيَّبُ",
-    "target": "يَتَغَيَّبُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَرْتَفِعُ",
+    "target": "يَرْتَفِعُ",
+    "answer": "To rise",
+    "detail": "Card: Present · Past: اِرْتَفَعَ · Present: يَرْتَفِعُ · Command: اِرْتَفِعْ · Masdar: اِرْتِفَاع",
+    "forms": {
+      "past": "اِرْتَفَعَ",
+      "present": "يَرْتَفِعُ",
+      "command": "اِرْتَفِعْ",
+      "masdar": "اِرْتِفَاع"
+    }
+  },
+  {
+    "id": "ch15-verb-ارتفع-to-rise-command",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِرْتَفِعْ",
+    "target": "اِرْتَفِعْ",
+    "answer": "To rise",
+    "detail": "Card: Command · Past: اِرْتَفَعَ · Present: يَرْتَفِعُ · Command: اِرْتَفِعْ · Masdar: اِرْتِفَاع",
+    "forms": {
+      "past": "اِرْتَفَعَ",
+      "present": "يَرْتَفِعُ",
+      "command": "اِرْتَفِعْ",
+      "masdar": "اِرْتِفَاع"
+    }
+  },
+  {
+    "id": "ch15-verb-ارتفاع-to-rise-masdar",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِرْتِفَاع",
+    "target": "اِرْتِفَاع",
+    "answer": "To rise",
+    "detail": "Card: Masdar · Past: اِرْتَفَعَ · Present: يَرْتَفِعُ · Command: اِرْتَفِعْ · Masdar: اِرْتِفَاع",
+    "forms": {
+      "past": "اِرْتَفَعَ",
+      "present": "يَرْتَفِعُ",
+      "command": "اِرْتَفِعْ",
+      "masdar": "اِرْتِفَاع"
+    }
+  },
+  {
+    "id": "ch15-verb-تغيب-to-be-absent-past",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "تَغَيَّبَ",
+    "target": "تَغَيَّبَ",
     "answer": "To be absent",
-    "detail": "Past: تَغَيَّبَ · Masdar: تَغَيبٌ",
+    "detail": "Card: Past · Past: تَغَيَّبَ · Present: يَتَغَيَّبُ · Command: تَغَيَّبْ · Masdar: تَغَيبٌ",
     "forms": {
       "past": "تَغَيَّبَ",
       "present": "يَتَغَيَّبُ",
@@ -3359,14 +7695,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch15-verb-يشفي-to-cure",
+    "id": "ch15-verb-يتغيب-to-be-absent-present",
     "chapter": 15,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَشْفِي",
-    "target": "يَشْفِي",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَتَغَيَّبُ",
+    "target": "يَتَغَيَّبُ",
+    "answer": "To be absent",
+    "detail": "Card: Present · Past: تَغَيَّبَ · Present: يَتَغَيَّبُ · Command: تَغَيَّبْ · Masdar: تَغَيبٌ",
+    "forms": {
+      "past": "تَغَيَّبَ",
+      "present": "يَتَغَيَّبُ",
+      "command": "تَغَيَّبْ",
+      "masdar": "تَغَيبٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-تغيب-to-be-absent-command",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "تَغَيَّبْ",
+    "target": "تَغَيَّبْ",
+    "answer": "To be absent",
+    "detail": "Card: Command · Past: تَغَيَّبَ · Present: يَتَغَيَّبُ · Command: تَغَيَّبْ · Masdar: تَغَيبٌ",
+    "forms": {
+      "past": "تَغَيَّبَ",
+      "present": "يَتَغَيَّبُ",
+      "command": "تَغَيَّبْ",
+      "masdar": "تَغَيبٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-تغيب-to-be-absent-masdar",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "تَغَيبٌ",
+    "target": "تَغَيبٌ",
+    "answer": "To be absent",
+    "detail": "Card: Masdar · Past: تَغَيَّبَ · Present: يَتَغَيَّبُ · Command: تَغَيَّبْ · Masdar: تَغَيبٌ",
+    "forms": {
+      "past": "تَغَيَّبَ",
+      "present": "يَتَغَيَّبُ",
+      "command": "تَغَيَّبْ",
+      "masdar": "تَغَيبٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-شفي-to-cure-past",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "شَفَى",
+    "target": "شَفَى",
     "answer": "To cure",
-    "detail": "Past: شَفَى · Masdar: شِفَاءٌ",
+    "detail": "Card: Past · Past: شَفَى · Present: يَشْفِي · Command: اِشْفِ · Masdar: شِفَاءٌ",
     "forms": {
       "past": "شَفَى",
       "present": "يَشْفِي",
@@ -3375,14 +7763,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch15-verb-يفحص-to-check",
+    "id": "ch15-verb-يشفي-to-cure-present",
     "chapter": 15,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَفْحَصُ",
-    "target": "يَفْحَصُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَشْفِي",
+    "target": "يَشْفِي",
+    "answer": "To cure",
+    "detail": "Card: Present · Past: شَفَى · Present: يَشْفِي · Command: اِشْفِ · Masdar: شِفَاءٌ",
+    "forms": {
+      "past": "شَفَى",
+      "present": "يَشْفِي",
+      "command": "اِشْفِ",
+      "masdar": "شِفَاءٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-اشف-to-cure-command",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِشْفِ",
+    "target": "اِشْفِ",
+    "answer": "To cure",
+    "detail": "Card: Command · Past: شَفَى · Present: يَشْفِي · Command: اِشْفِ · Masdar: شِفَاءٌ",
+    "forms": {
+      "past": "شَفَى",
+      "present": "يَشْفِي",
+      "command": "اِشْفِ",
+      "masdar": "شِفَاءٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-شفاء-to-cure-masdar",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "شِفَاءٌ",
+    "target": "شِفَاءٌ",
+    "answer": "To cure",
+    "detail": "Card: Masdar · Past: شَفَى · Present: يَشْفِي · Command: اِشْفِ · Masdar: شِفَاءٌ",
+    "forms": {
+      "past": "شَفَى",
+      "present": "يَشْفِي",
+      "command": "اِشْفِ",
+      "masdar": "شِفَاءٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-فحص-to-check-past",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "فَحَصَ",
+    "target": "فَحَصَ",
     "answer": "To check",
-    "detail": "Past: فَحَصَ · Masdar: فَحْصٌ",
+    "detail": "Card: Past · Past: فَحَصَ · Present: يَفْحَصُ · Command: اِفْحَصْ · Masdar: فَحْصٌ",
     "forms": {
       "past": "فَحَصَ",
       "present": "يَفْحَصُ",
@@ -3391,14 +7831,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch15-verb-يقابل-to-meet",
+    "id": "ch15-verb-يفحص-to-check-present",
     "chapter": 15,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُقَابِلُ",
-    "target": "يُقَابِلُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَفْحَصُ",
+    "target": "يَفْحَصُ",
+    "answer": "To check",
+    "detail": "Card: Present · Past: فَحَصَ · Present: يَفْحَصُ · Command: اِفْحَصْ · Masdar: فَحْصٌ",
+    "forms": {
+      "past": "فَحَصَ",
+      "present": "يَفْحَصُ",
+      "command": "اِفْحَصْ",
+      "masdar": "فَحْصٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-افحص-to-check-command",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِفْحَصْ",
+    "target": "اِفْحَصْ",
+    "answer": "To check",
+    "detail": "Card: Command · Past: فَحَصَ · Present: يَفْحَصُ · Command: اِفْحَصْ · Masdar: فَحْصٌ",
+    "forms": {
+      "past": "فَحَصَ",
+      "present": "يَفْحَصُ",
+      "command": "اِفْحَصْ",
+      "masdar": "فَحْصٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-فحص-to-check-masdar",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "فَحْصٌ",
+    "target": "فَحْصٌ",
+    "answer": "To check",
+    "detail": "Card: Masdar · Past: فَحَصَ · Present: يَفْحَصُ · Command: اِفْحَصْ · Masdar: فَحْصٌ",
+    "forms": {
+      "past": "فَحَصَ",
+      "present": "يَفْحَصُ",
+      "command": "اِفْحَصْ",
+      "masdar": "فَحْصٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-قابل-to-meet-past",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "قَابَلَ",
+    "target": "قَابَلَ",
     "answer": "To meet",
-    "detail": "Past: قَابَلَ · Masdar: مُقَابَلَةٌ",
+    "detail": "Card: Past · Past: قَابَلَ · Present: يُقَابِلُ · Command: قَابِلْ · Masdar: مُقَابَلَةٌ",
     "forms": {
       "past": "قَابَلَ",
       "present": "يُقَابِلُ",
@@ -3407,14 +7899,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch15-verb-ينصح-to-advise",
+    "id": "ch15-verb-يقابل-to-meet-present",
     "chapter": 15,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُقَابِلُ",
+    "target": "يُقَابِلُ",
+    "answer": "To meet",
+    "detail": "Card: Present · Past: قَابَلَ · Present: يُقَابِلُ · Command: قَابِلْ · Masdar: مُقَابَلَةٌ",
+    "forms": {
+      "past": "قَابَلَ",
+      "present": "يُقَابِلُ",
+      "command": "قَابِلْ",
+      "masdar": "مُقَابَلَةٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-قابل-to-meet-command",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "قَابِلْ",
+    "target": "قَابِلْ",
+    "answer": "To meet",
+    "detail": "Card: Command · Past: قَابَلَ · Present: يُقَابِلُ · Command: قَابِلْ · Masdar: مُقَابَلَةٌ",
+    "forms": {
+      "past": "قَابَلَ",
+      "present": "يُقَابِلُ",
+      "command": "قَابِلْ",
+      "masdar": "مُقَابَلَةٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-مقابلة-to-meet-masdar",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "مُقَابَلَةٌ",
+    "target": "مُقَابَلَةٌ",
+    "answer": "To meet",
+    "detail": "Card: Masdar · Past: قَابَلَ · Present: يُقَابِلُ · Command: قَابِلْ · Masdar: مُقَابَلَةٌ",
+    "forms": {
+      "past": "قَابَلَ",
+      "present": "يُقَابِلُ",
+      "command": "قَابِلْ",
+      "masdar": "مُقَابَلَةٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-نصح-to-advise-past",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "نَصَحَ",
+    "target": "نَصَحَ",
+    "answer": "To advise",
+    "detail": "Card: Past · Past: نَصَحَ · Present: يَنْصَحُ · Command: اِنْصَحْ · Masdar: نَصِيحَةٌ / نُصْحٌ",
+    "forms": {
+      "past": "نَصَحَ",
+      "present": "يَنْصَحُ",
+      "command": "اِنْصَحْ",
+      "masdar": "نَصِيحَةٌ / نُصْحٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-ينصح-to-advise-present",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يَنْصَحُ",
     "target": "يَنْصَحُ",
     "answer": "To advise",
-    "detail": "Past: نَصَحَ · Masdar: نَصِيحَةٌ / نُصْحٌ",
+    "detail": "Card: Present · Past: نَصَحَ · Present: يَنْصَحُ · Command: اِنْصَحْ · Masdar: نَصِيحَةٌ / نُصْحٌ",
+    "forms": {
+      "past": "نَصَحَ",
+      "present": "يَنْصَحُ",
+      "command": "اِنْصَحْ",
+      "masdar": "نَصِيحَةٌ / نُصْحٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-انصح-to-advise-command",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِنْصَحْ",
+    "target": "اِنْصَحْ",
+    "answer": "To advise",
+    "detail": "Card: Command · Past: نَصَحَ · Present: يَنْصَحُ · Command: اِنْصَحْ · Masdar: نَصِيحَةٌ / نُصْحٌ",
+    "forms": {
+      "past": "نَصَحَ",
+      "present": "يَنْصَحُ",
+      "command": "اِنْصَحْ",
+      "masdar": "نَصِيحَةٌ / نُصْحٌ"
+    }
+  },
+  {
+    "id": "ch15-verb-نصيحة-نصح-to-advise-masdar",
+    "chapter": 15,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "نَصِيحَةٌ / نُصْحٌ",
+    "target": "نَصِيحَةٌ / نُصْحٌ",
+    "answer": "To advise",
+    "detail": "Card: Masdar · Past: نَصَحَ · Present: يَنْصَحُ · Command: اِنْصَحْ · Masdar: نَصِيحَةٌ / نُصْحٌ",
     "forms": {
       "past": "نَصَحَ",
       "present": "يَنْصَحُ",
@@ -3543,14 +8138,15 @@ export const vocabularyCards: VocabularyCard[] = [
     "plural": "كُلْيَاتٌ"
   },
   {
-    "id": "ch16-verb-يعطي-to-give",
+    "id": "ch16-verb-اعطي-to-give-past",
     "chapter": 16,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُعْطِي",
-    "target": "يُعْطِي",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "أَعْطَى",
+    "target": "أَعْطَى",
     "answer": "To give",
-    "detail": "Past: أَعْطَى · Masdar: إِعْطَاءٌ / عَطَاءٌ",
+    "detail": "Card: Past · Past: أَعْطَى · Present: يُعْطِي · Command: أَعْطِ · Masdar: إِعْطَاءٌ / عَطَاءٌ",
     "forms": {
       "past": "أَعْطَى",
       "present": "يُعْطِي",
@@ -3559,14 +8155,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch16-verb-يقترب-to-approach",
+    "id": "ch16-verb-يعطي-to-give-present",
     "chapter": 16,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَقْتَرِبُ",
-    "target": "يَقْتَرِبُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُعْطِي",
+    "target": "يُعْطِي",
+    "answer": "To give",
+    "detail": "Card: Present · Past: أَعْطَى · Present: يُعْطِي · Command: أَعْطِ · Masdar: إِعْطَاءٌ / عَطَاءٌ",
+    "forms": {
+      "past": "أَعْطَى",
+      "present": "يُعْطِي",
+      "command": "أَعْطِ",
+      "masdar": "إِعْطَاءٌ / عَطَاءٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-اعط-to-give-command",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "أَعْطِ",
+    "target": "أَعْطِ",
+    "answer": "To give",
+    "detail": "Card: Command · Past: أَعْطَى · Present: يُعْطِي · Command: أَعْطِ · Masdar: إِعْطَاءٌ / عَطَاءٌ",
+    "forms": {
+      "past": "أَعْطَى",
+      "present": "يُعْطِي",
+      "command": "أَعْطِ",
+      "masdar": "إِعْطَاءٌ / عَطَاءٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-اعطاء-عطاء-to-give-masdar",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "إِعْطَاءٌ / عَطَاءٌ",
+    "target": "إِعْطَاءٌ / عَطَاءٌ",
+    "answer": "To give",
+    "detail": "Card: Masdar · Past: أَعْطَى · Present: يُعْطِي · Command: أَعْطِ · Masdar: إِعْطَاءٌ / عَطَاءٌ",
+    "forms": {
+      "past": "أَعْطَى",
+      "present": "يُعْطِي",
+      "command": "أَعْطِ",
+      "masdar": "إِعْطَاءٌ / عَطَاءٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-اقترب-to-approach-past",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِقْتَرَبَ",
+    "target": "اِقْتَرَبَ",
     "answer": "To approach",
-    "detail": "Past: اِقْتَرَبَ · Masdar: اِقْتِرَابٌ",
+    "detail": "Card: Past · Past: اِقْتَرَبَ · Present: يَقْتَرِبُ · Command: اِقْتَرِبْ · Masdar: اِقْتِرَابٌ",
     "forms": {
       "past": "اِقْتَرَبَ",
       "present": "يَقْتَرِبُ",
@@ -3575,14 +8223,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch16-verb-يبتعد-to-move-away-from",
+    "id": "ch16-verb-يقترب-to-approach-present",
     "chapter": 16,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يَبْتَعِدُ",
-    "target": "يَبْتَعِدُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَقْتَرِبُ",
+    "target": "يَقْتَرِبُ",
+    "answer": "To approach",
+    "detail": "Card: Present · Past: اِقْتَرَبَ · Present: يَقْتَرِبُ · Command: اِقْتَرِبْ · Masdar: اِقْتِرَابٌ",
+    "forms": {
+      "past": "اِقْتَرَبَ",
+      "present": "يَقْتَرِبُ",
+      "command": "اِقْتَرِبْ",
+      "masdar": "اِقْتِرَابٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-اقترب-to-approach-command",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِقْتَرِبْ",
+    "target": "اِقْتَرِبْ",
+    "answer": "To approach",
+    "detail": "Card: Command · Past: اِقْتَرَبَ · Present: يَقْتَرِبُ · Command: اِقْتَرِبْ · Masdar: اِقْتِرَابٌ",
+    "forms": {
+      "past": "اِقْتَرَبَ",
+      "present": "يَقْتَرِبُ",
+      "command": "اِقْتَرِبْ",
+      "masdar": "اِقْتِرَابٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-اقتراب-to-approach-masdar",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِقْتِرَابٌ",
+    "target": "اِقْتِرَابٌ",
+    "answer": "To approach",
+    "detail": "Card: Masdar · Past: اِقْتَرَبَ · Present: يَقْتَرِبُ · Command: اِقْتَرِبْ · Masdar: اِقْتِرَابٌ",
+    "forms": {
+      "past": "اِقْتَرَبَ",
+      "present": "يَقْتَرِبُ",
+      "command": "اِقْتَرِبْ",
+      "masdar": "اِقْتِرَابٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-ابتعد-to-move-away-from-past",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "اِبْتَعَدَ",
+    "target": "اِبْتَعَدَ",
     "answer": "To move away from",
-    "detail": "Past: اِبْتَعَدَ · Masdar: اِبْتِعَادٌ",
+    "detail": "Card: Past · Past: اِبْتَعَدَ · Present: يَبْتَعِدُ · Command: اِبْتَعِدْ · Masdar: اِبْتِعَادٌ",
     "forms": {
       "past": "اِبْتَعَدَ",
       "present": "يَبْتَعِدُ",
@@ -3591,14 +8291,66 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch16-verb-يساعد-to-help",
+    "id": "ch16-verb-يبتعد-to-move-away-from-present",
     "chapter": 16,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
-    "arabic": "يُسَاعِدُ",
-    "target": "يُسَاعِدُ",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يَبْتَعِدُ",
+    "target": "يَبْتَعِدُ",
+    "answer": "To move away from",
+    "detail": "Card: Present · Past: اِبْتَعَدَ · Present: يَبْتَعِدُ · Command: اِبْتَعِدْ · Masdar: اِبْتِعَادٌ",
+    "forms": {
+      "past": "اِبْتَعَدَ",
+      "present": "يَبْتَعِدُ",
+      "command": "اِبْتَعِدْ",
+      "masdar": "اِبْتِعَادٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-ابتعد-to-move-away-from-command",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "اِبْتَعِدْ",
+    "target": "اِبْتَعِدْ",
+    "answer": "To move away from",
+    "detail": "Card: Command · Past: اِبْتَعَدَ · Present: يَبْتَعِدُ · Command: اِبْتَعِدْ · Masdar: اِبْتِعَادٌ",
+    "forms": {
+      "past": "اِبْتَعَدَ",
+      "present": "يَبْتَعِدُ",
+      "command": "اِبْتَعِدْ",
+      "masdar": "اِبْتِعَادٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-ابتعاد-to-move-away-from-masdar",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "اِبْتِعَادٌ",
+    "target": "اِبْتِعَادٌ",
+    "answer": "To move away from",
+    "detail": "Card: Masdar · Past: اِبْتَعَدَ · Present: يَبْتَعِدُ · Command: اِبْتَعِدْ · Masdar: اِبْتِعَادٌ",
+    "forms": {
+      "past": "اِبْتَعَدَ",
+      "present": "يَبْتَعِدُ",
+      "command": "اِبْتَعِدْ",
+      "masdar": "اِبْتِعَادٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-ساعد-to-help-past",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "سَاعَدَ",
+    "target": "سَاعَدَ",
     "answer": "To help",
-    "detail": "Past: سَاعَدَ · Masdar: مُسَاعَدَةٌ",
+    "detail": "Card: Past · Past: سَاعَدَ · Present: يُسَاعِدُ · Command: سَاعِدْ · Masdar: مُسَاعَدَةٌ",
     "forms": {
       "past": "سَاعَدَ",
       "present": "يُسَاعِدُ",
@@ -3607,14 +8359,117 @@ export const vocabularyCards: VocabularyCard[] = [
     }
   },
   {
-    "id": "ch16-verb-يري-to-see",
+    "id": "ch16-verb-يساعد-to-help-present",
     "chapter": 16,
     "kind": "verb",
-    "prompt": "What does this verb mean?",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
+    "arabic": "يُسَاعِدُ",
+    "target": "يُسَاعِدُ",
+    "answer": "To help",
+    "detail": "Card: Present · Past: سَاعَدَ · Present: يُسَاعِدُ · Command: سَاعِدْ · Masdar: مُسَاعَدَةٌ",
+    "forms": {
+      "past": "سَاعَدَ",
+      "present": "يُسَاعِدُ",
+      "command": "سَاعِدْ",
+      "masdar": "مُسَاعَدَةٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-ساعد-to-help-command",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "سَاعِدْ",
+    "target": "سَاعِدْ",
+    "answer": "To help",
+    "detail": "Card: Command · Past: سَاعَدَ · Present: يُسَاعِدُ · Command: سَاعِدْ · Masdar: مُسَاعَدَةٌ",
+    "forms": {
+      "past": "سَاعَدَ",
+      "present": "يُسَاعِدُ",
+      "command": "سَاعِدْ",
+      "masdar": "مُسَاعَدَةٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-مساعدة-to-help-masdar",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "مُسَاعَدَةٌ",
+    "target": "مُسَاعَدَةٌ",
+    "answer": "To help",
+    "detail": "Card: Masdar · Past: سَاعَدَ · Present: يُسَاعِدُ · Command: سَاعِدْ · Masdar: مُسَاعَدَةٌ",
+    "forms": {
+      "past": "سَاعَدَ",
+      "present": "يُسَاعِدُ",
+      "command": "سَاعِدْ",
+      "masdar": "مُسَاعَدَةٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-راي-to-see-past",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "past",
+    "prompt": "What does this past form mean?",
+    "arabic": "رَأَى",
+    "target": "رَأَى",
+    "answer": "To see",
+    "detail": "Card: Past · Past: رَأَى · Present: يَرَى · Command: رَ · Masdar: رُؤْيَةٌ",
+    "forms": {
+      "past": "رَأَى",
+      "present": "يَرَى",
+      "command": "رَ",
+      "masdar": "رُؤْيَةٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-يري-to-see-present",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "present",
+    "prompt": "What does this present form mean?",
     "arabic": "يَرَى",
     "target": "يَرَى",
     "answer": "To see",
-    "detail": "Past: رَأَى · Masdar: رُؤْيَةٌ",
+    "detail": "Card: Present · Past: رَأَى · Present: يَرَى · Command: رَ · Masdar: رُؤْيَةٌ",
+    "forms": {
+      "past": "رَأَى",
+      "present": "يَرَى",
+      "command": "رَ",
+      "masdar": "رُؤْيَةٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-ر-to-see-command",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "command",
+    "prompt": "What does this command form mean?",
+    "arabic": "رَ",
+    "target": "رَ",
+    "answer": "To see",
+    "detail": "Card: Command · Past: رَأَى · Present: يَرَى · Command: رَ · Masdar: رُؤْيَةٌ",
+    "forms": {
+      "past": "رَأَى",
+      "present": "يَرَى",
+      "command": "رَ",
+      "masdar": "رُؤْيَةٌ"
+    }
+  },
+  {
+    "id": "ch16-verb-رؤية-to-see-masdar",
+    "chapter": 16,
+    "kind": "verb",
+    "formRole": "masdar",
+    "prompt": "What does this masdar form mean?",
+    "arabic": "رُؤْيَةٌ",
+    "target": "رُؤْيَةٌ",
+    "answer": "To see",
+    "detail": "Card: Masdar · Past: رَأَى · Present: يَرَى · Command: رَ · Masdar: رُؤْيَةٌ",
     "forms": {
       "past": "رَأَى",
       "present": "يَرَى",

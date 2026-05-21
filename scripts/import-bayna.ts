@@ -3,6 +3,7 @@ import { normalizeArabicForKey } from "../packages/core/src/arabic/normalize";
 
 type SectionKind = "Verbs" | "Nouns";
 type CardKind = "verb" | "noun";
+type VerbFormRole = "past" | "present" | "command" | "masdar";
 
 interface VocabularyCard {
   id: string;
@@ -23,6 +24,7 @@ interface VocabularyCard {
     masdar?: string;
   };
   requiredPreposition?: string;
+  formRole?: VerbFormRole;
 }
 
 interface ParserState {
@@ -37,6 +39,12 @@ const ARABIC_LETTER_RE = /[\u0621-\u064A\u066E-\u06D3]/u;
 const ARABIC_MARKS_RE = /[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/gu;
 const LEADING_ARABIC_MARKS_RE = /^((?:[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]\s*)+)(.+)$/u;
 const ZERO_WIDTH_AND_BIDI_RE = /[\u061C\u200B-\u200F\u202A-\u202E\u2060\u2066-\u2069\uFEFF]/gu;
+const verbRoleLabels: Record<VerbFormRole, string> = {
+  past: "past",
+  present: "present",
+  command: "command",
+  masdar: "masdar",
+};
 
 const chapterNumbers: Record<string, number> = {
   One: 1,
@@ -96,9 +104,7 @@ function parseBaynaText(text: string): VocabularyCard[] {
     if (state.section === "Verbs") {
       if (isEnglishLine(rawLine)) {
         const result = parseVerbEntry(lines, index, state.chapter);
-        if (result.card) {
-          cards.push(result.card);
-        }
+        cards.push(...result.cards);
         index = result.nextIndex;
         continue;
       }
@@ -119,7 +125,7 @@ function parseBaynaText(text: string): VocabularyCard[] {
   return cards;
 }
 
-function parseVerbEntry(lines: string[], startIndex: number, chapter: number): { card?: VocabularyCard; nextIndex: number } {
+function parseVerbEntry(lines: string[], startIndex: number, chapter: number): { cards: VocabularyCard[]; nextIndex: number } {
   let index = startIndex;
   const translationLines: string[] = [];
 
@@ -171,36 +177,11 @@ function parseVerbEntry(lines: string[], startIndex: number, chapter: number): {
   const answer = joinEnglishLines(translationLines);
 
   if (!answer || !forms.present || !forms.past) {
-    return { nextIndex: index };
-  }
-
-  const target = forms.present;
-  const detailParts = [`Past: ${forms.past}`];
-  if (forms.masdar) {
-    detailParts.push(`Masdar: ${forms.masdar}`);
-  }
-  if (forms.requiredPreposition) {
-    detailParts.push(`Preposition: ${forms.requiredPreposition}`);
+    return { cards: [], nextIndex: index };
   }
 
   return {
-    card: {
-      id: buildCardId(chapter, "verb", target, answer),
-      chapter,
-      kind: "verb",
-      prompt: "What does this verb mean?",
-      arabic: target,
-      target,
-      answer,
-      detail: detailParts.join(" · "),
-      forms: {
-        past: forms.past,
-        present: forms.present,
-        command: forms.command,
-        masdar: forms.masdar,
-      },
-      requiredPreposition: forms.requiredPreposition,
-    },
+    cards: buildVerbFormCards(chapter, answer, forms),
     nextIndex: index,
   };
 }
@@ -385,6 +366,70 @@ function buildNounCard(chapter: number, singular: string, answer: string, plural
     singular,
     plural,
   };
+}
+
+function buildVerbFormCards(
+  chapter: number,
+  answer: string,
+  forms: ReturnType<typeof parseVerbForms>,
+): VocabularyCard[] {
+  const sharedForms = {
+    past: forms.past,
+    present: forms.present,
+    command: forms.command,
+    masdar: forms.masdar,
+  };
+  const entries: Array<{ role: VerbFormRole; value?: string }> = [
+    { role: "past", value: forms.past },
+    { role: "present", value: forms.present },
+    { role: "command", value: forms.command },
+    { role: "masdar", value: forms.masdar },
+  ];
+
+  return entries.flatMap(({ role, value }) => {
+    if (!value) {
+      return [];
+    }
+
+    return {
+      id: `${buildCardId(chapter, "verb", value, answer)}-${role}`,
+      chapter,
+      kind: "verb",
+      formRole: role,
+      prompt: `What does this ${verbRoleLabels[role]} form mean?`,
+      arabic: value,
+      target: value,
+      answer,
+      detail: buildVerbDetail(role, forms),
+      forms: sharedForms,
+      requiredPreposition: forms.requiredPreposition,
+    };
+  });
+}
+
+function buildVerbDetail(role: VerbFormRole, forms: ReturnType<typeof parseVerbForms>) {
+  const detailParts = [`Card: ${capitalize(verbRoleLabels[role])}`];
+
+  if (forms.requiredPreposition) {
+    detailParts.push(`Preposition: ${forms.requiredPreposition}`);
+  }
+
+  detailParts.push(`Past: ${forms.past}`);
+  detailParts.push(`Present: ${forms.present}`);
+
+  if (forms.command) {
+    detailParts.push(`Command: ${forms.command}`);
+  }
+
+  if (forms.masdar) {
+    detailParts.push(`Masdar: ${forms.masdar}`);
+  }
+
+  return detailParts.join(" · ");
+}
+
+function capitalize(value: string): string {
+  return `${value.slice(0, 1).toUpperCase()}${value.slice(1)}`;
 }
 
 function parseSectionHeader(line: string): { chapter: number; kind: SectionKind } | null {
@@ -612,7 +657,7 @@ function dedupeCards(cards: VocabularyCard[]): VocabularyCard[] {
   const deduped: VocabularyCard[] = [];
 
   for (const card of cards) {
-    const key = [card.chapter, card.kind, normalizeArabicForKey(card.target), card.answer.toLowerCase()].join(":");
+    const key = [card.chapter, card.kind, card.formRole ?? "", normalizeArabicForKey(card.target), card.answer.toLowerCase()].join(":");
     if (seen.has(key)) {
       continue;
     }
@@ -648,6 +693,7 @@ function renderVocabularyModule(cards: VocabularyCard[]): string {
     masdar?: string;
   };
   requiredPreposition?: string;
+  formRole?: "past" | "present" | "command" | "masdar";
 }
 
 export const vocabularyCards: VocabularyCard[] = ${renderedCards};
