@@ -164,6 +164,7 @@ export function App() {
 
           {screen === "study" ? (
             <StudyCard
+              key={currentCard.id}
               card={currentCard}
               cardState={currentState}
               cardStatus={currentStatus}
@@ -299,7 +300,7 @@ function StudyCard({
   const targetKey = normalizeArabicForKey(card.target);
 
   return (
-    <article className="study-card">
+    <article className={`study-card ${isAnswerShown ? "answer-shown" : ""}`}>
       <div className="study-meta">
         <span data-testid="session-progress">{progress}</span>
         <span>Chapter {card.chapter}</span>
