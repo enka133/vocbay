@@ -844,6 +844,11 @@ dd {
     overflow: hidden;
   }
 
+  .app-layout.screen-deck {
+    grid-template-rows: auto auto;
+    align-content: start;
+  }
+
   .app-layout.study-mode,
   .app-layout.browser-mode {
     grid-template-columns: 1fr;
@@ -888,6 +893,10 @@ dd {
       max(12px, env(safe-area-inset-left));
   }
 
+  .app-layout.screen-deck {
+    gap: 10px;
+  }
+
   .app-header {
     align-items: flex-start;
     margin-bottom: 10px;
@@ -906,10 +915,23 @@ dd {
     padding: 8px;
   }
 
+  .app-layout.screen-deck .review-surface {
+    height: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
   .home-panel,
   .study-card {
     gap: 10px;
     padding: 12px;
+  }
+
+  .app-layout.screen-deck .home-panel {
+    height: auto;
+    overflow: visible;
   }
 
   .deck-panel {
@@ -1100,6 +1122,10 @@ dd {
   .study-card {
     gap: 7px;
     padding: 9px;
+  }
+
+  .app-layout.screen-deck .home-panel {
+    gap: 7px;
   }
 
   .next-card-preview {
