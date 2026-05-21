@@ -1,267 +1,503 @@
 import { useEffect, useMemo, useState } from "react";
 import {
+  BarChart3,
   BookOpen,
   CheckCircle2,
   Clock3,
+  Eye,
+  Layers3,
   RotateCcw,
-  Sparkles,
-  Volume2,
-  XCircle,
+  Search,
 } from "lucide-react";
 import { normalizeArabicForKey } from "@vocbay/core/arabic";
+import {
+  buildStudyQueue,
+  formatDueDistance,
+  getCardReviewState,
+  getCardStatus,
+  getDeckStats,
+  gradeCardReview,
+  previewRating,
+  ratingLabels,
+  type Rating,
+  type ReviewState,
+} from "./scheduler";
 import { vocabularyCards, type VocabularyCard } from "./vocabulary";
 
-const STORAGE_KEY = "vocbay.studyStats.v1";
+const REVIEW_STATE_KEY = "vocbay.ankiReviewState.v1";
+const LEGACY_STATE_KEY = "vocbay.studyStats.v1";
 
-type SprintPhase = "idle" | "reviewing" | "complete";
-type Grade = "got" | "forgot";
-type StudyStats = Record<string, { got: number; forgot: number; lastGrade?: Grade }>;
+type Screen = "deck" | "study" | "browser" | "complete";
 
-const sprintSize = 10;
+const fallbackCard = vocabularyCards[0]!;
 
 export function App() {
-  const [phase, setPhase] = useState<SprintPhase>("idle");
-  const [isRevealed, setIsRevealed] = useState(false);
+  const [screen, setScreen] = useState<Screen>("deck");
+  const [isAnswerShown, setIsAnswerShown] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [stats, setStats] = useState<StudyStats>(() => loadStats());
-  const [sprintQueue, setSprintQueue] = useState<VocabularyCard[]>([]);
+  const [reviewState, setReviewState] = useState<ReviewState>(() => loadReviewState());
+  const [studyQueue, setStudyQueue] = useState<VocabularyCard[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [chapterFilter, setChapterFilter] = useState<number | "all">("all");
+  const [clock, setClock] = useState(() => Date.now());
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
-  }, [stats]);
+    localStorage.setItem(REVIEW_STATE_KEY, JSON.stringify(reviewState));
+  }, [reviewState]);
 
-  const plannedQueue = useMemo(() => buildQueue(stats), [stats]);
-  const queue = phase === "reviewing" || phase === "complete" ? sprintQueue : plannedQueue;
-  const fallbackCard = vocabularyCards[0]!;
-  const currentCard = queue[currentIndex] ?? queue[0] ?? fallbackCard;
-  const remaining =
-    phase === "complete" ? 0 : phase === "reviewing" ? Math.max(queue.length - currentIndex, 0) : queue.length;
-  const targetKey = normalizeArabicForKey(currentCard.target);
-  const totalGot = Object.values(stats).reduce((sum, card) => sum + card.got, 0);
-  const totalForgot = Object.values(stats).reduce((sum, card) => sum + card.forgot, 0);
-  const seenCount = Object.values(stats).filter((card) => card.got + card.forgot > 0).length;
+  useEffect(() => {
+    const timer = window.setInterval(() => setClock(Date.now()), 30_000);
+    return () => window.clearInterval(timer);
+  }, []);
 
-  function startSprint() {
-    setSprintQueue(buildQueue(stats));
-    setPhase("reviewing");
+  const deckStats = useMemo(() => getDeckStats(vocabularyCards, reviewState, clock), [reviewState, clock]);
+  const studyPreview = useMemo(() => buildStudyQueue(vocabularyCards, reviewState, clock), [reviewState, clock]);
+  const currentCard = studyQueue[currentIndex] ?? studyPreview[0] ?? fallbackCard;
+  const currentState = getCardReviewState(reviewState, currentCard.id, clock);
+  const currentStatus = getCardStatus(reviewState[currentCard.id], clock);
+  const visibleCards = useMemo(
+    () => filterCards(vocabularyCards, reviewState, searchTerm, chapterFilter, clock),
+    [chapterFilter, clock, reviewState, searchTerm],
+  );
+  const chapters = useMemo(() => [...new Set(vocabularyCards.map((card) => card.chapter))], []);
+  const sessionProgress = studyQueue.length ? `${Math.min(currentIndex + 1, studyQueue.length)} / ${studyQueue.length}` : "0 / 0";
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      const target = event.target as HTMLElement | null;
+      if (target?.tagName === "INPUT" || target?.tagName === "TEXTAREA") {
+        return;
+      }
+
+      if (screen !== "study") {
+        return;
+      }
+
+      if ((event.key === " " || event.key === "Enter") && !isAnswerShown) {
+        event.preventDefault();
+        setIsAnswerShown(true);
+        return;
+      }
+
+      if (!isAnswerShown) {
+        return;
+      }
+
+      const ratingByKey: Record<string, Rating> = {
+        "1": "again",
+        "2": "hard",
+        "3": "good",
+        "4": "easy",
+      };
+      const rating = ratingByKey[event.key];
+
+      if (rating) {
+        event.preventDefault();
+        gradeCurrentCard(rating);
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [currentCard.id, currentIndex, isAnswerShown, screen, studyQueue.length]);
+
+  function startStudy() {
+    const queue = buildStudyQueue(vocabularyCards, reviewState, Date.now());
+
+    setStudyQueue(queue);
     setCurrentIndex(0);
-    setIsRevealed(false);
+    setIsAnswerShown(false);
+    setClock(Date.now());
+    setScreen(queue.length ? "study" : "complete");
   }
 
-  function gradeCard(grade: Grade) {
-    setStats((currentStats) => {
-      const previous = currentStats[currentCard.id] ?? { got: 0, forgot: 0 };
+  function gradeCurrentCard(rating: Rating) {
+    const now = Date.now();
+    setReviewState((state) => gradeCardReview(state, currentCard.id, rating, now));
+    setClock(now);
 
-      return {
-        ...currentStats,
-        [currentCard.id]: {
-          got: previous.got + (grade === "got" ? 1 : 0),
-          forgot: previous.forgot + (grade === "forgot" ? 1 : 0),
-          lastGrade: grade,
-        },
-      };
-    });
-
-    if (currentIndex + 1 >= queue.length) {
-      setPhase("complete");
-      setIsRevealed(true);
+    if (currentIndex + 1 >= studyQueue.length) {
+      setScreen("complete");
+      setIsAnswerShown(false);
       return;
     }
 
     setCurrentIndex((index) => index + 1);
-    setIsRevealed(false);
+    setIsAnswerShown(false);
   }
 
   function resetProgress() {
-    setStats({});
-    setSprintQueue([]);
-    setPhase("idle");
+    localStorage.removeItem(REVIEW_STATE_KEY);
+    localStorage.removeItem(LEGACY_STATE_KEY);
+    setReviewState({});
+    setStudyQueue([]);
     setCurrentIndex(0);
-    setIsRevealed(false);
-    localStorage.removeItem(STORAGE_KEY);
+    setIsAnswerShown(false);
+    setScreen("deck");
+    setClock(Date.now());
   }
 
   return (
     <main className="app-shell">
-      <section className="sprint-panel" aria-labelledby="daily-sprint-title">
-        <div className="top-bar">
-          <div>
-            <p className="eyebrow">VocBay</p>
-            <h1 id="daily-sprint-title">Bayna sprint</h1>
-          </div>
-          <button className="icon-button" aria-label="Open learning plan">
+      <header className="app-header">
+        <div>
+          <p className="eyebrow">VocBay</p>
+          <h1>Bayna Book One</h1>
+        </div>
+        <div className="header-actions">
+          <button className="icon-button" type="button" aria-label="Open deck browser" onClick={() => setScreen("browser")}>
             <BookOpen size={20} aria-hidden="true" />
           </button>
-        </div>
-
-        <div className="focus-card" aria-live="polite">
-          <div className="focus-meta">
-            <span className="status-pill">
-              <Sparkles size={14} aria-hidden="true" />
-              Chapter {currentCard.chapter}
-            </span>
-            <span className="retention">
-              <Clock3 size={14} aria-hidden="true" />
-              {phase === "reviewing" ? `${currentIndex + 1}/${queue.length}` : `${seenCount}/${vocabularyCards.length}`}
-            </span>
-          </div>
-
-          {phase === "complete" ? (
-            <div className="complete-state">
-              <CheckCircle2 size={30} aria-hidden="true" />
-              <div>
-                <h2>Sprint complete</h2>
-                <p>
-                  {queue.length} cards reviewed. Got: {totalGot}. Forgot: {totalForgot}.
-                </p>
-              </div>
-            </div>
-          ) : (
-            <CardPrompt card={currentCard} targetKey={targetKey} />
-          )}
-
-          {phase === "reviewing" ? (
-            <div className="review-panel">
-              {isRevealed ? (
-                <AnswerPanel card={currentCard} />
-              ) : (
-                <button className="reveal-action" onClick={() => setIsRevealed(true)}>
-                  <Volume2 size={18} aria-hidden="true" />
-                  Reveal answer
-                </button>
-              )}
-
-              {isRevealed ? (
-                <div className="answer-actions" aria-label="Grade this card">
-                  <button className="secondary-action" onClick={() => gradeCard("forgot")}>
-                    <XCircle size={18} aria-hidden="true" />
-                    Forgot
-                  </button>
-                  <button className="primary-action compact" onClick={() => gradeCard("got")}>
-                    <CheckCircle2 size={18} aria-hidden="true" />
-                    Got it
-                  </button>
-                </div>
-              ) : null}
-            </div>
-          ) : null}
-        </div>
-
-        <div className="sprint-grid" aria-label="Sprint queue summary">
-          <article className="metric">
-            <span>Deck</span>
-            <strong>{vocabularyCards.length}</strong>
-            <small>real Bayna cards</small>
-          </article>
-          <article className="metric">
-            <span>Seen</span>
-            <strong>{seenCount}</strong>
-            <small>saved on this device</small>
-          </article>
-          <article className="metric">
-            <span>Now</span>
-            <strong>{remaining}</strong>
-            <small>cards in sprint</small>
-          </article>
-        </div>
-
-        {phase === "reviewing" ? (
-          <button className="secondary-action wide" onClick={resetProgress}>
-            <RotateCcw size={18} aria-hidden="true" />
-            Reset all progress
+          <button className="icon-button danger" type="button" aria-label="Reset progress" onClick={resetProgress}>
+            <RotateCcw size={20} aria-hidden="true" />
           </button>
-        ) : (
-          <div className="action-stack">
-            <button className="primary-action" onClick={startSprint}>
-              <CheckCircle2 size={18} aria-hidden="true" />
-              Start learning vocab
-            </button>
-            {seenCount > 0 ? (
-              <button className="secondary-action wide" onClick={resetProgress}>
-                <RotateCcw size={18} aria-hidden="true" />
-                Reset progress
-              </button>
-            ) : null}
-          </div>
+        </div>
+      </header>
+
+      <div className={`app-layout ${screen === "study" ? "study-mode" : ""}`}>
+        <DeckPanel stats={deckStats} queueSize={studyPreview.length} onStudy={startStudy} onBrowse={() => setScreen("browser")} />
+
+        <section className="review-surface" aria-live="polite">
+          {screen === "deck" || screen === "browser" ? (
+            <DeckHome stats={deckStats} queueSize={studyPreview.length} nextCard={studyPreview[0] ?? fallbackCard} onStudy={startStudy} />
+          ) : null}
+
+          {screen === "study" ? (
+            <StudyCard
+              card={currentCard}
+              cardState={currentState}
+              cardStatus={currentStatus}
+              isAnswerShown={isAnswerShown}
+              progress={sessionProgress}
+              now={clock}
+              onReveal={() => setIsAnswerShown(true)}
+              onGrade={gradeCurrentCard}
+            />
+          ) : null}
+
+          {screen === "complete" ? (
+            <CompleteState reviewedCount={studyQueue.length} stats={deckStats} onStudy={startStudy} onBrowse={() => setScreen("browser")} />
+          ) : null}
+        </section>
+
+        {screen === "study" ? null : (
+          <DeckBrowser
+            cards={visibleCards}
+            chapters={chapters}
+            chapterFilter={chapterFilter}
+            now={clock}
+            reviewState={reviewState}
+            searchTerm={searchTerm}
+            onChapterFilter={setChapterFilter}
+            onSearch={setSearchTerm}
+          />
         )}
-      </section>
+      </div>
     </main>
   );
 }
 
-function CardPrompt({ card, targetKey }: { card: VocabularyCard; targetKey: string }) {
+function DeckPanel({
+  stats,
+  queueSize,
+  onStudy,
+  onBrowse,
+}: {
+  stats: ReturnType<typeof getDeckStats>;
+  queueSize: number;
+  onStudy: () => void;
+  onBrowse: () => void;
+}) {
   return (
-    <>
-      <p className="prompt-text">{card.prompt}</p>
-      <p className="arabic-sentence" dir="rtl" lang="ar">
-        {renderArabicWithHighlight(card)}
-      </p>
-      <p className="hint">
-        Target key: <code>{targetKey}</code>
-      </p>
-    </>
+    <aside className="deck-panel">
+      <div className="deck-title">
+        <Layers3 size={20} aria-hidden="true" />
+        <div>
+          <h2>Arabic Vocab</h2>
+          <p>{stats.total} cards</p>
+        </div>
+      </div>
+
+      <div className="deck-counts">
+        <StatTile label="Due" value={stats.due} tone="due" />
+        <StatTile label="New" value={stats.newCards} tone="new" />
+        <StatTile label="Learning" value={stats.learning} tone="learning" />
+        <StatTile label="Review" value={stats.review} tone="review" />
+      </div>
+
+      <button className="primary-action" type="button" onClick={onStudy} disabled={queueSize === 0}>
+        <CheckCircle2 size={18} aria-hidden="true" />
+        Study now
+      </button>
+      <button className="secondary-action" type="button" onClick={onBrowse}>
+        <BookOpen size={18} aria-hidden="true" />
+        Browse
+      </button>
+    </aside>
+  );
+}
+
+function DeckHome({
+  stats,
+  queueSize,
+  nextCard,
+  onStudy,
+}: {
+  stats: ReturnType<typeof getDeckStats>;
+  queueSize: number;
+  nextCard: VocabularyCard;
+  onStudy: () => void;
+}) {
+  return (
+    <div className="home-panel">
+      <div className="home-copy">
+        <p className="eyebrow">Deck</p>
+        <h2>Reviews first. New cards after.</h2>
+      </div>
+
+      <div className="home-grid">
+        <MetricCard label="Queue" value={queueSize} detail="available now" />
+        <MetricCard label="Mature" value={stats.mature} detail="21d interval" />
+        <MetricCard label="Total" value={stats.total} detail="Book One starter" />
+      </div>
+
+      <div className="next-card-preview">
+        <span>Next</span>
+        <p dir="rtl" lang="ar">
+          {nextCard.target}
+        </p>
+        <strong>{nextCard.answer}</strong>
+      </div>
+
+      <button className="primary-action hero-action" type="button" onClick={onStudy} disabled={queueSize === 0}>
+        <CheckCircle2 size={18} aria-hidden="true" />
+        Study now
+      </button>
+    </div>
+  );
+}
+
+function StudyCard({
+  card,
+  cardState,
+  cardStatus,
+  isAnswerShown,
+  progress,
+  now,
+  onReveal,
+  onGrade,
+}: {
+  card: VocabularyCard;
+  cardState: ReturnType<typeof getCardReviewState>;
+  cardStatus: string;
+  isAnswerShown: boolean;
+  progress: string;
+  now: number;
+  onReveal: () => void;
+  onGrade: (rating: Rating) => void;
+}) {
+  const targetKey = normalizeArabicForKey(card.target);
+
+  return (
+    <article className="study-card">
+      <div className="study-meta">
+        <span>{progress}</span>
+        <span>Chapter {card.chapter}</span>
+        <span>{cardStatus}</span>
+      </div>
+
+      <div className="front-side">
+        <p className="prompt-text">{card.prompt}</p>
+        <p className="arabic-sentence" dir="rtl" lang="ar">
+          {renderArabicWithHighlight(card)}
+        </p>
+        <p className="key-line">
+          <code>{targetKey}</code>
+        </p>
+      </div>
+
+      {isAnswerShown ? (
+        <>
+          <AnswerPanel card={card} />
+          <div className="grade-grid" aria-label="Grade this card">
+            {(["again", "hard", "good", "easy"] as Rating[]).map((rating) => {
+              const preview = previewRating(cardState, rating, now);
+              return (
+                <button className={`grade-button ${rating}`} key={rating} type="button" onClick={() => onGrade(rating)}>
+                  <span>{ratingLabels[rating]}</span>
+                  <strong>{formatDueDistance(preview.dueAt, now)}</strong>
+                </button>
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        <button className="reveal-action" type="button" onClick={onReveal}>
+          <Eye size={18} aria-hidden="true" />
+          Show answer
+        </button>
+      )}
+    </article>
   );
 }
 
 function AnswerPanel({ card }: { card: VocabularyCard }) {
   return (
     <div className="answer-panel">
-      <p className="answer-label">Answer</p>
-      <strong>{card.answer}</strong>
+      <div>
+        <p className="answer-label">Back</p>
+        <strong>{card.answer}</strong>
+      </div>
       <p className="translation">{card.detail}</p>
 
       <dl>
-        {card.singular ? (
-          <div>
-            <dt>Singular</dt>
-            <dd dir="rtl" lang="ar">
-              {card.singular}
-            </dd>
-          </div>
-        ) : null}
-        {card.plural ? (
-          <div>
-            <dt>Plural</dt>
-            <dd dir="rtl" lang="ar">
-              {card.plural}
-            </dd>
-          </div>
-        ) : null}
-        {card.forms?.past ? (
-          <div>
-            <dt>Past</dt>
-            <dd dir="rtl" lang="ar">
-              {card.forms.past}
-            </dd>
-          </div>
-        ) : null}
-        {card.forms?.present ? (
-          <div>
-            <dt>Present</dt>
-            <dd dir="rtl" lang="ar">
-              {card.forms.present}
-            </dd>
-          </div>
-        ) : null}
-        {card.forms?.command ? (
-          <div>
-            <dt>Command</dt>
-            <dd dir="rtl" lang="ar">
-              {card.forms.command}
-            </dd>
-          </div>
-        ) : null}
-        {card.requiredPreposition ? (
-          <div>
-            <dt>Preposition</dt>
-            <dd dir="rtl" lang="ar">
-              {card.requiredPreposition}
-            </dd>
-          </div>
-        ) : null}
+        {card.singular ? <Fact label="Singular" value={card.singular} /> : null}
+        {card.plural ? <Fact label="Plural" value={card.plural} /> : null}
+        {card.forms?.past ? <Fact label="Past" value={card.forms.past} /> : null}
+        {card.forms?.present ? <Fact label="Present" value={card.forms.present} /> : null}
+        {card.forms?.command ? <Fact label="Command" value={card.forms.command} /> : null}
+        {card.forms?.masdar ? <Fact label="Masdar" value={card.forms.masdar} /> : null}
+        {card.requiredPreposition ? <Fact label="Preposition" value={card.requiredPreposition} /> : null}
       </dl>
 
       {card.translation ? <p className="translation">{card.translation}</p> : null}
+    </div>
+  );
+}
+
+function CompleteState({
+  reviewedCount,
+  stats,
+  onStudy,
+  onBrowse,
+}: {
+  reviewedCount: number;
+  stats: ReturnType<typeof getDeckStats>;
+  onStudy: () => void;
+  onBrowse: () => void;
+}) {
+  const remaining = stats.due + stats.newCards;
+
+  return (
+    <div className="complete-state">
+      <CheckCircle2 size={34} aria-hidden="true" />
+      <div>
+        <h2>Session complete</h2>
+        <p>{reviewedCount} cards reviewed.</p>
+      </div>
+      <div className="complete-actions">
+        <button className="primary-action" type="button" onClick={onStudy} disabled={remaining === 0}>
+          <Clock3 size={18} aria-hidden="true" />
+          Study now
+        </button>
+        <button className="secondary-action" type="button" onClick={onBrowse}>
+          <BookOpen size={18} aria-hidden="true" />
+          Browse
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function DeckBrowser({
+  cards,
+  chapters,
+  chapterFilter,
+  now,
+  reviewState,
+  searchTerm,
+  onChapterFilter,
+  onSearch,
+}: {
+  cards: VocabularyCard[];
+  chapters: number[];
+  chapterFilter: number | "all";
+  now: number;
+  reviewState: ReviewState;
+  searchTerm: string;
+  onChapterFilter: (chapter: number | "all") => void;
+  onSearch: (value: string) => void;
+}) {
+  return (
+    <aside className="browser-panel" aria-label="Deck browser">
+      <div className="browser-header">
+        <div>
+          <p className="eyebrow">Cards</p>
+          <h2>Browser</h2>
+        </div>
+        <BarChart3 size={20} aria-hidden="true" />
+      </div>
+
+      <label className="search-box">
+        <Search size={16} aria-hidden="true" />
+        <input value={searchTerm} onChange={(event) => onSearch(event.target.value)} placeholder="Search deck" />
+      </label>
+
+      <div className="chapter-tabs" aria-label="Chapter filter">
+        <button type="button" className={chapterFilter === "all" ? "active" : ""} onClick={() => onChapterFilter("all")}>
+          All
+        </button>
+        {chapters.map((chapter) => (
+          <button
+            type="button"
+            key={chapter}
+            className={chapterFilter === chapter ? "active" : ""}
+            onClick={() => onChapterFilter(chapter)}
+          >
+            Ch {chapter}
+          </button>
+        ))}
+      </div>
+
+      <div className="card-list">
+        {cards.map((card) => {
+          const state = reviewState[card.id];
+          return (
+            <article className="browser-card" key={card.id}>
+              <div>
+                <p dir="rtl" lang="ar">
+                  {card.target}
+                </p>
+                <strong>{card.answer}</strong>
+              </div>
+              <div className="browser-card-meta">
+                <span>{getCardStatus(state, now)}</span>
+                <span>{state ? formatDueDistance(state.dueAt, now) : "new"}</span>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </aside>
+  );
+}
+
+function StatTile({ label, value, tone }: { label: string; value: number; tone: string }) {
+  return (
+    <article className={`stat-tile ${tone}`}>
+      <span>{label}</span>
+      <strong>{value}</strong>
+    </article>
+  );
+}
+
+function MetricCard({ label, value, detail }: { label: string; value: number; detail: string }) {
+  return (
+    <article className="metric-card">
+      <span>{label}</span>
+      <strong>{value}</strong>
+      <small>{detail}</small>
+    </article>
+  );
+}
+
+function Fact({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <dt>{label}</dt>
+      <dd dir="rtl" lang="ar">
+        {value}
+      </dd>
     </div>
   );
 }
@@ -282,22 +518,41 @@ function renderArabicWithHighlight(card: VocabularyCard) {
   );
 }
 
-function buildQueue(stats: StudyStats) {
-  const weakCards = vocabularyCards.filter((card) => {
-    const cardStats = stats[card.id];
-    return cardStats?.lastGrade === "forgot";
-  });
-  const unseenCards = vocabularyCards.filter((card) => !stats[card.id]);
-  const reviewCards = vocabularyCards.filter((card) => stats[card.id]?.lastGrade === "got");
-  const queue = [...weakCards, ...unseenCards, ...reviewCards];
+function filterCards(
+  cards: VocabularyCard[],
+  reviewState: ReviewState,
+  searchTerm: string,
+  chapterFilter: number | "all",
+  now: number,
+) {
+  const normalizedSearch = normalizeArabicForKey(searchTerm).toLowerCase();
 
-  return queue.slice(0, sprintSize);
+  return cards.filter((card) => {
+    if (chapterFilter !== "all" && card.chapter !== chapterFilter) {
+      return false;
+    }
+
+    if (!normalizedSearch) {
+      return true;
+    }
+
+    const state = reviewState[card.id];
+    const searchable = [
+      normalizeArabicForKey(card.target),
+      normalizeArabicForKey(card.arabic),
+      card.answer.toLowerCase(),
+      card.kind,
+      getCardStatus(state, now).toLowerCase(),
+    ].join(" ");
+
+    return searchable.includes(normalizedSearch);
+  });
 }
 
-function loadStats(): StudyStats {
+function loadReviewState(): ReviewState {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as StudyStats) : {};
+    const raw = localStorage.getItem(REVIEW_STATE_KEY);
+    return raw ? (JSON.parse(raw) as ReviewState) : {};
   } catch {
     return {};
   }
