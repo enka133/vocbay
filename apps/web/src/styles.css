@@ -131,14 +131,14 @@ h2 {
 .app-layout {
   width: min(100%, 1180px);
   display: grid;
-  grid-template-columns: 245px minmax(0, 1fr) 310px;
+  grid-template-columns: 245px minmax(0, 1fr);
   gap: 16px;
   margin: 0 auto;
   align-items: start;
 }
 
-.app-layout.study-mode {
-  grid-template-columns: 245px minmax(0, 1fr);
+.app-layout.browser-mode {
+  grid-template-columns: 245px minmax(0, 1fr) 310px;
 }
 
 .deck-panel,
@@ -183,8 +183,7 @@ h2 {
   gap: 8px;
 }
 
-.stat-tile,
-.metric-card {
+.stat-tile {
   display: grid;
   align-content: start;
   gap: 4px;
@@ -198,22 +197,19 @@ h2 {
     transform 180ms var(--ease-out-quart);
 }
 
-.metric-card:hover,
 .stat-tile:hover {
   background: #f7f8fb;
   border-color: rgba(20, 33, 61, 0.16);
 }
 
-.stat-tile span,
-.metric-card span {
+.stat-tile span {
   color: #667085;
   font-size: 0.74rem;
   font-weight: 800;
   text-transform: uppercase;
 }
 
-.stat-tile strong,
-.metric-card strong {
+.stat-tile strong {
   color: #14213d;
   font-size: 1.55rem;
   line-height: 1.05;
@@ -251,31 +247,33 @@ h2 {
   font-size: clamp(1.55rem, 3vw, 2.2rem);
 }
 
-.home-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.metric-card small {
-  color: #667085;
-  font-size: 0.76rem;
-  line-height: 1.25;
-}
-
 .next-card-preview {
   display: grid;
-  gap: 4px;
+  gap: 8px;
   border: 1px solid rgba(15, 107, 85, 0.18);
   border-radius: 8px;
   background: #f3fbf7;
-  padding: 16px;
+  padding: 18px;
   animation: previewSettle 240ms var(--ease-out-quint) both;
 }
 
-.next-card-preview span {
+.next-card-meta,
+.queue-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.next-card-meta span {
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: rgba(15, 107, 85, 0.08);
+  padding: 3px 9px;
   color: #0f6b55;
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -289,6 +287,27 @@ h2 {
 }
 
 .next-card-preview strong {
+  color: #14213d;
+  font-size: 1rem;
+}
+
+.queue-strip {
+  border-top: 1px solid rgba(20, 33, 61, 0.09);
+  border-bottom: 1px solid rgba(20, 33, 61, 0.09);
+  padding: 10px 0;
+}
+
+.metric-pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  color: #667085;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.metric-pill strong {
   color: #14213d;
   font-size: 1rem;
 }
@@ -541,6 +560,14 @@ dd {
   animation: checkSettle 320ms var(--ease-out-expo) 80ms both;
 }
 
+.completion-arabic {
+  margin: 0;
+  color: #0f6b55;
+  font-family: "Geeza Pro", "Noto Naskh Arabic", "Amiri", serif;
+  font-size: 2.3rem;
+  line-height: 1;
+}
+
 .complete-state h2,
 .complete-state p {
   margin: 0;
@@ -550,7 +577,7 @@ dd {
   font-size: 1.65rem;
 }
 
-.complete-state p {
+.complete-state p:not(.completion-arabic) {
   color: #4d5b6c;
 }
 
@@ -800,7 +827,8 @@ dd {
     grid-template-columns: 1fr;
   }
 
-  .app-layout.study-mode {
+  .app-layout.study-mode,
+  .app-layout.browser-mode {
     grid-template-columns: 1fr;
   }
 
@@ -811,11 +839,11 @@ dd {
   }
 
   .deck-panel {
-    order: 1;
+    order: 2;
   }
 
   .review-surface {
-    order: 2;
+    order: 1;
   }
 
   .browser-panel {
@@ -832,10 +860,50 @@ dd {
     align-items: flex-start;
   }
 
-  .home-grid,
-  .deck-counts,
   dl {
     grid-template-columns: 1fr;
+  }
+
+  .review-surface {
+    min-height: auto;
+    padding: 12px;
+  }
+
+  .home-panel,
+  .study-card {
+    min-height: auto;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .deck-panel {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .deck-counts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .stat-tile {
+    min-height: 58px;
+    padding: 8px 6px;
+  }
+
+  .stat-tile span {
+    font-size: 0.62rem;
+  }
+
+  .stat-tile strong {
+    font-size: 1.08rem;
+  }
+
+  .next-card-preview {
+    padding: 14px;
+  }
+
+  .queue-strip {
+    justify-content: space-between;
   }
 
   .grade-grid {
@@ -843,8 +911,14 @@ dd {
   }
 
   .study-meta {
-    align-items: stretch;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .study-meta span {
+    flex: 0 0 auto;
   }
 
   .browser-card {
@@ -853,7 +927,7 @@ dd {
 
   .browser-card-meta {
     justify-items: start;
-    grid-template-columns: repeat(2, max-content);
+    grid-template-columns: repeat(3, max-content);
   }
 }
 

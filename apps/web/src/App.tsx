@@ -154,8 +154,8 @@ export function App() {
         </div>
       </header>
 
-      <div className={`app-layout ${screen === "study" ? "study-mode" : ""}`}>
-        <DeckPanel stats={deckStats} queueSize={studyPreview.length} onStudy={startStudy} onBrowse={() => setScreen("browser")} />
+      <div className={`app-layout ${screen === "study" ? "study-mode" : ""} ${screen === "browser" ? "browser-mode" : ""}`}>
+        <DeckPanel stats={deckStats} onBrowse={() => setScreen("browser")} />
 
         <section className="review-surface" aria-live="polite">
           {screen === "deck" || screen === "browser" ? (
@@ -181,7 +181,7 @@ export function App() {
           ) : null}
         </section>
 
-        {screen === "study" ? null : (
+        {screen === "browser" ? (
           <DeckBrowser
             cards={visibleCards}
             chapters={chapters}
@@ -192,7 +192,7 @@ export function App() {
             onChapterFilter={setChapterFilter}
             onSearch={setSearchTerm}
           />
-        )}
+        ) : null}
       </div>
     </main>
   );
@@ -200,13 +200,9 @@ export function App() {
 
 function DeckPanel({
   stats,
-  queueSize,
-  onStudy,
   onBrowse,
 }: {
   stats: ReturnType<typeof getDeckStats>;
-  queueSize: number;
-  onStudy: () => void;
   onBrowse: () => void;
 }) {
   return (
@@ -226,10 +222,6 @@ function DeckPanel({
         <StatTile label="Review" value={stats.review} tone="review" />
       </div>
 
-      <button className="primary-action" type="button" onClick={onStudy} disabled={queueSize === 0}>
-        <CheckCircle2 size={18} aria-hidden="true" />
-        Study now
-      </button>
       <button className="secondary-action" type="button" onClick={onBrowse}>
         <BookOpen size={18} aria-hidden="true" />
         Browse
@@ -252,22 +244,26 @@ function DeckHome({
   return (
     <div className="home-panel">
       <div className="home-copy">
-        <p className="eyebrow">Deck</p>
-        <h2>Reviews first. New cards after.</h2>
-      </div>
-
-      <div className="home-grid">
-        <MetricCard label="Queue" value={queueSize} detail="available now" />
-        <MetricCard label="Mature" value={stats.mature} detail="21d interval" />
-        <MetricCard label="Total" value={stats.total} detail="Book One import" />
+        <p className="eyebrow">Today</p>
+        <h2>{queueSize > 0 ? "Start your queue" : "No cards due"}</h2>
       </div>
 
       <div className="next-card-preview">
-        <span>Next</span>
+        <div className="next-card-meta">
+          <span>Next</span>
+          <span>Chapter {nextCard.chapter}</span>
+          {nextCard.formRole ? <span>{formatFormRole(nextCard.formRole)}</span> : null}
+        </div>
         <p dir="rtl" lang="ar">
           {nextCard.target}
         </p>
         <strong>{nextCard.answer}</strong>
+      </div>
+
+      <div className="queue-strip" aria-label="Queue summary">
+        <MetricPill label="Queue" value={queueSize} />
+        <MetricPill label="Due" value={stats.due} />
+        <MetricPill label="New" value={stats.newCards} />
       </div>
 
       <button className="primary-action hero-action" type="button" onClick={onStudy} disabled={queueSize === 0}>
@@ -350,7 +346,6 @@ function AnswerPanel({ card }: { card: VocabularyCard }) {
         <p className="answer-label">Back</p>
         <strong>{card.answer}</strong>
       </div>
-      <p className="translation">{card.detail}</p>
 
       <dl>
         {card.singular ? <Fact label="Singular" value={card.singular} /> : null}
@@ -383,6 +378,9 @@ function CompleteState({
   return (
     <div className="complete-state">
       <CheckCircle2 size={34} aria-hidden="true" />
+      <p className="completion-arabic" dir="rtl" lang="ar">
+        ثَبَتَ
+      </p>
       <div>
         <h2>Session complete</h2>
         <p data-testid="reviewed-count">{reviewedCount} cards reviewed.</p>
@@ -484,13 +482,12 @@ function StatTile({ label, value, tone }: { label: string; value: number; tone: 
   );
 }
 
-function MetricCard({ label, value, detail }: { label: string; value: number; detail: string }) {
+function MetricPill({ label, value }: { label: string; value: number }) {
   return (
-    <article className="metric-card">
+    <div className="metric-pill">
       <span>{label}</span>
       <strong>{value}</strong>
-      <small>{detail}</small>
-    </article>
+    </div>
   );
 }
 
