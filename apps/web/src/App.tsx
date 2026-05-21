@@ -156,7 +156,11 @@ export function App() {
         </div>
       </header>
 
-      <div className={`app-layout ${screen === "study" ? "study-mode" : ""} ${screen === "browser" ? "browser-mode" : ""}`}>
+      <div
+        className={`app-layout screen-${screen} ${screen === "study" ? "study-mode" : ""} ${
+          screen === "browser" ? "browser-mode" : ""
+        }`}
+      >
         <DeckPanel stats={deckStats} onBrowse={() => setScreen("browser")} />
 
         <section className="review-surface" aria-live="polite">
