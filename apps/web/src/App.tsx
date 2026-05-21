@@ -214,7 +214,7 @@ function DeckPanel({
         <Layers3 size={20} aria-hidden="true" />
         <div>
           <h2>Arabic Vocab</h2>
-          <p>{stats.total} cards</p>
+          <p data-testid="deck-total">{stats.total} cards</p>
         </div>
       </div>
 
@@ -258,7 +258,7 @@ function DeckHome({
       <div className="home-grid">
         <MetricCard label="Queue" value={queueSize} detail="available now" />
         <MetricCard label="Mature" value={stats.mature} detail="21d interval" />
-        <MetricCard label="Total" value={stats.total} detail="Book One starter" />
+        <MetricCard label="Total" value={stats.total} detail="Book One import" />
       </div>
 
       <div className="next-card-preview">
@@ -301,7 +301,7 @@ function StudyCard({
   return (
     <article className="study-card">
       <div className="study-meta">
-        <span>{progress}</span>
+        <span data-testid="session-progress">{progress}</span>
         <span>Chapter {card.chapter}</span>
         <span>{cardStatus}</span>
       </div>
@@ -383,7 +383,7 @@ function CompleteState({
       <CheckCircle2 size={34} aria-hidden="true" />
       <div>
         <h2>Session complete</h2>
-        <p>{reviewedCount} cards reviewed.</p>
+        <p data-testid="reviewed-count">{reviewedCount} cards reviewed.</p>
       </div>
       <div className="complete-actions">
         <button className="primary-action" type="button" onClick={onStudy} disabled={remaining === 0}>
