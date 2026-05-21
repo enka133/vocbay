@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import {
   BarChart3,
   BookOpen,
@@ -26,6 +26,7 @@ import { vocabularyCards, type VocabularyCard } from "./vocabulary";
 
 const REVIEW_STATE_KEY = "vocbay.ankiReviewState.v1";
 const LEGACY_STATE_KEY = "vocbay.studyStats.v1";
+const BROWSER_CARD_LIMIT = 180;
 
 type Screen = "deck" | "study" | "browser" | "complete";
 
@@ -40,6 +41,7 @@ export function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [chapterFilter, setChapterFilter] = useState<number | "all">("all");
   const [clock, setClock] = useState(() => Date.now());
+  const deferredSearchTerm = useDeferredValue(searchTerm);
 
   useEffect(() => {
     localStorage.setItem(REVIEW_STATE_KEY, JSON.stringify(reviewState));
@@ -56,8 +58,8 @@ export function App() {
   const currentState = getCardReviewState(reviewState, currentCard.id, clock);
   const currentStatus = getCardStatus(reviewState[currentCard.id], clock);
   const visibleCards = useMemo(
-    () => filterCards(vocabularyCards, reviewState, searchTerm, chapterFilter, clock),
-    [chapterFilter, clock, reviewState, searchTerm],
+    () => (screen === "browser" ? filterCards(vocabularyCards, reviewState, deferredSearchTerm, chapterFilter, clock) : []),
+    [chapterFilter, clock, deferredSearchTerm, reviewState, screen],
   );
   const chapters = useMemo(() => [...new Set(vocabularyCards.map((card) => card.chapter))], []);
   const sessionProgress = studyQueue.length ? `${Math.min(currentIndex + 1, studyQueue.length)} / ${studyQueue.length}` : "0 / 0";
@@ -418,6 +420,9 @@ function DeckBrowser({
   onChapterFilter: (chapter: number | "all") => void;
   onSearch: (value: string) => void;
 }) {
+  const renderedCards = cards.slice(0, BROWSER_CARD_LIMIT);
+  const hiddenCount = cards.length - renderedCards.length;
+
   return (
     <aside className="browser-panel" aria-label="Deck browser">
       <div className="browser-header">
@@ -449,8 +454,13 @@ function DeckBrowser({
         ))}
       </div>
 
+      <p className="browser-result-count">
+        Showing {renderedCards.length} of {cards.length}
+        {hiddenCount > 0 ? ". Search or filter to narrow." : ""}
+      </p>
+
       <div className="card-list">
-        {cards.map((card) => {
+        {renderedCards.map((card) => {
           const state = reviewState[card.id];
           return (
             <article className="browser-card" key={card.id}>
