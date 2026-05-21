@@ -22,6 +22,11 @@ button {
   font: inherit;
 }
 
+button:focus-visible {
+  outline: 3px solid rgba(15, 107, 85, 0.32);
+  outline-offset: 3px;
+}
+
 .app-shell {
   min-height: 100vh;
   display: grid;
@@ -120,6 +125,13 @@ h1 {
   font-size: 2rem;
   line-height: 1.8;
   text-align: right;
+}
+
+.prompt-text {
+  margin: 0;
+  color: #4d5b6c;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 mark {
@@ -287,6 +299,10 @@ code {
   font-weight: 800;
 }
 
+.primary-action:hover {
+  background: #0f1a30;
+}
+
 .primary-action.compact,
 .secondary-action {
   min-height: 46px;
@@ -299,8 +315,19 @@ code {
   background: #ffffff;
 }
 
+.secondary-action:hover,
+.reveal-action:hover,
+.icon-button:hover {
+  background: #f6f8fb;
+}
+
 .secondary-action.wide {
   width: 100%;
+}
+
+.action-stack {
+  display: grid;
+  gap: 10px;
 }
 
 @media (max-width: 380px) {
