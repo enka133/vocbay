@@ -346,6 +346,8 @@ function StudyCard({
 }
 
 function AnswerPanel({ card }: { card: VocabularyCard }) {
+  const facts = getAnswerFacts(card);
+
   return (
     <div className="answer-panel">
       <div>
@@ -353,19 +355,44 @@ function AnswerPanel({ card }: { card: VocabularyCard }) {
         <strong>{card.answer}</strong>
       </div>
 
-      <dl>
-        {card.singular ? <Fact label="Singular" value={card.singular} /> : null}
-        {card.plural ? <Fact label="Plural" value={card.plural} /> : null}
-        {card.forms?.past ? <Fact label="Past" value={card.forms.past} /> : null}
-        {card.forms?.present ? <Fact label="Present" value={card.forms.present} /> : null}
-        {card.forms?.command ? <Fact label="Command" value={card.forms.command} /> : null}
-        {card.forms?.masdar ? <Fact label="Masdar" value={card.forms.masdar} /> : null}
-        {card.requiredPreposition ? <Fact label="Preposition" value={card.requiredPreposition} /> : null}
-      </dl>
+      {facts.length ? (
+        <dl data-testid="answer-facts">
+          {facts.map((fact) => (
+            <Fact key={fact.label} label={fact.label} value={fact.value} />
+          ))}
+        </dl>
+      ) : null}
 
       {card.translation ? <p className="translation">{card.translation}</p> : null}
     </div>
   );
+}
+
+function getAnswerFacts(card: VocabularyCard) {
+  const facts: { label: string; value: string }[] = [];
+
+  if (card.formRole) {
+    facts.push({
+      label: formatFormRole(card.formRole),
+      value: card.forms?.[card.formRole] ?? card.target,
+    });
+
+    if (card.requiredPreposition) {
+      facts.push({ label: "Preposition", value: card.requiredPreposition });
+    }
+
+    return facts;
+  }
+
+  if (card.singular) {
+    facts.push({ label: "Singular", value: card.singular });
+  }
+
+  if (card.plural) {
+    facts.push({ label: "Plural", value: card.plural });
+  }
+
+  return facts;
 }
 
 function CompleteState({
