@@ -1,5 +1,5 @@
-const CACHE_NAME = "vocbay-shell-v1";
-const SHELL_ASSETS = ["/", "/manifest.webmanifest", "/vocbay.svg"];
+const CACHE_NAME = "vocbay-shell-v2";
+const SHELL_ASSETS = ["/manifest.webmanifest", "/vocbay.svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_ASSETS)));
@@ -22,7 +22,5 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request).then((cached) => cached ?? fetch(event.request)),
-  );
+  event.respondWith(fetch(event.request));
 });
