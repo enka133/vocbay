@@ -1,0 +1,21 @@
+{
+  "name": "vocbay",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun --filter @vocbay/api dev & bun --filter @vocbay/web dev",
+    "test": "bun test",
+    "typecheck": "bun --filter @vocbay/core typecheck && bun --filter @vocbay/api typecheck && bun --filter @vocbay/web typecheck",
+    "db:generate": "drizzle-kit generate"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.8",
+    "drizzle-kit": "^0.31.8",
+    "typescript": "^5.9.3"
+  }
+}

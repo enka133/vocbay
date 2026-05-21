@@ -1,0 +1,14 @@
+{
+  "name": "@vocbay/api",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@vocbay/core": "workspace:*",
+    "hono": "^4.10.7"
+  }
+}

@@ -1,0 +1,199 @@
+:root {
+  color: #19202a;
+  background: #f6f4ef;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    linear-gradient(180deg, rgba(20, 33, 61, 0.06), rgba(246, 244, 239, 0) 260px),
+    #f6f4ef;
+}
+
+.sprint-panel {
+  width: min(100%, 430px);
+  display: grid;
+  gap: 18px;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 2px;
+  color: #6b5f4f;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: #14213d;
+  font-size: 2rem;
+  line-height: 1.05;
+}
+
+.icon-button,
+.primary-action {
+  border: 0;
+  cursor: pointer;
+}
+
+.icon-button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #14213d;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(20, 33, 61, 0.1);
+}
+
+.focus-card,
+.metric {
+  border: 1px solid rgba(20, 33, 61, 0.1);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.focus-card {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+}
+
+.focus-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #4d5b6c;
+  font-size: 0.85rem;
+}
+
+.status-pill,
+.retention {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-pill {
+  color: #0f6b55;
+  font-weight: 700;
+}
+
+.arabic-sentence {
+  margin: 0;
+  color: #111827;
+  font-family: "Geeza Pro", "Noto Naskh Arabic", "Amiri", serif;
+  font-size: 2rem;
+  line-height: 1.8;
+  text-align: right;
+}
+
+mark {
+  color: #0c5f4d;
+  background: #dff4ea;
+  border-radius: 6px;
+  padding: 0 0.16em;
+}
+
+.hint {
+  margin: 0;
+  color: #5b6472;
+  font-size: 0.88rem;
+}
+
+code {
+  color: #14213d;
+  background: #eef1f6;
+  border-radius: 4px;
+  padding: 2px 5px;
+}
+
+.sprint-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.metric {
+  min-height: 112px;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 14px;
+}
+
+.metric span {
+  color: #6b5f4f;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.metric strong {
+  color: #14213d;
+  font-size: 1.65rem;
+  line-height: 1.1;
+}
+
+.metric small {
+  color: #667085;
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.primary-action {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #14213d;
+  font-weight: 800;
+}
+
+@media (max-width: 380px) {
+  .app-shell {
+    padding: 16px;
+  }
+
+  .sprint-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .arabic-sentence {
+    font-size: 1.65rem;
+  }
+}

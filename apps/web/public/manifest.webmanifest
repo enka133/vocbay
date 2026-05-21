@@ -1,0 +1,17 @@
+{
+  "name": "VocBay",
+  "short_name": "VocBay",
+  "description": "A mobile-first Bayna Yadayk vocabulary sprint app.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f4ef",
+  "theme_color": "#14213d",
+  "icons": [
+    {
+      "src": "/vocbay.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

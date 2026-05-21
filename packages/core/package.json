@@ -1,0 +1,21 @@
+{
+  "name": "@vocbay/core",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./ai": "./src/ai/validateOneUnknown.ts",
+    "./arabic": "./src/arabic/normalize.ts",
+    "./ingestion": "./src/ingestion/verbPreposition.ts",
+    "./db/client": "./src/db/client.ts",
+    "./db/schema": "./src/db/schema.ts"
+  },
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.44.7",
+    "zod": "^4.1.13"
+  }
+}

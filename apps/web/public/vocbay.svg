@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">VocBay icon</title>
+  <rect width="512" height="512" rx="96" fill="#14213d"/>
+  <path d="M128 144c0-22.1 17.9-40 40-40h176c22.1 0 40 17.9 40 40v224c0 22.1-17.9 40-40 40H168c-22.1 0-40-17.9-40-40V144Z" fill="#f6f4ef"/>
+  <path d="M174 160h164v40H174v-40Zm0 76h164v32H174v-32Zm0 68h112v32H174v-32Z" fill="#14213d"/>
+  <path d="M328 328c0 28.7-23.3 52-52 52s-52-23.3-52-52 23.3-52 52-52 52 23.3 52 52Z" fill="#0f6b55"/>
+  <path d="M250 326h52v20h-76v-20c0-39.8 32.2-72 72-72h4v20h-4c-25.1 0-46 18.2-50 42.2l2-.2Z" fill="#f6f4ef"/>
+</svg>
