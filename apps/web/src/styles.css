@@ -19,6 +19,8 @@
   --danger: oklch(44% 0.13 28);
   --warning: oklch(50% 0.12 70);
   --info: oklch(45% 0.12 255);
+  --tap-target: 48px;
+  --tap-target-comfort: 56px;
   color: var(--ink);
   background: var(--page);
   font-family:
@@ -50,8 +52,11 @@ input {
 }
 
 button {
+  min-width: 44px;
+  min-height: 44px;
   border: 0;
   cursor: pointer;
+  touch-action: manipulation;
   transition:
     background-color 180ms var(--ease-out-quart),
     color 180ms var(--ease-out-quart),
@@ -130,8 +135,8 @@ h2 {
 }
 
 .icon-button {
-  width: 44px;
-  height: 44px;
+  width: var(--tap-target);
+  height: var(--tap-target);
   display: grid;
   place-items: center;
   border-radius: 8px;
@@ -346,7 +351,7 @@ h2 {
 .primary-action,
 .secondary-action,
 .reveal-action {
-  min-height: 48px;
+  min-height: var(--tap-target-comfort);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -522,7 +527,7 @@ dd {
 }
 
 .grade-button {
-  min-height: 64px;
+  min-height: 68px;
   display: grid;
   place-items: center;
   gap: 3px;
@@ -632,7 +637,7 @@ dd {
 }
 
 .search-box {
-  min-height: 42px;
+  min-height: var(--tap-target);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -667,7 +672,8 @@ dd {
 }
 
 .chapter-tabs button {
-  min-height: 32px;
+  min-width: var(--tap-target);
+  min-height: var(--tap-target);
   border-radius: 8px;
   padding: 0 10px;
   color: var(--muted);
@@ -985,7 +991,7 @@ dd {
   }
 
   .grade-button {
-    min-height: 52px;
+    min-height: 58px;
   }
 
   .study-card.answer-shown {
@@ -1078,8 +1084,8 @@ dd {
   }
 
   .icon-button {
-    width: 40px;
-    height: 40px;
+    width: var(--tap-target);
+    height: var(--tap-target);
   }
 
   .next-card-preview p {
@@ -1110,8 +1116,8 @@ dd {
   }
 
   .icon-button {
-    width: 36px;
-    height: 36px;
+    width: var(--tap-target);
+    height: var(--tap-target);
   }
 
   .review-surface {
@@ -1158,7 +1164,7 @@ dd {
   .primary-action,
   .secondary-action,
   .reveal-action {
-    min-height: 40px;
+    min-height: var(--tap-target);
   }
 
   .deck-panel {
@@ -1237,7 +1243,7 @@ dd {
   }
 
   .grade-button {
-    min-height: 42px;
+    min-height: var(--tap-target);
   }
 
   .grade-button span {
