@@ -1,15 +1,19 @@
-import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState, type ChangeEvent } from "react";
 import {
   BarChart3,
   BookOpen,
   CheckCircle2,
   Clock3,
+  Download,
   Eye,
   Flame,
   Layers3,
   Search,
+  Settings,
   Sparkles,
+  Trash2,
   Trophy,
+  Upload,
 } from "lucide-react";
 import { normalizeArabicForKey } from "@vocbay/core/arabic";
 import {
@@ -39,7 +43,7 @@ const REVIEW_STATE_KEY = "vocbay.ankiReviewState.v1";
 const PLAYER_STATE_KEY = "vocbay.playerState.v1";
 const BROWSER_CARD_LIMIT = 180;
 
-type Screen = "deck" | "study" | "browser" | "complete";
+type Screen = "deck" | "study" | "browser" | "complete" | "settings";
 type RewardFeedback = {
   id: number;
   xpGained: number;
@@ -98,6 +102,16 @@ export function App() {
     [chapterFilter, clock, deferredSearchTerm, reviewState, screen],
   );
   const chapters = useMemo(() => [...new Set(vocabularyCards.map((card) => card.chapter))], []);
+  const chapterSessionPosition = useMemo(() => {
+    const chapter = currentCard.chapter;
+    let seen = 0;
+    for (let i = 0; i <= currentIndex && i < studyQueue.length; i += 1) {
+      if (studyQueue[i]?.chapter === chapter) {
+        seen += 1;
+      }
+    }
+    return Math.max(1, seen);
+  }, [studyQueue, currentIndex, currentCard.chapter]);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -176,6 +190,38 @@ export function App() {
     setIsAnswerShown(false);
   }
 
+  function resetProgress() {
+    localStorage.removeItem(REVIEW_STATE_KEY);
+    localStorage.removeItem(PLAYER_STATE_KEY);
+    setReviewState({});
+    setPlayerState(createInitialPlayerState());
+    setStudyQueue([]);
+    setCurrentIndex(0);
+    setIsAnswerShown(false);
+    setRewardFeedback(null);
+    setScreen("deck");
+    setClock(Date.now());
+  }
+
+  function importProgress(data: unknown): boolean {
+    if (!data || typeof data !== "object") {
+      return false;
+    }
+    const payload = data as { reviewState?: ReviewState; playerState?: unknown };
+    if (!payload.reviewState || typeof payload.reviewState !== "object") {
+      return false;
+    }
+    setReviewState(payload.reviewState);
+    if (payload.playerState) {
+      setPlayerState(hydratePlayerState(payload.playerState));
+    }
+    setStudyQueue([]);
+    setCurrentIndex(0);
+    setClock(Date.now());
+    setScreen("deck");
+    return true;
+  }
+
   return (
     <main className="app-shell">
       <header className="app-header">
@@ -186,6 +232,9 @@ export function App() {
         <div className="header-actions">
           <button className="icon-button" type="button" aria-label="Open deck browser" onClick={() => setScreen("browser")}>
             <BookOpen size={20} aria-hidden="true" />
+          </button>
+          <button className="icon-button" type="button" aria-label="Settings" onClick={() => setScreen("settings")}>
+            <Settings size={20} aria-hidden="true" />
           </button>
         </div>
       </header>
@@ -213,6 +262,8 @@ export function App() {
               key={currentCard.id}
               card={currentCard}
               cardState={currentState}
+              chapterPosition={chapterSessionPosition}
+              playerState={playerState}
               isAnswerShown={isAnswerShown}
               now={clock}
               onReveal={() => setIsAnswerShown(true)}
@@ -227,6 +278,16 @@ export function App() {
               playerState={playerState}
               onStudy={startStudy}
               onBrowse={() => setScreen("browser")}
+            />
+          ) : null}
+
+          {screen === "settings" ? (
+            <SettingsPanel
+              reviewState={reviewState}
+              playerState={playerState}
+              onImport={importProgress}
+              onReset={resetProgress}
+              onClose={() => setScreen("deck")}
             />
           ) : null}
         </section>
@@ -333,6 +394,8 @@ function DeckHome({
 function StudyCard({
   card,
   cardState,
+  chapterPosition,
+  playerState,
   isAnswerShown,
   now,
   onReveal,
@@ -340,6 +403,8 @@ function StudyCard({
 }: {
   card: VocabularyCard;
   cardState: ReturnType<typeof getCardReviewState>;
+  chapterPosition: number;
+  playerState: PlayerState;
   isAnswerShown: boolean;
   now: number;
   onReveal: () => void;
@@ -349,10 +414,8 @@ function StudyCard({
   const masteryStep = getMasteryStep(cardState);
   const reviewCount = cardState.repetitions;
   const isNewCard = cardState.phase === "new" || reviewCount === 0;
-  const chapterCards = vocabularyCards.filter((entry) => entry.chapter === card.chapter);
-  const chapterTotal = chapterCards.length;
-  const chapterPosition = chapterCards.findIndex((entry) => entry.id === card.id) + 1;
-  const chapterRatio = chapterTotal ? chapterPosition / chapterTotal : 0;
+  const chapterTotal = vocabularyCards.filter((entry) => entry.chapter === card.chapter).length;
+  const chapterRatio = chapterTotal ? Math.min(1, chapterPosition / chapterTotal) : 0;
 
   return (
     <article className={`study-card ${isAnswerShown ? "answer-shown" : ""}`}>
@@ -402,7 +465,113 @@ function StudyCard({
           </button>
         )}
       </div>
+
+      <footer className="study-stats" aria-label="Your progress">
+        <span data-testid="study-streak">
+          <Flame size={13} aria-hidden="true" />
+          {playerState.streak}
+        </span>
+        <span data-testid="study-xp">
+          <Trophy size={13} aria-hidden="true" />
+          {playerState.xp} XP
+        </span>
+      </footer>
     </article>
+  );
+}
+
+function SettingsPanel({
+  reviewState,
+  playerState,
+  onImport,
+  onReset,
+  onClose,
+}: {
+  reviewState: ReviewState;
+  playerState: PlayerState;
+  onImport: (data: unknown) => boolean;
+  onReset: () => void;
+  onClose: () => void;
+}) {
+  const [confirmReset, setConfirmReset] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
+
+  function exportProgress() {
+    const payload = { version: 1, exportedAt: new Date().toISOString(), reviewState, playerState };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = `vocbay-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+    setNotice("Backup heruntergeladen.");
+  }
+
+  function handleImportFile(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(String(reader.result));
+        setNotice(onImport(parsed) ? "Fortschritt wiederhergestellt." : "Ungültige Backup-Datei.");
+      } catch {
+        setNotice("Ungültige Backup-Datei.");
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  return (
+    <div className="settings-panel">
+      <div className="settings-head">
+        <div>
+          <p className="eyebrow">Einstellungen</p>
+          <h2>Dein Fortschritt</h2>
+        </div>
+        <button className="secondary-action" type="button" onClick={onClose}>
+          Fertig
+        </button>
+      </div>
+
+      <div className="settings-actions">
+        <button className="settings-row" type="button" onClick={exportProgress}>
+          <Download size={18} aria-hidden="true" />
+          <span>
+            <strong>Backup exportieren</strong>
+            <em>Lade deinen Fortschritt als Datei</em>
+          </span>
+        </button>
+
+        <label className="settings-row">
+          <Upload size={18} aria-hidden="true" />
+          <span>
+            <strong>Backup importieren</strong>
+            <em>Stelle aus einer Datei wieder her</em>
+          </span>
+          <input type="file" accept="application/json" onChange={handleImportFile} hidden />
+        </label>
+
+        <button
+          className={`settings-row danger ${confirmReset ? "armed" : ""}`}
+          type="button"
+          data-testid="reset-progress"
+          onClick={() => (confirmReset ? onReset() : setConfirmReset(true))}
+        >
+          <Trash2 size={18} aria-hidden="true" />
+          <span>
+            <strong>{confirmReset ? "Wirklich? Nochmal tippen" : "Alles zurücksetzen"}</strong>
+            <em>{confirmReset ? "Löscht deinen gesamten Fortschritt" : "Setzt jede Karte auf neu"}</em>
+          </span>
+        </button>
+      </div>
+
+      {notice ? <p className="settings-notice">{notice}</p> : null}
+    </div>
   );
 }
 

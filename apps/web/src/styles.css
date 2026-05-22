@@ -283,7 +283,7 @@ h2 {
 }
 
 .study-card {
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
 }
 
 .home-copy h2 {
@@ -525,6 +525,120 @@ h2 {
   background: var(--accent);
   transform-origin: left center;
   transition: transform 360ms var(--ease-out-quint);
+}
+
+.study-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-faint);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.study-stats span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.study-stats svg {
+  opacity: 0.65;
+}
+
+.settings-panel {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  padding: 22px;
+}
+
+.settings-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.settings-head h2 {
+  margin: 2px 0 0;
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+}
+
+.settings-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line-faint);
+  border-radius: 12px;
+  background: var(--surface);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition:
+    border-color 160ms var(--ease-out-quart),
+    background 160ms var(--ease-out-quart),
+    transform 160ms var(--ease-out-quint);
+}
+
+.settings-row:hover {
+  border-color: var(--accent-line);
+}
+
+.settings-row:active {
+  transform: scale(0.99);
+}
+
+.settings-row svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.settings-row span {
+  display: grid;
+  gap: 2px;
+}
+
+.settings-row strong {
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.settings-row em {
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.settings-row.danger svg {
+  color: var(--danger, oklch(55% 0.18 25));
+}
+
+.settings-row.danger.armed {
+  border-color: var(--danger, oklch(55% 0.18 25));
+  background: oklch(96% 0.04 25);
+}
+
+.settings-row.danger.armed strong {
+  color: var(--danger, oklch(48% 0.2 25));
+}
+
+.settings-notice {
+  margin: 0;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
 }
 
 .familiarity-badge {

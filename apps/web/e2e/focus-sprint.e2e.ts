@@ -115,3 +115,19 @@ test("imported deck can review the first 30 cards without breaking", async ({ pa
 
   await expect(page.getByTestId("session-progress")).toHaveText(/^31 \/ \d+$/);
 });
+
+test("settings reset requires a confirm tap", async ({ page }) => {
+  await getImportedDeckTotal(page);
+  await page.getByRole("button", { name: "Settings" }).click();
+  await expect(page.getByRole("heading", { name: "Dein Fortschritt" })).toBeVisible();
+
+  const reset = page.getByTestId("reset-progress");
+  await expect(reset).toContainText("Alles zurücksetzen");
+
+  await reset.click();
+  await expect(reset).toContainText("Nochmal tippen");
+  await expect(page.getByRole("heading", { name: "Dein Fortschritt" })).toBeVisible();
+
+  await reset.click();
+  await expect(page.getByRole("button", { name: "Study now" }).first()).toBeVisible();
+});
