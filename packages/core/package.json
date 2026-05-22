@@ -6,6 +6,7 @@
     ".": "./src/index.ts",
     "./ai": "./src/ai/validateOneUnknown.ts",
     "./arabic": "./src/arabic/normalize.ts",
+    "./scheduler": "./src/scheduler/index.ts",
     "./ingestion": "./src/ingestion/verbPreposition.ts",
     "./db/client": "./src/db/client.ts",
     "./db/schema": "./src/db/schema.ts"

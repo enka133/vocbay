@@ -1,3 +1,10 @@
+import {
+  LAPSE_SANDBOX_MS,
+  createFsrsParameters,
+  effectiveGrade,
+  reviewCard,
+  type MemoryModelState,
+} from "@vocbay/core/scheduler";
 import type { VocabularyCard } from "./vocabulary";
 
 export type Rating = "again" | "hard" | "good" | "easy";
@@ -10,6 +17,8 @@ export interface CardReviewState {
   intervalDays: number;
   repetitions: number;
   lapses: number;
+  stability: number;
+  difficulty: number;
   lastReviewedAt?: number;
   lastRating?: Rating;
 }
@@ -35,6 +44,8 @@ export const ratingLabels: Record<Rating, string> = {
   easy: "Easy",
 };
 
+const fsrsParams = createFsrsParameters();
+
 export function createInitialCardState(now = Date.now()): CardReviewState {
   return {
     phase: "new",
@@ -43,6 +54,8 @@ export function createInitialCardState(now = Date.now()): CardReviewState {
     intervalDays: 0,
     repetitions: 0,
     lapses: 0,
+    stability: 0,
+    difficulty: 0,
   };
 }
 
@@ -94,9 +107,15 @@ export function getDeckStats(cards: VocabularyCard[], reviewState: ReviewState, 
   );
 }
 
-export function gradeCardReview(reviewState: ReviewState, cardId: string, rating: Rating, now = Date.now()): ReviewState {
+export function gradeCardReview(
+  reviewState: ReviewState,
+  cardId: string,
+  rating: Rating,
+  now = Date.now(),
+  responseLatencyMs = 0,
+): ReviewState {
   const previous = getCardReviewState(reviewState, cardId, now);
-  const next = scheduleRating(previous, rating, now);
+  const next = scheduleRating(previous, rating, now, responseLatencyMs);
 
   return {
     ...reviewState,
@@ -105,7 +124,7 @@ export function gradeCardReview(reviewState: ReviewState, cardId: string, rating
 }
 
 export function previewRating(previous: CardReviewState, rating: Rating, now = Date.now()) {
-  return scheduleRating(previous, rating, now);
+  return scheduleRating(previous, rating, now, 0);
 }
 
 export function getCardStatus(state: CardReviewState | undefined, now = Date.now()) {
@@ -142,82 +161,56 @@ export function formatDueDistance(dueAt: number, now = Date.now()) {
   return `${Math.ceil(distance / dayMs)}d`;
 }
 
-function scheduleRating(previous: CardReviewState, rating: Rating, now: number): CardReviewState {
-  const easeFactor = clampEase(previous.easeFactor);
-  const currentInterval = Math.max(previous.intervalDays, previous.phase === "review" ? 1 : 0);
-  const reviewBase = {
-    lastReviewedAt: now,
-    lastRating: rating,
-    repetitions: previous.repetitions + 1,
-    lapses: previous.lapses,
-  };
-
-  if (rating === "again") {
-    return {
-      ...previous,
-      ...reviewBase,
-      phase: previous.phase === "review" ? "relearning" : "learning",
-      dueAt: now + minuteMs,
-      easeFactor: clampEase(easeFactor - 0.2),
-      intervalDays: 0,
-      lapses: previous.lapses + (previous.phase === "review" ? 1 : 0),
-    };
-  }
-
-  if (rating === "hard") {
-    if (previous.phase === "new" || previous.phase === "learning" || previous.phase === "relearning") {
-      return {
-        ...previous,
-        ...reviewBase,
-        phase: "learning",
-        dueAt: now + 10 * minuteMs,
-        easeFactor: clampEase(easeFactor - 0.15),
-        intervalDays: 0,
-      };
-    }
-
-    const intervalDays = Math.max(1, Math.ceil(currentInterval * 1.2));
-    return {
-      ...previous,
-      ...reviewBase,
-      phase: "review",
-      dueAt: now + intervalDays * dayMs,
-      easeFactor: clampEase(easeFactor - 0.15),
-      intervalDays,
-    };
-  }
-
-  if (rating === "good") {
-    const intervalDays =
-      previous.phase === "new" || previous.phase === "learning" || previous.phase === "relearning"
-        ? 1
-        : Math.max(currentInterval + 1, Math.ceil(currentInterval * easeFactor));
-
-    return {
-      ...previous,
-      ...reviewBase,
-      phase: "review",
-      dueAt: now + intervalDays * dayMs,
-      easeFactor,
-      intervalDays,
-    };
-  }
-
-  const intervalDays =
-    previous.phase === "new" || previous.phase === "learning" || previous.phase === "relearning"
-      ? 4
-      : Math.max(currentInterval + 2, Math.ceil(currentInterval * easeFactor * 1.3));
-
-  return {
-    ...previous,
-    ...reviewBase,
-    phase: "review",
-    dueAt: now + intervalDays * dayMs,
-    easeFactor: clampEase(easeFactor + 0.15),
-    intervalDays,
-  };
+function isUnreviewed(state: CardReviewState): boolean {
+  return state.phase === "new" || state.repetitions === 0 || state.stability <= 0;
 }
 
-function clampEase(easeFactor: number) {
-  return Math.min(3.3, Math.max(1.3, easeFactor));
+function scheduleRating(previous: CardReviewState, rating: Rating, now: number, responseLatencyMs: number): CardReviewState {
+  // Latency is signal: a slow "Good" is treated as a "Hard" for scheduling. The raw rating is
+  // still stored so rewards and the hidden mastery color reflect the button the learner pressed.
+  const graded = effectiveGrade({ rating, responseLatencyMs });
+
+  const priorState: MemoryModelState | null = isUnreviewed(previous)
+    ? null
+    : {
+        stability: previous.stability,
+        difficulty: previous.difficulty,
+        retrievability: 1,
+        dueAt: new Date(previous.dueAt),
+      };
+
+  const elapsedDays = previous.lastReviewedAt ? (now - previous.lastReviewedAt) / dayMs : 0;
+  const outcome = reviewCard(priorState, graded, elapsedDays, new Date(now), fsrsParams);
+
+  const isLapse = rating === "again";
+  const wasReview = previous.phase === "review";
+
+  if (isLapse) {
+    // 15-minute sandbox: a failed card leaves short-term memory before it can be re-presented.
+    return {
+      phase: wasReview ? "relearning" : "learning",
+      dueAt: now + LAPSE_SANDBOX_MS,
+      easeFactor: previous.easeFactor,
+      intervalDays: 0,
+      repetitions: previous.repetitions + 1,
+      lapses: previous.lapses + (wasReview ? 1 : 0),
+      stability: outcome.state.stability,
+      difficulty: outcome.state.difficulty,
+      lastReviewedAt: now,
+      lastRating: rating,
+    };
+  }
+
+  return {
+    phase: outcome.intervalDays >= 1 ? "review" : "learning",
+    dueAt: now + outcome.intervalDays * dayMs,
+    easeFactor: previous.easeFactor,
+    intervalDays: outcome.intervalDays,
+    repetitions: previous.repetitions + 1,
+    lapses: previous.lapses,
+    stability: outcome.state.stability,
+    difficulty: outcome.state.difficulty,
+    lastReviewedAt: now,
+    lastRating: rating,
+  };
 }

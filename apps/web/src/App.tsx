@@ -62,6 +62,7 @@ export function App() {
   const [chapterFilter, setChapterFilter] = useState<number | "all">("all");
   const [clock, setClock] = useState(() => Date.now());
   const [rewardFeedback, setRewardFeedback] = useState<RewardFeedback | null>(null);
+  const [revealedAt, setRevealedAt] = useState<number | null>(null);
   const deferredSearchTerm = useDeferredValue(searchTerm);
 
   useEffect(() => {
@@ -85,6 +86,10 @@ export function App() {
     const timer = window.setTimeout(() => setRewardFeedback(null), 190);
     return () => window.clearTimeout(timer);
   }, [rewardFeedback]);
+
+  useEffect(() => {
+    setRevealedAt(isAnswerShown ? Date.now() : null);
+  }, [isAnswerShown]);
 
   const deckStats = useMemo(() => getDeckStats(vocabularyCards, reviewState, clock), [reviewState, clock]);
   const studyPreview = useMemo(() => buildStudyQueue(vocabularyCards, reviewState, clock), [reviewState, clock]);
@@ -149,6 +154,7 @@ export function App() {
 
   function gradeCurrentCard(rating: Rating) {
     const now = Date.now();
+    const responseLatencyMs = revealedAt ? now - revealedAt : 0;
     const reward = applyReviewReward(playerState, rating, now);
 
     setPlayerState(reward.state);
@@ -161,7 +167,7 @@ export function App() {
       });
     }
 
-    setReviewState((state) => gradeCardReview(state, currentCard.id, rating, now));
+    setReviewState((state) => gradeCardReview(state, currentCard.id, rating, now, responseLatencyMs));
     setClock(now);
 
     if (currentIndex + 1 >= studyQueue.length) {
