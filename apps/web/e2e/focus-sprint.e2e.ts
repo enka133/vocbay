@@ -24,7 +24,7 @@ test("anki-style review starts, reveals, and schedules the first card", async ({
   await expect(page.getByRole("button", { name: "Show answer" })).toBeVisible();
 
   await page.getByRole("button", { name: "Show answer" }).click();
-  await expect(page.getByText("To look")).toBeVisible();
+  await expect(page.getByTestId("answer-meaning")).toHaveText("He looked");
   const answerFacts = page.getByTestId("answer-facts");
   await expect(answerFacts.getByText("Past")).toBeVisible();
   await expect(answerFacts.getByText("Preposition")).toBeVisible();
@@ -47,10 +47,30 @@ test("keyboard review flow supports reveal and numeric grading", async ({ page }
   await page.getByRole("button", { name: "Study now" }).first().click();
 
   await page.keyboard.press("Space");
-  await expect(page.getByText("To look")).toBeVisible();
+  await expect(page.getByTestId("answer-meaning")).toHaveText("He looked");
 
   await page.keyboard.press("3");
   await expect(page.getByTestId("session-progress")).toHaveText(`2 / ${total}`);
+});
+
+test("verb answer meaning follows the active form role", async ({ page }) => {
+  await getImportedDeckTotal(page);
+  await page.getByRole("button", { name: "Study now" }).first().click();
+
+  await page.getByRole("button", { name: "Show answer" }).click();
+  await expect(page.getByTestId("answer-meaning")).toHaveText("He looked");
+
+  await page.getByRole("button", { name: /Good/ }).click();
+  await page.getByRole("button", { name: "Show answer" }).click();
+  await expect(page.getByTestId("answer-meaning")).toHaveText("He looks");
+
+  await page.getByRole("button", { name: /Good/ }).click();
+  await page.getByRole("button", { name: "Show answer" }).click();
+  await expect(page.getByTestId("answer-meaning")).toHaveText("Look!");
+
+  await page.getByRole("button", { name: /Good/ }).click();
+  await page.getByRole("button", { name: "Show answer" }).click();
+  await expect(page.getByTestId("answer-meaning")).toHaveText("Looking");
 });
 
 test("imported deck can review the first 30 cards without breaking", async ({ page }) => {

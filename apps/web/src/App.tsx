@@ -25,6 +25,7 @@ import {
   type Rating,
   type ReviewState,
 } from "./scheduler";
+import { getAnswerMeaning } from "./formMeanings";
 import {
   applyReviewReward,
   createInitialPlayerState,
@@ -420,12 +421,13 @@ function StudyCard({
 
 function AnswerPanel({ card }: { card: VocabularyCard }) {
   const facts = getAnswerFacts(card);
+  const answerMeaning = getAnswerMeaning(card);
 
   return (
     <div className="answer-panel">
       <div>
         <p className="answer-label">Back</p>
-        <strong>{card.answer}</strong>
+        <strong data-testid="answer-meaning">{answerMeaning}</strong>
       </div>
 
       {facts.length ? (
