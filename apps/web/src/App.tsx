@@ -5,9 +5,12 @@ import {
   CheckCircle2,
   Clock3,
   Eye,
+  Flame,
   Layers3,
   RotateCcw,
   Search,
+  Sparkles,
+  Trophy,
 } from "lucide-react";
 import { normalizeArabicForKey } from "@vocbay/core/arabic";
 import {
@@ -22,13 +25,28 @@ import {
   type Rating,
   type ReviewState,
 } from "./scheduler";
+import {
+  applyReviewReward,
+  createInitialPlayerState,
+  getLevelProgress,
+  getRankInfo,
+  hydratePlayerState,
+  type PlayerState,
+} from "./rewards";
 import { vocabularyCards, type VocabularyCard } from "./vocabulary";
 
 const REVIEW_STATE_KEY = "vocbay.ankiReviewState.v1";
 const LEGACY_STATE_KEY = "vocbay.studyStats.v1";
+const PLAYER_STATE_KEY = "vocbay.playerState.v1";
 const BROWSER_CARD_LIMIT = 180;
 
 type Screen = "deck" | "study" | "browser" | "complete";
+type RewardFeedback = {
+  id: number;
+  xpGained: number;
+  message: string;
+  streak: number;
+};
 
 const fallbackCard = vocabularyCards[0]!;
 
@@ -37,10 +55,12 @@ export function App() {
   const [isAnswerShown, setIsAnswerShown] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [reviewState, setReviewState] = useState<ReviewState>(() => loadReviewState());
+  const [playerState, setPlayerState] = useState<PlayerState>(() => loadPlayerState());
   const [studyQueue, setStudyQueue] = useState<VocabularyCard[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [chapterFilter, setChapterFilter] = useState<number | "all">("all");
   const [clock, setClock] = useState(() => Date.now());
+  const [rewardFeedback, setRewardFeedback] = useState<RewardFeedback | null>(null);
   const deferredSearchTerm = useDeferredValue(searchTerm);
 
   useEffect(() => {
@@ -48,9 +68,22 @@ export function App() {
   }, [reviewState]);
 
   useEffect(() => {
+    localStorage.setItem(PLAYER_STATE_KEY, JSON.stringify(playerState));
+  }, [playerState]);
+
+  useEffect(() => {
     const timer = window.setInterval(() => setClock(Date.now()), 30_000);
     return () => window.clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (!rewardFeedback) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => setRewardFeedback(null), 190);
+    return () => window.clearTimeout(timer);
+  }, [rewardFeedback]);
 
   const deckStats = useMemo(() => getDeckStats(vocabularyCards, reviewState, clock), [reviewState, clock]);
   const studyPreview = useMemo(() => buildStudyQueue(vocabularyCards, reviewState, clock), [reviewState, clock]);
@@ -115,6 +148,18 @@ export function App() {
 
   function gradeCurrentCard(rating: Rating) {
     const now = Date.now();
+    const reward = applyReviewReward(playerState, rating, now);
+
+    setPlayerState(reward.state);
+    if (reward.isSuccess) {
+      setRewardFeedback({
+        id: now,
+        xpGained: reward.xpGained,
+        message: reward.message,
+        streak: reward.state.streak,
+      });
+    }
+
     setReviewState((state) => gradeCardReview(state, currentCard.id, rating, now));
     setClock(now);
 
@@ -131,10 +176,13 @@ export function App() {
   function resetProgress() {
     localStorage.removeItem(REVIEW_STATE_KEY);
     localStorage.removeItem(LEGACY_STATE_KEY);
+    localStorage.removeItem(PLAYER_STATE_KEY);
     setReviewState({});
+    setPlayerState(createInitialPlayerState());
     setStudyQueue([]);
     setCurrentIndex(0);
     setIsAnswerShown(false);
+    setRewardFeedback(null);
     setScreen("deck");
     setClock(Date.now());
   }
@@ -165,7 +213,13 @@ export function App() {
 
         <section className="review-surface" aria-live="polite">
           {screen === "deck" || screen === "browser" ? (
-            <DeckHome stats={deckStats} queueSize={studyPreview.length} nextCard={studyPreview[0] ?? fallbackCard} onStudy={startStudy} />
+            <DeckHome
+              stats={deckStats}
+              playerState={playerState}
+              queueSize={studyPreview.length}
+              nextCard={studyPreview[0] ?? fallbackCard}
+              onStudy={startStudy}
+            />
           ) : null}
 
           {screen === "study" ? (
@@ -175,6 +229,7 @@ export function App() {
               cardState={currentState}
               cardStatus={currentStatus}
               isAnswerShown={isAnswerShown}
+              playerState={playerState}
               progress={sessionProgress}
               now={clock}
               onReveal={() => setIsAnswerShown(true)}
@@ -183,7 +238,13 @@ export function App() {
           ) : null}
 
           {screen === "complete" ? (
-            <CompleteState reviewedCount={studyQueue.length} stats={deckStats} onStudy={startStudy} onBrowse={() => setScreen("browser")} />
+            <CompleteState
+              reviewedCount={studyQueue.length}
+              stats={deckStats}
+              playerState={playerState}
+              onStudy={startStudy}
+              onBrowse={() => setScreen("browser")}
+            />
           ) : null}
         </section>
 
@@ -200,6 +261,8 @@ export function App() {
           />
         ) : null}
       </div>
+
+      {rewardFeedback ? <RewardBurst key={rewardFeedback.id} feedback={rewardFeedback} /> : null}
     </main>
   );
 }
@@ -238,11 +301,13 @@ function DeckPanel({
 
 function DeckHome({
   stats,
+  playerState,
   queueSize,
   nextCard,
   onStudy,
 }: {
   stats: ReturnType<typeof getDeckStats>;
+  playerState: PlayerState;
   queueSize: number;
   nextCard: VocabularyCard;
   onStudy: () => void;
@@ -253,6 +318,8 @@ function DeckHome({
         <p className="eyebrow">Today</p>
         <h2>{queueSize > 0 ? "Start your queue" : "No cards due"}</h2>
       </div>
+
+      <RankStrip playerState={playerState} />
 
       <div className="next-card-preview">
         <div className="next-card-meta">
@@ -285,6 +352,7 @@ function StudyCard({
   cardState,
   cardStatus,
   isAnswerShown,
+  playerState,
   progress,
   now,
   onReveal,
@@ -294,6 +362,7 @@ function StudyCard({
   cardState: ReturnType<typeof getCardReviewState>;
   cardStatus: string;
   isAnswerShown: boolean;
+  playerState: PlayerState;
   progress: string;
   now: number;
   onReveal: () => void;
@@ -308,6 +377,8 @@ function StudyCard({
         <span>Chapter {card.chapter}</span>
         {card.formRole ? <span>{formatFormRole(card.formRole)}</span> : null}
         <span>{cardStatus}</span>
+        <span data-testid="study-streak">{playerState.streak} streak</span>
+        <span data-testid="study-xp">{playerState.xp} XP</span>
       </div>
 
       <div className="front-side">
@@ -398,11 +469,13 @@ function getAnswerFacts(card: VocabularyCard) {
 function CompleteState({
   reviewedCount,
   stats,
+  playerState,
   onStudy,
   onBrowse,
 }: {
   reviewedCount: number;
   stats: ReturnType<typeof getDeckStats>;
+  playerState: PlayerState;
   onStudy: () => void;
   onBrowse: () => void;
 }) {
@@ -418,6 +491,7 @@ function CompleteState({
         <h2>Session complete</h2>
         <p data-testid="reviewed-count">{reviewedCount} cards reviewed.</p>
       </div>
+      <RankStrip playerState={playerState} compact />
       <div className="complete-actions">
         <button className="primary-action" type="button" onClick={onStudy} disabled={remaining === 0}>
           <Clock3 size={18} aria-hidden="true" />
@@ -428,6 +502,49 @@ function CompleteState({
           Browse
         </button>
       </div>
+    </div>
+  );
+}
+
+function RankStrip({ playerState, compact = false }: { playerState: PlayerState; compact?: boolean }) {
+  const rank = getRankInfo(playerState.level);
+  const progress = getLevelProgress(playerState.xp, playerState.level);
+  const accuracy = playerState.todayReviews ? Math.round((playerState.todayCorrect / playerState.todayReviews) * 100) : 0;
+
+  return (
+    <section className={`rank-strip ${compact ? "compact" : ""}`} aria-label="Rank progress" data-testid="rank-strip">
+      <div className="rank-line">
+        <div>
+          <span>
+            <Trophy size={16} aria-hidden="true" />
+            {rank.name}
+          </span>
+          <p>{rank.subtitle}</p>
+        </div>
+        <strong data-testid="player-xp">{playerState.xp} XP</strong>
+      </div>
+      <div className="rank-meter" aria-label={`Level ${playerState.level} progress`}>
+        <span style={{ transform: `scaleX(${progress.ratio})` }} />
+      </div>
+      <div className="rank-stats">
+        <span>
+          <Flame size={14} aria-hidden="true" />
+          <strong data-testid="player-streak">{playerState.streak}</strong> streak
+        </span>
+        <span>Lv {playerState.level}</span>
+        <span>{accuracy}% today</span>
+      </div>
+    </section>
+  );
+}
+
+function RewardBurst({ feedback }: { feedback: RewardFeedback }) {
+  return (
+    <div className="reward-burst" aria-hidden="true">
+      <Sparkles size={16} aria-hidden="true" />
+      <strong>+{feedback.xpGained} XP</strong>
+      <span>{feedback.message}</span>
+      <em>{feedback.streak} streak</em>
     </div>
   );
 }
@@ -608,5 +725,14 @@ function loadReviewState(): ReviewState {
     return raw ? (JSON.parse(raw) as ReviewState) : {};
   } catch {
     return {};
+  }
+}
+
+function loadPlayerState(): PlayerState {
+  try {
+    const raw = localStorage.getItem(PLAYER_STATE_KEY);
+    return raw ? hydratePlayerState(JSON.parse(raw)) : createInitialPlayerState();
+  } catch {
+    return createInitialPlayerState();
   }
 }

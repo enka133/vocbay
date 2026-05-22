@@ -38,6 +38,8 @@ test("anki-style review starts, reveals, and schedules the first card", async ({
 
   await page.getByRole("button", { name: /Good/ }).click();
   await expect(page.getByTestId("session-progress")).toHaveText(`2 / ${total}`);
+  await expect(page.getByTestId("study-xp")).toHaveText("10 XP");
+  await expect(page.getByTestId("study-streak")).toHaveText("1 streak");
 });
 
 test("keyboard review flow supports reveal and numeric grading", async ({ page }) => {
