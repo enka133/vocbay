@@ -949,10 +949,6 @@ dd {
   transform: translateY(-2px);
 }
 
-.study-card.answer-shown mark {
-  animation: targetConfirm 260ms var(--ease-out-quint) both;
-}
-
 @keyframes cardAdvance {
   from {
     opacity: 0;
@@ -1017,18 +1013,6 @@ dd {
 
   to {
     opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes targetConfirm {
-  from {
-    background: var(--accent-soft);
-    transform: scale(0.98);
-  }
-
-  to {
-    background: var(--accent-soft);
     transform: scale(1);
   }
 }

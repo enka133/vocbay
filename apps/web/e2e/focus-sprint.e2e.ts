@@ -23,10 +23,13 @@ test("anki-style review starts, reveals, and schedules the first card", async ({
   await expect(page.getByTestId("session-progress")).toHaveText(`1 / ${total}`);
   await expect(page.getByRole("button", { name: "Show answer" })).toBeVisible();
 
+  const targetMastery = page.getByTestId("target-mastery");
+  const targetBackgroundBeforeReveal = await targetMastery.evaluate((node) => getComputedStyle(node).backgroundColor);
   await page.getByRole("button", { name: "Show answer" }).click();
   await expect(page.getByTestId("answer-meaning")).toHaveText("He looked");
   await expect(page.getByText("Back")).toHaveCount(0);
-  await expect(page.getByTestId("target-mastery")).toHaveAttribute("data-mastery-step", "0");
+  await expect(targetMastery).toHaveAttribute("data-mastery-step", "0");
+  await expect.poll(() => targetMastery.evaluate((node) => getComputedStyle(node).backgroundColor)).toBe(targetBackgroundBeforeReveal);
   await expect(page.getByTestId("answer-facts")).toHaveCount(0);
   await expect(page.getByText("Preposition")).toHaveCount(0);
   await expect(page.getByText("إِلَى")).toHaveCount(0);
