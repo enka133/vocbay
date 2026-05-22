@@ -447,15 +447,6 @@ function getAnswerFacts(card: VocabularyCard) {
   const facts: { label: string; value: string }[] = [];
 
   if (card.formRole) {
-    facts.push({
-      label: formatFormRole(card.formRole),
-      value: card.forms?.[card.formRole] ?? card.target,
-    });
-
-    if (card.requiredPreposition) {
-      facts.push({ label: "Preposition", value: card.requiredPreposition });
-    }
-
     return facts;
   }
 

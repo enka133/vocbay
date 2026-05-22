@@ -25,12 +25,9 @@ test("anki-style review starts, reveals, and schedules the first card", async ({
 
   await page.getByRole("button", { name: "Show answer" }).click();
   await expect(page.getByTestId("answer-meaning")).toHaveText("He looked");
-  const answerFacts = page.getByTestId("answer-facts");
-  await expect(answerFacts.getByText("Past")).toBeVisible();
-  await expect(answerFacts.getByText("Preposition")).toBeVisible();
-  await expect(answerFacts.getByText("Present")).toHaveCount(0);
-  await expect(answerFacts.getByText("Command")).toHaveCount(0);
-  await expect(answerFacts.getByText("Masdar")).toHaveCount(0);
+  await expect(page.getByTestId("answer-facts")).toHaveCount(0);
+  await expect(page.getByText("Preposition")).toHaveCount(0);
+  await expect(page.getByText("إِلَى")).toHaveCount(0);
   await expect(page.getByRole("button", { name: /Again/ })).toBeVisible();
   await expect(page.getByRole("button", { name: /Hard/ })).toBeVisible();
   await expect(page.getByRole("button", { name: /Good/ })).toBeVisible();
