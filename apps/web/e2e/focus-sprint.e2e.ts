@@ -25,6 +25,8 @@ test("anki-style review starts, reveals, and schedules the first card", async ({
 
   await page.getByRole("button", { name: "Show answer" }).click();
   await expect(page.getByTestId("answer-meaning")).toHaveText("He looked");
+  await expect(page.getByText("Back")).toHaveCount(0);
+  await expect(page.getByTestId("target-mastery")).toHaveAttribute("data-mastery-step", "0");
   await expect(page.getByTestId("answer-facts")).toHaveCount(0);
   await expect(page.getByText("Preposition")).toHaveCount(0);
   await expect(page.getByText("إِلَى")).toHaveCount(0);
@@ -68,6 +70,31 @@ test("verb answer meaning follows the active form role", async ({ page }) => {
   await page.getByRole("button", { name: /Good/ }).click();
   await page.getByRole("button", { name: "Show answer" }).click();
   await expect(page.getByTestId("answer-meaning")).toHaveText("Looking");
+});
+
+test("target color reflects hidden mastery step", async ({ page }) => {
+  await page.evaluate(() => {
+    localStorage.setItem(
+      "vocbay.ankiReviewState.v1",
+      JSON.stringify({
+        "ch1-verb-نظر-to-look-past": {
+          phase: "review",
+          dueAt: Date.now() - 1_000,
+          easeFactor: 2.7,
+          intervalDays: 21,
+          repetitions: 8,
+          lapses: 0,
+          lastReviewedAt: Date.now() - 86_400_000,
+          lastRating: "easy",
+        },
+      }),
+    );
+  });
+  await page.reload({ waitUntil: "networkidle" });
+  await getImportedDeckTotal(page);
+
+  await page.getByRole("button", { name: "Study now" }).first().click();
+  await expect(page.getByTestId("target-mastery")).toHaveAttribute("data-mastery-step", "100");
 });
 
 test("imported deck can review the first 30 cards without breaking", async ({ page }) => {

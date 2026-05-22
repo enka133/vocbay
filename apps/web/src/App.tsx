@@ -370,6 +370,7 @@ function StudyCard({
   onGrade: (rating: Rating) => void;
 }) {
   const targetKey = normalizeArabicForKey(card.target);
+  const masteryStep = getMasteryStep(cardState);
 
   return (
     <article className={`study-card ${isAnswerShown ? "answer-shown" : ""}`}>
@@ -386,7 +387,7 @@ function StudyCard({
         <div className="front-side">
           <p className="prompt-text">{card.prompt}</p>
           <p className="arabic-sentence" dir="rtl" lang="ar">
-            {renderArabicWithHighlight(card)}
+            {renderArabicWithHighlight(card, masteryStep)}
           </p>
           <p className="key-line">
             <code>{targetKey}</code>
@@ -426,7 +427,6 @@ function AnswerPanel({ card }: { card: VocabularyCard }) {
   return (
     <div className="answer-panel">
       <div>
-        <p className="answer-label">Back</p>
         <strong data-testid="answer-meaning">{answerMeaning}</strong>
       </div>
 
@@ -655,7 +655,7 @@ function Fact({ label, value }: { label: string; value: string }) {
   );
 }
 
-function renderArabicWithHighlight(card: VocabularyCard) {
+function renderArabicWithHighlight(card: VocabularyCard, masteryStep: MasteryStep) {
   const [before, after] = card.arabic.split(card.target);
 
   if (before === undefined || after === undefined) {
@@ -665,10 +665,65 @@ function renderArabicWithHighlight(card: VocabularyCard) {
   return (
     <>
       {before}
-      <mark>{card.target}</mark>
+      <mark className={`mastery-${masteryStep}`} data-testid="target-mastery" data-mastery-step={masteryStep}>
+        {card.target}
+      </mark>
       {after}
     </>
   );
+}
+
+type MasteryStep = 0 | 20 | 40 | 60 | 80 | 100;
+
+function getMasteryStep(state: ReturnType<typeof getCardReviewState>): MasteryStep {
+  if (state.phase === "new" || state.repetitions === 0) {
+    return 0;
+  }
+
+  if (state.lastRating === "again") {
+    return 0;
+  }
+
+  if (state.lastRating === "hard") {
+    return 20;
+  }
+
+  const intervalStep = getIntervalMasteryStep(state.intervalDays);
+
+  if (state.lastRating === "easy") {
+    return clampMasteryStep(intervalStep + 20, 60);
+  }
+
+  if (state.lastRating === "good") {
+    return clampMasteryStep(intervalStep, 40);
+  }
+
+  return intervalStep;
+}
+
+function getIntervalMasteryStep(intervalDays: number): MasteryStep {
+  if (intervalDays >= 21) {
+    return 100;
+  }
+
+  if (intervalDays >= 7) {
+    return 80;
+  }
+
+  if (intervalDays >= 4) {
+    return 60;
+  }
+
+  if (intervalDays >= 1) {
+    return 40;
+  }
+
+  return 20;
+}
+
+function clampMasteryStep(step: number, minimum: MasteryStep): MasteryStep {
+  const rounded = Math.ceil(step / 20) * 20;
+  return Math.min(100, Math.max(minimum, rounded)) as MasteryStep;
 }
 
 function filterCards(

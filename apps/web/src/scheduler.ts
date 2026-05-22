@@ -11,6 +11,7 @@ export interface CardReviewState {
   repetitions: number;
   lapses: number;
   lastReviewedAt?: number;
+  lastRating?: Rating;
 }
 
 export type ReviewState = Record<string, CardReviewState>;
@@ -146,6 +147,7 @@ function scheduleRating(previous: CardReviewState, rating: Rating, now: number):
   const currentInterval = Math.max(previous.intervalDays, previous.phase === "review" ? 1 : 0);
   const reviewBase = {
     lastReviewedAt: now,
+    lastRating: rating,
     repetitions: previous.repetitions + 1,
     lapses: previous.lapses,
   };

@@ -536,10 +536,59 @@ h2 {
 }
 
 mark {
-  color: var(--accent);
-  background: var(--accent-soft);
-  border-radius: 6px;
-  padding: 0 0.16em;
+  --mastery-bg: var(--accent-soft);
+  --mastery-ink: var(--accent);
+  --mastery-line: var(--accent-line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--mastery-line);
+  border-radius: 8px;
+  padding: 0.05em 0.22em 0.08em;
+  color: var(--mastery-ink);
+  background: var(--mastery-bg);
+  font-size: 1.2em;
+  line-height: 1.05;
+  transition:
+    background-color 180ms var(--ease-out-quart),
+    border-color 180ms var(--ease-out-quart),
+    color 180ms var(--ease-out-quart);
+}
+
+.mastery-0 {
+  --mastery-bg: oklch(92.8% 0.055 28);
+  --mastery-ink: oklch(36% 0.14 28);
+  --mastery-line: oklch(50% 0.12 28 / 0.3);
+}
+
+.mastery-20 {
+  --mastery-bg: oklch(93.6% 0.052 55);
+  --mastery-ink: oklch(42% 0.11 54);
+  --mastery-line: oklch(55% 0.11 54 / 0.28);
+}
+
+.mastery-40 {
+  --mastery-bg: oklch(94% 0.052 86);
+  --mastery-ink: oklch(40% 0.095 86);
+  --mastery-line: oklch(55% 0.095 86 / 0.28);
+}
+
+.mastery-60 {
+  --mastery-bg: oklch(93.8% 0.05 128);
+  --mastery-ink: oklch(37% 0.105 134);
+  --mastery-line: oklch(50% 0.1 134 / 0.28);
+}
+
+.mastery-80 {
+  --mastery-bg: oklch(93.4% 0.052 153);
+  --mastery-ink: oklch(35% 0.105 153);
+  --mastery-line: oklch(49% 0.105 153 / 0.28);
+}
+
+.mastery-100 {
+  --mastery-bg: oklch(92.8% 0.06 166);
+  --mastery-ink: oklch(31% 0.11 166);
+  --mastery-line: oklch(44% 0.105 166 / 0.3);
 }
 
 .key-line {
@@ -571,18 +620,10 @@ code {
   transform-origin: top center;
 }
 
-.answer-label {
-  margin: 0 0 3px;
-  color: var(--subtle);
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
 .answer-panel strong {
   color: var(--ink);
-  font-size: 1.55rem;
-  line-height: 1.2;
+  font-size: 2.05rem;
+  line-height: 1.08;
 }
 
 .translation {
@@ -1227,12 +1268,8 @@ dd {
     align-content: center;
   }
 
-  .answer-label {
-    font-size: 0.68rem;
-  }
-
   .answer-panel strong {
-    font-size: 1.28rem;
+    font-size: 1.72rem;
   }
 
   dl div {
@@ -1434,7 +1471,7 @@ dd {
   }
 
   .answer-panel strong {
-    font-size: 1.12rem;
+    font-size: 1.5rem;
   }
 
   dl {
