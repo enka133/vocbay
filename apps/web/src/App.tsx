@@ -95,13 +95,11 @@ export function App() {
   const studyPreview = useMemo(() => buildStudyQueue(vocabularyCards, reviewState, clock), [reviewState, clock]);
   const currentCard = studyQueue[currentIndex] ?? studyPreview[0] ?? fallbackCard;
   const currentState = getCardReviewState(reviewState, currentCard.id, clock);
-  const currentStatus = getCardStatus(reviewState[currentCard.id], clock);
   const visibleCards = useMemo(
     () => (screen === "browser" ? filterCards(vocabularyCards, reviewState, deferredSearchTerm, chapterFilter, clock) : []),
     [chapterFilter, clock, deferredSearchTerm, reviewState, screen],
   );
   const chapters = useMemo(() => [...new Set(vocabularyCards.map((card) => card.chapter))], []);
-  const sessionProgress = studyQueue.length ? `${Math.min(currentIndex + 1, studyQueue.length)} / ${studyQueue.length}` : "0 / 0";
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -234,10 +232,7 @@ export function App() {
               key={currentCard.id}
               card={currentCard}
               cardState={currentState}
-              cardStatus={currentStatus}
               isAnswerShown={isAnswerShown}
-              playerState={playerState}
-              progress={sessionProgress}
               now={clock}
               onReveal={() => setIsAnswerShown(true)}
               onGrade={gradeCurrentCard}
@@ -357,20 +352,14 @@ function DeckHome({
 function StudyCard({
   card,
   cardState,
-  cardStatus,
   isAnswerShown,
-  playerState,
-  progress,
   now,
   onReveal,
   onGrade,
 }: {
   card: VocabularyCard;
   cardState: ReturnType<typeof getCardReviewState>;
-  cardStatus: string;
   isAnswerShown: boolean;
-  playerState: PlayerState;
-  progress: string;
   now: number;
   onReveal: () => void;
   onGrade: (rating: Rating) => void;
@@ -379,18 +368,25 @@ function StudyCard({
   const masteryStep = getMasteryStep(cardState);
   const reviewCount = cardState.repetitions;
   const isNewCard = cardState.phase === "new" || reviewCount === 0;
+  const chapterCards = vocabularyCards.filter((entry) => entry.chapter === card.chapter);
+  const chapterTotal = chapterCards.length;
+  const chapterPosition = chapterCards.findIndex((entry) => entry.id === card.id) + 1;
+  const chapterRatio = chapterTotal ? chapterPosition / chapterTotal : 0;
 
   return (
     <article className={`study-card ${isAnswerShown ? "answer-shown" : ""}`}>
       <FamiliarityBadge isNew={isNewCard} reviewCount={reviewCount} />
-      <div className="study-meta">
-        <span data-testid="session-progress">{progress}</span>
-        <span>Chapter {card.chapter}</span>
-        {card.formRole ? <span>{formatFormRole(card.formRole)}</span> : null}
-        <span>{cardStatus}</span>
-        <span data-testid="study-streak">{playerState.streak} streak</span>
-        <span data-testid="study-xp">{playerState.xp} XP</span>
-      </div>
+      <header className="study-progress">
+        <div className="study-progress-head">
+          <span className="study-chapter">Chapter {card.chapter}</span>
+          <span className="study-count" data-testid="session-progress">
+            {chapterPosition} / {chapterTotal}
+          </span>
+        </div>
+        <div className="study-progress-track" aria-hidden="true">
+          <span style={{ transform: `scaleX(${chapterRatio})` }} />
+        </div>
+      </header>
 
       <div className="study-workspace">
         <div className="front-side">

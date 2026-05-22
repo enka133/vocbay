@@ -126,7 +126,6 @@ h2 {
 
 .header-actions,
 .deck-title,
-.study-meta,
 .browser-header,
 .complete-actions {
   display: flex;
@@ -483,25 +482,49 @@ h2 {
   align-self: end;
 }
 
-.study-meta {
-  justify-content: center;
-  gap: 10px;
-  color: var(--muted);
-  font-size: 0.83rem;
-  font-weight: 800;
-  flex-wrap: wrap;
-  padding-right: 68px;
-  padding-left: 8px;
+.study-progress {
+  display: grid;
+  gap: 9px;
+  padding: 2px 2px 0;
 }
 
-.study-meta span {
-  min-height: 28px;
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--line-faint);
+.study-progress-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-right: 64px;
+}
+
+.study-chapter {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.study-count {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.study-progress-track {
+  height: 4px;
   border-radius: 999px;
-  padding: 4px 10px;
-  background: var(--surface-muted);
+  background: var(--line-faint);
+  overflow: hidden;
+}
+
+.study-progress-track > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transform-origin: left center;
+  transition: transform 360ms var(--ease-out-quint);
 }
 
 .familiarity-badge {
