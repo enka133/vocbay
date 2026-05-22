@@ -381,37 +381,39 @@ function StudyCard({
         <span data-testid="study-xp">{playerState.xp} XP</span>
       </div>
 
-      <div className="front-side">
-        <p className="prompt-text">{card.prompt}</p>
-        <p className="arabic-sentence" dir="rtl" lang="ar">
-          {renderArabicWithHighlight(card)}
-        </p>
-        <p className="key-line">
-          <code>{targetKey}</code>
-        </p>
-      </div>
+      <div className="study-workspace">
+        <div className="front-side">
+          <p className="prompt-text">{card.prompt}</p>
+          <p className="arabic-sentence" dir="rtl" lang="ar">
+            {renderArabicWithHighlight(card)}
+          </p>
+          <p className="key-line">
+            <code>{targetKey}</code>
+          </p>
+        </div>
 
-      {isAnswerShown ? (
-        <>
-          <AnswerPanel card={card} />
-          <div className="grade-grid" aria-label="Grade this card">
-            {(["again", "hard", "good", "easy"] as Rating[]).map((rating) => {
-              const preview = previewRating(cardState, rating, now);
-              return (
-                <button className={`grade-button ${rating}`} key={rating} type="button" onClick={() => onGrade(rating)}>
-                  <span>{ratingLabels[rating]}</span>
-                  <strong>{formatDueDistance(preview.dueAt, now)}</strong>
-                </button>
-              );
-            })}
-          </div>
-        </>
-      ) : (
-        <button className="reveal-action" type="button" onClick={onReveal}>
-          <Eye size={18} aria-hidden="true" />
-          Show answer
-        </button>
-      )}
+        {isAnswerShown ? (
+          <>
+            <AnswerPanel card={card} />
+            <div className="grade-grid" aria-label="Grade this card">
+              {(["again", "hard", "good", "easy"] as Rating[]).map((rating) => {
+                const preview = previewRating(cardState, rating, now);
+                return (
+                  <button className={`grade-button ${rating}`} key={rating} type="button" onClick={() => onGrade(rating)}>
+                    <span>{ratingLabels[rating]}</span>
+                    <strong>{formatDueDistance(preview.dueAt, now)}</strong>
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        ) : (
+          <button className="reveal-action" type="button" onClick={onReveal}>
+            <Eye size={20} aria-hidden="true" />
+            Show answer
+          </button>
+        )}
+      </div>
     </article>
   );
 }
