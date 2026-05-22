@@ -23,6 +23,11 @@ test("anki-style review starts, reveals, and schedules the first card", async ({
   await expect(page.getByTestId("session-progress")).toHaveText(`1 / ${total}`);
   await expect(page.getByRole("button", { name: "Show answer" })).toBeVisible();
 
+  const familiarityBadge = page.getByTestId("familiarity-badge");
+  await expect(familiarityBadge).toBeVisible();
+  await expect(familiarityBadge).toContainText("New");
+  await expect(familiarityBadge).toHaveAttribute("data-review-count", "0");
+
   const targetMastery = page.getByTestId("target-mastery");
   const targetBackgroundBeforeReveal = await targetMastery.evaluate((node) => getComputedStyle(node).backgroundColor);
   await page.getByRole("button", { name: "Show answer" }).click();

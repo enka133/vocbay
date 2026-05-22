@@ -377,9 +377,12 @@ function StudyCard({
 }) {
   const targetKey = normalizeArabicForKey(card.target);
   const masteryStep = getMasteryStep(cardState);
+  const reviewCount = cardState.repetitions;
+  const isNewCard = cardState.phase === "new" || reviewCount === 0;
 
   return (
     <article className={`study-card ${isAnswerShown ? "answer-shown" : ""}`}>
+      <FamiliarityBadge isNew={isNewCard} reviewCount={reviewCount} />
       <div className="study-meta">
         <span data-testid="session-progress">{progress}</span>
         <span>Chapter {card.chapter}</span>
@@ -629,6 +632,30 @@ function DeckBrowser({
         })}
       </div>
     </aside>
+  );
+}
+
+function FamiliarityBadge({ isNew, reviewCount }: { isNew: boolean; reviewCount: number }) {
+  return (
+    <span
+      className={`familiarity-badge ${isNew ? "is-new" : ""}`}
+      data-testid="familiarity-badge"
+      data-review-count={reviewCount}
+      aria-label={isNew ? "New card" : `Seen ${reviewCount} times`}
+      title={isNew ? "First time seeing this" : `Seen ${reviewCount}×`}
+    >
+      {isNew ? (
+        <>
+          <Sparkles size={12} aria-hidden="true" />
+          New
+        </>
+      ) : (
+        <>
+          <Eye size={12} aria-hidden="true" />
+          {reviewCount}
+        </>
+      )}
+    </span>
   );
 }
 

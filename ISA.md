@@ -2,11 +2,11 @@
 task: Implement FSRS-6 core engine, latency grading, lapse sandbox, interference lock, and API one-unknown cloze pipeline
 project: vocbay
 effort: E3
-phase: build
-progress: 33/50
+phase: complete
+progress: 49/50
 mode: algorithm
 started: 2026-05-22T00:00:00Z
-updated: 2026-05-22T00:40:00Z
+updated: 2026-05-22T00:55:00Z
 ---
 
 ## Problem
@@ -96,15 +96,15 @@ Replace the primitive web scheduler math with a canonical, unit-tested FSRS-6 en
 - [x] ISC-39: `apps/web/src/scheduler.ts` consumes the core FSRS-6 engine for interval math
 - [x] ISC-40: web `CardReviewState` retains `intervalDays` + `lastRating` (mastery-step derivation preserved)
 - [x] ISC-41: web "again" uses a ≥15-minute sandbox interval, not 1 minute
-- [ ] ISC-42: `bun test packages/core/tests` all green
-- [ ] ISC-43: `bun --filter @vocbay/api typecheck` clean
-- [ ] ISC-44: `bun --filter @vocbay/web typecheck` clean
-- [ ] ISC-45: `bun --filter @vocbay/core typecheck` clean
-- [ ] ISC-46: existing Playwright E2E suite passes (mastery color stable, answer meanings, XP/streak)
+- [x] ISC-42: `bun test packages/core/tests` all green
+- [x] ISC-43: `bun --filter @vocbay/api typecheck` clean
+- [x] ISC-44: `bun --filter @vocbay/web typecheck` clean
+- [x] ISC-45: `bun --filter @vocbay/core typecheck` clean
+- [x] ISC-46: existing Playwright E2E suite passes (mastery color stable, answer meanings, XP/streak)
 
 ### Anti-criteria
-- [ ] ISC-47: Anti: no duplicate role/preposition answer boxes reintroduced for verb-form cards
-- [ ] ISC-48: Anti: target mastery background color does NOT change on "Show answer"
+- [x] ISC-47: Anti: no duplicate role/preposition answer boxes reintroduced for verb-form cards
+- [x] ISC-48: Anti: target mastery background color does NOT change on "Show answer"
 - [x] ISC-49: Anti: the generated `vocabulary.ts` data file is NOT rewritten
 - [x] ISC-50: Anti: no real network/LLM call exists in any test
 
@@ -147,12 +147,17 @@ Replace the primitive web scheduler math with a canonical, unit-tested FSRS-6 en
 
 ## Changelog
 
-(pending LEARN)
+- conjectured: `isolation: "worktree"` would give the Forge write-agent a private tree, making parallel API work conflict-free.
+- refuted_by: `git worktree list` showed only the main tree; Forge ran in the shared repo and `git checkout`+deleted the in-flight FSRS files it misread as out-of-scope.
+- learned: write-agents in a repo with concurrent uncommitted main-tree changes are unsafe even with `isolation:"worktree"` if the worktree silently doesn't materialize; the agent's "clean up out-of-scope files" instinct then destroys live work.
+- criterion_now: commit-before-spawn (or hand the agent an explicit "never run git checkout/clean, never touch files outside your manifest" rule); treat any write-agent as potentially operating in the shared tree.
 
 ## Verification
 
-- ISC-1..30 (core): `bun test packages/core/tests` — fsrs/latency/lapseSandbox/interferenceLock suites. (re-run pending after rebuild)
-- ISC-31..36 (API): Forge report — `bun test apps/api/tests` → 7 pass / 0 fail; `bun --filter @vocbay/api typecheck` exit 0. Refinement hint contains offending word طَعَامٍ + unlocked chapters; maxAttempts terminates (4 calls, 0 drafts, no loop).
-- ISC-37: DEFERRED-VERIFY — live provider, no keys.
-- ISC-38..41: exports + web rewire re-applied after incident.
-- ISC-42..50: full suite + E2E re-run pending.
+- ISC-1..30 (core): `bun test packages/core/tests` → 38 pass / 0 fail. Round-trip to 0.88, strict-decreasing curve, good>again stability, D∈[1,10], S>0, latency 4000ms boundary + 60s distraction ceiling, sandbox 15-min timing + earliest-ready order, interference state machine + transitive/bidirectional determinism. PASS.
+- ISC-31..36 (API): `bun test apps/api/tests` → 7 pass / 0 fail. Discard-locked + retry with refined hint (names offending طَعَامٍ + unlocked chapters), maxAttempts terminates (4 calls, 0 drafts, no loop), injectable fake provider, route mounted with existing routes intact. PASS.
+- ISC-37: DEFERRED-VERIFY — live LLM provider call needs keys; injectable adapter + graceful-degrade stub shipped. Follow-up: wire a real provider + DB persist of drafts into generated_card_drafts.
+- ISC-38..41: core barrel re-exports scheduler + interferenceLock (`./scheduler` subpath); web scheduler.ts consumes the core engine; CardReviewState retains intervalDays/lastRating; "again" → 15-min sandbox. App.tsx captures reveal→grade latency. PASS (typecheck + E2E).
+- ISC-42..46: 48 unit tests pass; `bun run typecheck` exit 0 on core/api/web; Playwright 5/5 pass (9.4s). PASS.
+- ISC-47..50: E2E asserts zero Preposition/role boxes + zero إِلَى for verb cards; mastery bg color identical before/after reveal; vocabulary.ts byte-untouched (git diff empty); all tests use fakes, no network. PASS.
+- Committed: fe47c4e.

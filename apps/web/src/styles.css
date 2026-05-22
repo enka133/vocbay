@@ -273,6 +273,7 @@ h2 {
 
 .home-panel,
 .study-card {
+  position: relative;
   min-height: 0;
   height: 100%;
   display: grid;
@@ -489,6 +490,8 @@ h2 {
   font-size: 0.83rem;
   font-weight: 800;
   flex-wrap: wrap;
+  padding-right: 68px;
+  padding-left: 8px;
 }
 
 .study-meta span {
@@ -499,6 +502,43 @@ h2 {
   border-radius: 999px;
   padding: 4px 10px;
   background: var(--surface-muted);
+}
+
+.familiarity-badge {
+  position: absolute;
+  top: 21px;
+  right: 18px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 24px;
+  padding: 3px 10px;
+  border: 1px solid var(--line-faint);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 1px 2px oklch(0% 0 0 / 0.05);
+}
+
+.familiarity-badge svg {
+  opacity: 0.7;
+}
+
+.familiarity-badge.is-new {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+}
+
+.familiarity-badge.is-new svg {
+  opacity: 1;
 }
 
 .study-workspace {
