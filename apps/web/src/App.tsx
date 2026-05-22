@@ -7,7 +7,6 @@ import {
   Eye,
   Flame,
   Layers3,
-  RotateCcw,
   Search,
   Sparkles,
   Trophy,
@@ -37,7 +36,6 @@ import {
 import { vocabularyCards, type VocabularyCard } from "./vocabulary";
 
 const REVIEW_STATE_KEY = "vocbay.ankiReviewState.v1";
-const LEGACY_STATE_KEY = "vocbay.studyStats.v1";
 const PLAYER_STATE_KEY = "vocbay.playerState.v1";
 const BROWSER_CARD_LIMIT = 180;
 
@@ -178,20 +176,6 @@ export function App() {
     setIsAnswerShown(false);
   }
 
-  function resetProgress() {
-    localStorage.removeItem(REVIEW_STATE_KEY);
-    localStorage.removeItem(LEGACY_STATE_KEY);
-    localStorage.removeItem(PLAYER_STATE_KEY);
-    setReviewState({});
-    setPlayerState(createInitialPlayerState());
-    setStudyQueue([]);
-    setCurrentIndex(0);
-    setIsAnswerShown(false);
-    setRewardFeedback(null);
-    setScreen("deck");
-    setClock(Date.now());
-  }
-
   return (
     <main className="app-shell">
       <header className="app-header">
@@ -202,9 +186,6 @@ export function App() {
         <div className="header-actions">
           <button className="icon-button" type="button" aria-label="Open deck browser" onClick={() => setScreen("browser")}>
             <BookOpen size={20} aria-hidden="true" />
-          </button>
-          <button className="icon-button danger" type="button" aria-label="Reset progress" onClick={resetProgress}>
-            <RotateCcw size={20} aria-hidden="true" />
           </button>
         </div>
       </header>
